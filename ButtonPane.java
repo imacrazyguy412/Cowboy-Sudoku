@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -24,25 +25,35 @@ public class ButtonPane extends JPanel {
             final int curCol = j;
             buttons[i][j] = new JButton("");
             buttons[i][j].addKeyListener(enter);
+            buttons[i][j].setBackground(Color.white);
             buttons[i][j].addKeyListener(new KeyAdapter() {
                @Override
                public void keyPressed(KeyEvent e) {
                   switch (e.getKeyCode()) {
                   case KeyEvent.VK_UP:
                      if (curRow > 0)
+                    	buttons[curRow][curCol].setBackground(Color.white);
                         buttons[curRow - 1][curCol].requestFocus();
+                     	buttons[curRow - 1][curCol].setBackground(Color.blue);
+                    // buttons[curRow - 1][curCol].se
                      break;
                   case KeyEvent.VK_DOWN:
                      if (curRow < buttons.length - 1)
+                    	buttons[curRow][curCol].setBackground(Color.white);
                         buttons[curRow + 1][curCol].requestFocus();
+                     	buttons[curRow + 1][curCol].setBackground(Color.BLUE);
                      break;
                   case KeyEvent.VK_LEFT:
                      if (curCol > 0)
+                    	buttons[curRow][curCol].setBackground(Color.white);
                         buttons[curRow][curCol - 1].requestFocus();
+                     	buttons[curRow][curCol - 1].setBackground(Color.BLUE);
                      break;
                   case KeyEvent.VK_RIGHT:
                      if (curCol < buttons[curRow].length - 1)
+                    	buttons[curRow][curCol].setBackground(Color.white);
                         buttons[curRow][curCol + 1].requestFocus();
+                        buttons[curRow][curCol + 1].setBackground(Color.BLUE);
                      break;
                   default:
                      break;
