@@ -6,4 +6,5 @@ import java.util.Random;
 class Start extends JPanel {
   private JLabel title, cowboy;
   private JButton 
+
 }
