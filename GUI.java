@@ -7,7 +7,7 @@ class GUI {
 
     public void run (){
         switch (state){
-            case MAIN:
+            case START:
                 //draw screen
                 break;
             case DIFFICULTY:
