@@ -159,7 +159,7 @@ public class Solver {
 			counter = 0;
 		}
 		
-		for(int a = 0; a < arrcounter-1; a++) {
+		for(int a = 0; a < arrcounter; a++) {
 			for(int c = 0; c < 9; c++) {
 				if(board[row][c][0] == 0) {
 					if(canFit(board, missingnums[a], row, c)) {
@@ -206,7 +206,7 @@ public class Solver {
 			counter = 0;
 		}
 		
-		for(int a = 0; a < arrcounter-1; a++) {
+		for(int a = 0; a < arrcounter; a++) {
 			for(int r = 0; r < 9; r++) {
 				if(board[r][col][0] == 0) {
 					if(canFit(board, missingnums[a], r, col)) {
@@ -256,7 +256,7 @@ public class Solver {
 			counter = 0;
 		}
 		
-		for(int a = 0; a < arrcounter-1; a++) {
+		for(int a = 0; a < arrcounter; a++) {
 			for(int b = squarer*3; b < squarer*3+3; b++) {
 				for(int c = squarec*3; c < squarec*3+3; c++) {
 					if(board[row][c][0] == 0) {
