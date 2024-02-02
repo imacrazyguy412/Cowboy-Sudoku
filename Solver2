@@ -1,0 +1,113 @@
+class Solver {
+    public  void solveSudoku(char[][] board) {
+        solve(board);
+    }
+     boolean solve(char[][] board){
+        for(int r = 0; r<9; r++){
+            for(int c = 0; c<9; c++){
+                if(board[r][c] == '.'){
+                    for(char guess = '1'; guess <= '9'; guess++){
+                        if(isValid(guess, r, c, board)){
+                            board[r][c] = guess;
+                            /*
+                            for(int i =0; i<9; i++){
+                                for(int j = 0; j<9; j++){
+                                    System.out.print(board[i][j] + " ");
+                                }
+                                System.out.println();
+                            }
+                            System.out.println();
+                            */
+                            if(solve(board)){
+                                return true;
+                            } else {
+                                board[r][c] = '.';
+                            }
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+        
+        for(int i =0; i<9; i++){
+                                for(int j = 0; j<9; j++){
+                                    System.out.print(board[i][j] + " ");
+                                }
+                                System.out.println();
+                            }
+                            
+        return true;
+    }
+     
+     boolean solveInv(char[][] board) {
+    	 for(int r = 8; r>=0; r--){
+             for(int c = 8; c>=0; c--){
+                 if(board[r][c] == '.'){
+                     for(char guess = '1'; guess <= '9'; guess++){
+                         if(isValid(guess, r, c, board)){
+                             board[r][c] = guess;
+                             /*
+                             for(int i =0; i<9; i++){
+                                 for(int j = 0; j<9; j++){
+                                     System.out.print(board[i][j] + " ");
+                                 }
+                                 System.out.println();
+                             }
+                             System.out.println();
+                             */
+                             if(solve(board)){
+                                 return true;
+                             } else {
+                                 board[r][c] = '.';
+                             }
+                         }
+                     }
+                     return false;
+                 }
+             }
+         }
+         
+         for(int i =0; i<9; i++){
+                                 for(int j = 0; j<9; j++){
+                                     System.out.print(board[i][j] + " ");
+                                 }
+                                 System.out.println();
+                             }
+                             
+         return true;
+     }
+
+     boolean isValid(char guess, int row, int col, char[][] board) {
+        for (int i = 0; i < 9; i++) {
+            if (guess == board[row][i] || guess == board[i][col]) {
+                return false;
+            }
+        }
+
+        for (int r = (row / 3) * 3; r < (row / 3) * 3 + 3; r++) {
+            for (int c = (col / 3) * 3; c < (col / 3) * 3 + 3; c++) {
+                if (guess == board[r][c]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public static void main(String[] args) {
+    	char[][] board = new char[][] { {7, 0, 0, 0, 0, 0, 2, 0, 0},  
+	          {4, 0, 2, 0, 0, 0, 0, 0, 3},  
+	          {0, 0, 0, 2, 0, 1, 0, 0, 0},  
+	          {3, 0, 0, 1, 8, 0, 0, 9, 7},  
+	          {0, 0, 9, 0, 7, 0, 6, 0, 0},  
+	          {6, 5, 0, 0, 3, 2, 0, 0, 1},  
+	          {0, 0, 0, 4, 0, 9, 0, 0, 0},  
+	          {5, 0, 0, 0, 0, 0, 1, 0, 6},  
+	          {0, 0, 6, 0, 0, 0, 0, 0, 8}
+};
+			Solver solve = new Solver();
+			solve.solveSudoku(board);
+			System.out.println();
+			solve.solveInv(board);
+	}
+}
