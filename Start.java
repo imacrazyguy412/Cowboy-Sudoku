@@ -15,7 +15,7 @@ class Start extends JPanel {
 		
 	//Create and add both labels
 	title = new JLabel("Cowboy Sudoku");
-	cowboy = new JLabel(new ImageIcon ("src/die1.gif"));
+	cowboy = new JLabel(new ImageIcon (""));
 		
 	//Create and add button
 	playGame = new JButton("Play New Game");
