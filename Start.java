@@ -28,6 +28,7 @@ class Start extends JPanel{
 		
 	//Create buttons
 	playGame = new JButton("Play New Game");
+	playGame.setActionCommand()
    	savedGame = new JButton ("Continue Saved Game");
 	//set constraints and add playGame;
 	c.gridx = 0;
