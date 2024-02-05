@@ -1,21 +1,28 @@
 public class Solver {
 	int[][][] board = new int[9][9][10];
+	int[][] given;
 	int temp;
 	boolean possible;
 	
+	/*public int[][][] setGiven(int[][] g) {
+		given = g;
+		solve(board);
+		return board;
+	}*/
+	
 	//The "main" method for the solver, this pieces everything together and tells other methods to solve the board
-	public boolean solve (int[][] given) {
+	public int[][][] solve (int[][] given) {
 		possible = false;
 		for(int r = 0; r < 9; r++) {
 			for(int c = 0; c < 9; c++) {
 				board[r][c][0] = given[r][c];
 			}
 		}
-		for(int a = 0; a < 1000; a++) {
+		for(int a = 0; a < 20; a++) {
 			for(int r = 0; r < 9; r++) {
 				for(int c = 0; c < 9; c++) {
 					if(!(given[r][c] == 0) && a == 0) {
-						board[r][c][0] = given[r][c];
+					board[r][c][0] = given[r][c];
 					} else if(a > 0) {
 						board = ruleOutRowColSquare(given, board, c, r);
 						if(!(board[r][c][0] == 0)) {
@@ -35,10 +42,9 @@ public class Solver {
 						}
 						board = tryRow(board, r);
 						board = tryCol(board, c);
-						board = trySquare(board, r, c);
+						//board = trySquare(board, r, c);
 					}
 				}
-				
 			}
 			possible = true;
 			for(int r = 0; r < 9; r++) {
@@ -50,7 +56,7 @@ public class Solver {
 			}
 		}
 		
-		return possible;
+		return board;
 	}
 	
 	//a get board if needed
@@ -165,7 +171,7 @@ public class Solver {
 					if(canFit(board, missingnums[a], row, c)) {
 						counter++;
 					} else {
-						//board = removePotentialNum(board, row, c, missingnums[a]);
+						board = removePotentialNum(board, row, c, missingnums[a]);
 					}
 				}
 			}
@@ -212,7 +218,7 @@ public class Solver {
 					if(canFit(board, missingnums[a], r, col)) {
 						counter++;
 					} else {
-						//board = removePotentialNum(board, r, col, missingnums[a]);
+						board = removePotentialNum(board, r, col, missingnums[a]);
 					}
 				}
 			}
@@ -263,7 +269,7 @@ public class Solver {
 						if(canFit(board, missingnums[a], b, c)) {
 							counter++;
 						} else {
-							//board = removePotentialNum(board, b, c, missingnums[a]);
+							board = removePotentialNum(board, b, c, missingnums[a]);
 						}
 					}
 				}
@@ -287,6 +293,33 @@ public class Solver {
 		}
 		return board;
 	}
+	
+	/*public int[][][] tryComplicatedShenanigans(int[][][] board, int rOrigin, int cOrigin) {
+		int squarec = cOrigin/3;
+		int squarer = rOrigin/3;
+		int[] missingnums = new int[9];
+		int arrcounter = 0;
+		int counter = 0;
+		
+		for(int a = 1; a < 10; a++) {
+			for(int b = squarer*3; b < squarer*3+3; b++) {
+				for(int c = squarec*3; c < squarec*3+3; c++) {
+					if(!(b == rOrigin)) {
+						if(!(board[b][c][0] == a)) {
+							counter++;
+						}
+						if(counter == 6) {
+							missingnums[arrcounter] = a;
+							arrcounter++;
+						}
+					}
+				}
+			}
+			counter = 0;
+		}
+		
+		return board;
+	}*/
 	
 	public boolean canFit(int[][][] board, int val, int rOrigin, int cOrigin) {
 		int squarec = cOrigin/3;
@@ -333,6 +366,20 @@ public class Solver {
 		board[row][col][8] = 0;
 		return board;
 	}
+	
+	public int[][][] clearInvalidPotentials(int[][][] board, int row, int col) {
+		int shift = 0;
+		for(int x = 1; x < 8; x++) {
+			board[row][col][x] = board[row][col][x+shift];
+			if(!canFit(board, board[row][col][x], row, col)) {
+				shift++;
+				board[row][col][x] = 0;
+			}
+			
+		}
+		return board;
+	}
+	
 	
 	
 	
