@@ -4,6 +4,21 @@ import java.awt.event.*;
 import java.awt.*;
 import java.util.Random;
 
+/*
+	Constraints reference
+ 	c.fill = GridBagConstraints.HORIZONTAL;
+  	c.ipady
+   	c.ipadx
+   	c.gridwidth
+    	c.gridheight
+     	c.gridy
+      	c.gridx
+    	c.anchor
+     	c.insets
+  	c.weightx = 0.0;
+	c.weighty = 0.0;
+*/
+
 class Difficulty {
 	private JLabel header;
 	private JButton easy, medium, hard, back, start, mistakeToggle;
@@ -17,6 +32,7 @@ class Difficulty {
 		//Create header label
 		header = new JLabel("Difficulty Selection");
 		//set constraints and add title
+		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 1;
 		c.gridy = 0;
 		pane.add(header, c);
@@ -59,4 +75,31 @@ class Difficulty {
 		c.gridy = 4;
 		pane.add (start, c);
 	}
+/**
+	* Create the GUI and show it.  For thread safety,
+ 	* this method should be invoked from the
+  	* event-dispatching thread.
+*/
+    private static void createAndShowGUI() {
+        //Create and set up the window.
+        JFrame frame = new JFrame("GridBagLayoutDemo");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //Set up the content pane.
+        addComponentsToPane(frame.getContentPane());
+
+        //Display the window.
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        //Schedule a job for the event-dispatching thread:
+        //creating and showing this application's GUI.
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createAndShowGUI();
+            }
+        });
+    }
 }
