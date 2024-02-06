@@ -61,12 +61,12 @@ public class Solver {
 		return possible;
 	}
 	
-	//a get board if needed
+	//A get board if needed
 	public int[][][] getBoard() {
 		return board;
 	}
 	
-	//This method is given a spot and attempts to either find a solution or rule out any impossible numbers and set the potential numbers to the appropriate options
+	//Looks at a given spot and attempts to either find a solution or rule out any impossible numbers and set the potential numbers to the appropriate options
 	public int[][][] ruleOutRowColSquare(int[][] givenBoard, int[][][] board, int cOrigin, int rOrigin) {
 		int[] impossibleVals = new int[999];
 		int squarec = cOrigin/3;
@@ -115,7 +115,7 @@ public class Solver {
 		return board;
 	}
 	
-	
+	//Looks through the other rows and columns in a given spot and tries to determine if they all contain a specific number, if they all do, then the number it was looking for must be in the given spot
 	public int[][][] mustBeHere(int[][] givenBoard, int[][][] board, int rOrigin, int cOrigin, int num) {
 		int squarec = cOrigin/3;
 		int squarer = rOrigin/3;
@@ -151,6 +151,7 @@ public class Solver {
 		return board;
 	}
 	
+	//Attempts to complete a full given row, or at least part of it and rule out impossible potential numbers
 	public int[][][] tryRow(int[][][] board, int row) {
 		int[] missingnums = new int[9];
 		int arrcounter = 0;
@@ -198,6 +199,7 @@ public class Solver {
 		
 	}
 	
+	//Attempts to complete a full given column, or at least part of it and rule out impossible potential numbers
 	public int[][][] tryCol(int[][][] board, int col) {
 		int[] missingnums = new int[9];
 		int arrcounter = 0;
@@ -244,7 +246,8 @@ public class Solver {
 		return board;
 	}
 	
-	public int[][][] trySquare(int[][][] board, int row, int col) {
+	//Attempts to complete a full given 3x3 square, or at least part of it and rule out impossible potential numbers. VERY BUGGY, NEEDS IMPROVEMENT BUT CODE SEEMS TO WORK BETTER WITHOUT IT
+	/*public int[][][] trySquare(int[][][] board, int row, int col) {
 		int squarer = row/3;
 		int squarec = col/3;
 		int[] missingnums = new int[9];
@@ -296,8 +299,9 @@ public class Solver {
 			counter = 0;
 		}
 		return board;
-	}
+	}*/
 	
+	//A method that will try complicated sudoku strategies, UNFINISHED, UNTESTED, MAY BE DISCARDED
 	/*public int[][][] tryComplicatedShenanigans(int[][][] board, int rOrigin, int cOrigin) {
 		int squarec = cOrigin/3;
 		int squarer = rOrigin/3;
@@ -325,6 +329,7 @@ public class Solver {
 		return board;
 	}*/
 	
+	//Takes in a number and a spot and checks if that number can fit in that spot
 	public boolean canFit(int[][][] board, int val, int rOrigin, int cOrigin) {
 		int squarec = cOrigin/3;
 		int squarer = rOrigin/3;
@@ -355,6 +360,7 @@ public class Solver {
 		return true;
 	}
 	
+	//clears a given potential number from a given spot
 	public int[][][] removePotentialNum(int[][][] board, int row, int col, int num) {
 		boolean shift = false;
 		for(int x = 1; x < 8; x++) {
@@ -371,6 +377,7 @@ public class Solver {
 		return board;
 	}
 	
+	//Checks all potential numbers on a given spot, and removes them if they are invalid
 	public int[][][] clearInvalidPotentials(int[][][] board, int row, int col) {
 		int shift = 0;
 		for(int x = 1; x < 8; x++) {
@@ -387,7 +394,7 @@ public class Solver {
 	
 	
 	
-	
+	//Used for generating a board, checks if a number can fit in a given spot
 	public boolean valid(int[][] board, int val, int cOrigin, int rOrigin) {
 		int squarec = cOrigin/3;
 		int squarer = rOrigin/3;
@@ -427,6 +434,7 @@ public class Solver {
 		return true;
 	}
 	
+	//Used for generating a board, checks if a given spot contains all numbers 1-9
 	public boolean notFull(int[][] board, int cOrigin, int rOrigin) {
 		int squarec = cOrigin/3;
 		int squarer = rOrigin/3;

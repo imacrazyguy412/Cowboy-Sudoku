@@ -2,6 +2,7 @@ import java.math.*;
 
 public class SudokuTester {
 	public static void main(String[] args) {
+		//Sample boards used for testing, keep these around just in case
 		/*int[][] board = new int[][] {{5,3,0,0,7,0,0,0,0},
 									{6,0,0,1,9,5,0,0,0},
 									{0,9,8,0,0,0,0,6,0},
@@ -30,6 +31,7 @@ public class SudokuTester {
 			{1, 3, 0, 0, 0, 0, 2, 5, 0},
 			{0, 0, 0, 0, 0, 0, 0, 7, 4},
 			{0, 0, 5, 2, 0, 6, 3, 0, 0} };*/
+		
 		int[][] board = new int[9][9];
 		int rando = (int) (Math.random()*10-1);
 		int rand = (int) (Math.random()*9+1);
@@ -40,6 +42,8 @@ public class SudokuTester {
 		boolean valid = false;
 		boolean possible = false;
 		Solver solver = new Solver();
+		
+		//Creates a board and checks if that board is solvable
 		while(!possible) {
 			while(numsPlaced < targetNums) {
 				rand = (int) (Math.random()*9+1);
@@ -76,6 +80,7 @@ public class SudokuTester {
 			}
 		}
 		
+		//Printing results
 		for(int r = 0; r < 9; r++) {
 			for(int c = 0; c < 9; c++) {
 				System.out.print(board[r][c] + " ");
