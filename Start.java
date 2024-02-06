@@ -39,5 +39,17 @@ class Start extends JPanel{
 	c.gridy = 1;
 	this.add (savedGame, c);
 	}
+	private static void runGUI(){
+		JFrame.setDefaultLookAndFeelDecorated(true);
+		Start window = new StartScreen();
+	}
+		
+	  public static void main(String[] args) {
+		  javax.swing.SwingUtilities.invokeLater( new Runnable(){
+			  public void run(){
+				  runGUI();
+			  }
+		});
+	  }
   
 }
