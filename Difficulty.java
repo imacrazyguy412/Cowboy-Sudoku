@@ -4,14 +4,14 @@ import java.awt.event.*;
 import java.awt.*;
 import java.util.Random;
 
-class Difficulty extends JPanel{
+class Difficulty {
 	private JLabel header;
 	private JButton easy, medium, hard, back, start, mistakeToggle;
  
-	public Start() {
+	public static void addToPane (Container pane) {
 		//Sets the content pane
-		this.setBackground(new Color (229,229,229,100));
-		this.setLayout(new GridBagLayout());
+		pane.setBackground(new Color (229,229,229,100));
+		pane.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
 		//Create header label
@@ -19,7 +19,7 @@ class Difficulty extends JPanel{
 		//set constraints and add title
 		c.gridx = 1;
 		c.gridy = 0;
-		this.add(header, c);
+		pane.add(header, c);
 		
 		//Create buttons
 		easy = new JButton("Easy");
@@ -32,14 +32,31 @@ class Difficulty extends JPanel{
 		//set constraints and add mistakeToggle;
 		c.gridx = 0;
 		c.gridy = 0;
-		this.add (mistakeToggle, c);
+		pane.add (mistakeToggle, c);
+		
 		//set constraints and add easy;
 		c.gridx = 1;
 		c.gridy = 1;
-		this.add (easy, c);
+		pane.add (easy, c);
+		
 		//set constraints and add medium;
 		c.gridx = 1;
-		c.gridy = 1;
-		this.add (easy, c);
+		c.gridy = 2;
+		pane.add (medium, c);
+		
+		//set constraints and add hard;
+		c.gridx = 1;
+		c.gridy = 3;
+		pane.add (hard, c);
+		
+		//set constraints and add back;
+		c.gridx = 0;
+		c.gridy = 4;
+		pane.add (back, c);
+		
+		//set constraints and add start;
+		c.gridx = 2;
+		c.gridy = 4;
+		pane.add (start, c);
 	}
 }
