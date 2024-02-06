@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -20,8 +19,8 @@ import java.util.Random;
 */
 
 class Difficulty {
-	private JLabel header;
-	private JButton easy, medium, hard, back, start, mistakeToggle;
+	private static JLabel header;
+	private static JButton easy, medium, hard, back, start, mistakeToggle;
  
 	public static void addToPane (Container pane) {
 		//Sets the content pane
@@ -86,7 +85,7 @@ class Difficulty {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Set up the content pane.
-        addComponentsToPane(frame.getContentPane());
+        addToPane(frame.getContentPane());
 
         //Display the window.
         frame.pack();
