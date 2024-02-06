@@ -40,7 +40,7 @@ class Start extends JPanel{
 		}
 	private static void runGUI(){
 		JFrame.setDefaultLookAndFeelDecorated(true);
-		Start window = new StartScreen();
+		Start window = new Start();
 	}
 			
 	public static void main(String[] args) {
