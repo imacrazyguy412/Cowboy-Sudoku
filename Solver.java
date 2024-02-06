@@ -4,14 +4,15 @@ public class Solver {
 	int temp;
 	boolean possible;
 	
-	/*public int[][][] setGiven(int[][] g) {
-		given = g;
-		solve(board);
-		return board;
-	}*/
-	
 	//The "main" method for the solver, this pieces everything together and tells other methods to solve the board
-	public int[][][] solve (int[][] given) {
+	public boolean solve (int[][] given) {
+		for(int r = 0; r < 9; r++) {
+			for(int c = 0; c < 9; c++) {
+				for(int d = 0; d < 10; d++) {
+					board[r][c][d] = 0;
+				}
+			}
+		}
 		possible = false;
 		for(int r = 0; r < 9; r++) {
 			for(int c = 0; c < 9; c++) {
@@ -46,17 +47,18 @@ public class Solver {
 					}
 				}
 			}
-			possible = true;
-			for(int r = 0; r < 9; r++) {
-				for(int c = 0; c < 9; c++) {
-					if(board[r][c][0] == 0) {
-						possible = false;
-					}
+			
+		}
+		possible = true;
+		for(int r = 0; r < 9; r++) {
+			for(int c = 0; c < 9; c++) {
+				if(board[r][c][0] == 0) {
+					possible = false;
 				}
 			}
 		}
 		
-		return board;
+		return possible;
 	}
 	
 	//a get board if needed
@@ -64,6 +66,7 @@ public class Solver {
 		return board;
 	}
 	
+	//This method is given a spot and attempts to either find a solution or rule out any impossible numbers and set the potential numbers to the appropriate options
 	public int[][][] ruleOutRowColSquare(int[][] givenBoard, int[][][] board, int cOrigin, int rOrigin) {
 		int[] impossibleVals = new int[999];
 		int squarec = cOrigin/3;
@@ -111,6 +114,7 @@ public class Solver {
 		}
 		return board;
 	}
+	
 	
 	public int[][][] mustBeHere(int[][] givenBoard, int[][][] board, int rOrigin, int cOrigin, int num) {
 		int squarec = cOrigin/3;
