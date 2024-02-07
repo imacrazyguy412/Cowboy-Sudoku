@@ -39,6 +39,7 @@ import javax.swing.SwingUtilities;
 		button.setForeground(new Color(255,255,255));
 		button.addActionListener(event -> {
             frame.dispose();
+            System.out.println("frame is closed");
         });
 		pane.add(button, c);
 
@@ -70,6 +71,7 @@ import javax.swing.SwingUtilities;
 		button.setForeground(new Color(255,255,255));
 		button.addActionListener(event -> {
             frame.dispose();
+            System.out.println("frame is closed");
         });
 		pane.add(button, c);
 
@@ -93,7 +95,12 @@ import javax.swing.SwingUtilities;
 		c.gridy = 2;       //third row
 		pane.add(button, c);*/
 	    }
-	 
+
+	    /**
+	     * Create the GUI and show it.  For thread safety,
+	     * this method should be invoked from the
+	     * event-dispatching thread.
+	     */
 	    private static void createAndShowGUI() {
 	        //Create and set up the window.
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
