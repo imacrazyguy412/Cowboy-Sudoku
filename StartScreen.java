@@ -2,17 +2,21 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.util.Random;
+import javax.swing.border.LineBorder;
+import javax.swing.SwingUtilities;
 
  class StartScreen extends JPanel{
 	 final static boolean shouldFill = true;
 	 final static boolean shouldWeightX = true;
 	 final static boolean RIGHT_TO_LEFT = false;
+	 static JFrame frame = new JFrame("Cowboy Sudoku");
 
 	 public static void addComponentsToPane(Container pane) {
 		 if (RIGHT_TO_LEFT) {
-			 pane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+			 pane.setComponentOrientation(ComponentOrientation.UNKNOWN);
 			 }
 
+		LineBorder line = new LineBorder(Color.black, 2, true);
 	    JButton button;
 		pane.setLayout(new GridBagLayout());
 		pane.setBackground(new Color (229,229,229,100));
@@ -22,15 +26,20 @@ import java.util.Random;
 			c.fill = GridBagConstraints.HORIZONTAL;
 		}
 
-		button = new JButton("Button 1");
+		button = new JButton("New Game");
 		if (shouldWeightX) {
 			c.weightx = 0.5;
 		}
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 2;
+		button.setBorder(line);
+		button.setPreferredSize(new Dimension(150, 75));
 		button.setBackground(new Color(54,54,54,100));
 		button.setForeground(new Color(255,255,255));
+		button.addActionListener(event -> {
+            frame.dispose();
+        });
 		pane.add(button, c);
 
 		JLabel label = new JLabel("Cowboy Sudoku");
@@ -38,6 +47,7 @@ import java.util.Random;
 		label.setForeground(new Color(54,54,54));
 		label.setOpaque(true);
 		label.setFont(new Font("Old Standard TT", Font.BOLD, 20));
+		label.setBorder(line);
 		c.fill = GridBagConstraints.NORTH;
 		//c.ipady = 70; 
 		//c.ipadx = 50;
@@ -49,18 +59,22 @@ import java.util.Random;
 		label.setVerticalAlignment(SwingConstants.CENTER);
 		pane.add(label, c);
 
-		button = new JButton("Button 3");
+		button = new JButton("Continue Saved Game");
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx = 0.5;
 		c.gridx = 2;
 		c.gridy = 2;
-		button.setPreferredSize(new Dimension(100, 75));
+		button.setBorder(line);
+		button.setPreferredSize(new Dimension(150, 75));
 		button.setBackground(new Color(36,44,61));
 		button.setForeground(new Color(255,255,255));
+		button.addActionListener(event -> {
+            frame.dispose();
+        });
 		pane.add(button, c);
 
 		label = new JLabel(" ");
-		c.fill = GridBagConstraints.HORIZONTAL;
+		c.fill = GridBagConstraints.SOUTH;
 		c.ipady = 70;      //make this component tall
 		c.weightx = 0.0;
 		c.gridwidth = 3;
@@ -79,16 +93,12 @@ import java.util.Random;
 		c.gridy = 2;       //third row
 		pane.add(button, c);*/
 	    }
-
-	    /**
-	     * Create the GUI and show it.  For thread safety,
-	     * this method should be invoked from the
-	     * event-dispatching thread.
-	     */
+	 
 	    private static void createAndShowGUI() {
 	        //Create and set up the window.
-	        JFrame frame = new JFrame("GridBagLayoutDemo");
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        frame.setSize(900,1200);
+	        frame.setResizable(false);
 
 	        //Set up the content pane.
 	        addComponentsToPane(frame.getContentPane());
@@ -107,4 +117,6 @@ import java.util.Random;
 	            }
 	        });
 	    }
+	    
+	  
 }
