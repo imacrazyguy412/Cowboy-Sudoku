@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -30,6 +31,9 @@ class Difficulty {
 		
 		//Create header label
 		header = new JLabel("Difficulty Selection");
+		header.setBackground(new Color (36, 44, 61, 100));
+		header.setForeground(Color.white);
+		header.setOpaque(true);
 		//set constraints and add title
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 1;
@@ -38,11 +42,34 @@ class Difficulty {
 		
 		//Create buttons
 		easy = new JButton("Easy");
+		easy.setBackground(new Color (207, 176, 100, 100));
+		easy.setForeground (Color.black);
+		easy.setOpaque(true);
+		
 		medium = new JButton ("Medium");
+		medium.setBackground(new Color (36, 44, 61, 100));
+		medium.setForeground (Color.white);
+		medium.setOpaque(true);
+		
 		hard = new JButton ("Hard");
+		hard.setBackground(new Color (207, 176, 100, 100));
+		hard.setForeground (Color.black);
+		hard.setOpaque(true);
+		
 		back = new JButton ("Back");
+		back.setBackground(new Color (36, 44, 61, 100));
+		back.setForeground (Color.white);
+		back.setOpaque(true);
+		
 		start = new JButton ("Start");
-		mistakeToggle = new JButton ("Toggle Mistakes Limiter");
+		start.setBackground(new Color (36, 44, 61, 100));
+		start.setForeground (Color.white);
+		start.setOpaque(true);
+		
+		mistakeToggle = new JButton ("Toggle Mistakes");
+		mistakeToggle.setBackground(new Color (36, 44, 61, 100));
+		mistakeToggle.setForeground (Color.white);
+		mistakeToggle.setOpaque(true);
 		
 		//set constraints and add mistakeToggle;
 		c.gridx = 0;
