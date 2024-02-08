@@ -110,7 +110,7 @@ class Difficulty {
  	* this method should be invoked from the
   	* event-dispatching thread.
 */
-    private static void createAndShowGUI() {
+    static void createAndShowGUI() {
         //Create and set up the window.
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -120,6 +120,7 @@ class Difficulty {
         //Display the window.
         frame.pack();
         frame.setVisible(true);
+        frame.setResizable(false);
     }
 
     public static void main(String[] args) {
