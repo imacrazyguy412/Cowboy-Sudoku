@@ -10,6 +10,7 @@ import javax.swing.SwingUtilities;
 	 final static boolean shouldWeightX = true;
 	 final static boolean RIGHT_TO_LEFT = false;
 	 static JFrame frame = new JFrame("Cowboy Sudoku");
+	 private static Difficulty diff = new Difficulty();
 
 	 public static void addComponentsToPane(Container pane) {
 		 if (RIGHT_TO_LEFT) {
@@ -37,8 +38,10 @@ import javax.swing.SwingUtilities;
 		button.setPreferredSize(new Dimension(150, 75));
 		button.setBackground(new Color(54,54,54,100));
 		button.setForeground(new Color(255,255,255));
+		button.setVisible(true);
 		button.addActionListener(event -> {
             frame.dispose();
+            diff.createAndShowGUI();
             System.out.println("frame is closed");
         });
 		pane.add(button, c);
@@ -69,6 +72,7 @@ import javax.swing.SwingUtilities;
 		button.setPreferredSize(new Dimension(150, 75));
 		button.setBackground(new Color(36,44,61));
 		button.setForeground(new Color(255,255,255));
+		button.setVisible(true);
 		button.addActionListener(event -> {
             frame.dispose();
             System.out.println("frame is closed");
