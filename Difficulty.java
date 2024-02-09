@@ -24,6 +24,8 @@ class Difficulty {
     private static JButton easy, medium, hard, back, start, mistakeToggle;
     static JFrame Diffframe = new JFrame("Cowboy Sudoku");
     private static final StartScreen newStartScreen = new StartScreen();
+    //easy: 1, medium: 2, hard: 3
+    static int gameDiff;
 
     public static void addToPane (Container pane) {
         //Sets the content pane
@@ -49,7 +51,9 @@ class Difficulty {
         easy.setOpaque(true);
         easy.setBackground(new Color (207, 176, 100));
         easy.setForeground (Color.black);
-
+        easy.addActionListener(event -> {
+            gameDiff = 1;
+        });
         //set constraints and add easy;
         c.gridx = 1;
         c.gridy = 1;
@@ -59,7 +63,9 @@ class Difficulty {
         medium.setOpaque(true);
         medium.setBackground(new Color (36, 44, 61));
         medium.setForeground (Color.white);
-
+        medium.addActionListener(event -> {
+            gameDiff = 2;
+        });
         //set constraints and add medium;
         c.gridx = 1;
         c.gridy = 2;
@@ -69,6 +75,9 @@ class Difficulty {
         hard.setOpaque(true);
         hard.setBackground(new Color (207, 176, 100));
         hard.setForeground (Color.black);
+        hard.addActionListener(event -> {
+            gameDiff = 3;
+                });
         //set constraints and add hard;
         c.gridx = 1;
         c.gridy = 3;
