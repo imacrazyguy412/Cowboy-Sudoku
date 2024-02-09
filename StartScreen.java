@@ -4,6 +4,8 @@ import java.awt.*;
 import java.util.Random;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingUtilities;
+import java.awt.Image.*;
+
 
  class StartScreen extends JPanel{
 	 final static boolean shouldFill = true;
