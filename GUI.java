@@ -7,16 +7,25 @@ class GUI {
 
     public void run (){
         switch (state){
-            case START:
+            case "start":
+            	
                 //draw screen
                 break;
-            case DIFFICULTY:
+            case "difficulty":
                 //draw screen
                 break;
-            case PLAY:
+            case "play":
                 //draw screen
                 break;
         }
+    }
+    /*
+     * make startscreen a panel
+     * have a frame and then add startscreen to it here
+     */
+    public static void main(String[] args) {
+    	StartScreen start = new StartScreen();
+    	start.createAndShowGUI();
     }
 
     
