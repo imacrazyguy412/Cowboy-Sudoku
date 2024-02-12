@@ -20,14 +20,18 @@ import java.util.Random;
 */
 
 class Difficulty {
-    private static JLabel header;
-    private static JButton easy, medium, hard, back, start, mistakeToggle;
-    static JFrame Diffframe = new JFrame("Cowboy Sudoku");
-    private static final StartScreen newStartScreen = new StartScreen();
+    private  JLabel header;
+    private  JButton easy, medium, hard, back, start, mistakeToggle;
+    static JFrame Diffframe;
+    //private  StartScreen newStartScreen;
     //easy: 1, medium: 2, hard: 3
-    static int gameDiff;
+     int gameDiff;
+     
+     public Difficulty() {
+    	    Diffframe = new JFrame("Cowboy Sudoku");
+     }
 
-    public static void addToPane (Container pane) {
+    public  void addToPane (Container pane) {
         //Sets the content pane
         pane.setBackground(new Color (229,229,229,100));
         pane.setLayout(new GridBagLayout());
@@ -89,7 +93,7 @@ class Difficulty {
         back.setForeground (Color.white);
         back.addActionListener(event -> {
             Diffframe.dispose();
-            StartScreen.secondShow();
+            newStartScreen.secondShow();
             System.out.println("frame is closed");
         });
 
@@ -125,7 +129,7 @@ class Difficulty {
      * this method should be invoked from the
      * event-dispatching thread.
      */
-    static void createAndShowGUI() {
+     void createAndShowGUI() {
         //Create and set up the window.
         Diffframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -137,7 +141,7 @@ class Difficulty {
         Diffframe.setVisible(true);
         Diffframe.setResizable(false);
     }
-    static void secondShow(){
+     void secondShow(){
         Diffframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Diffframe.setSize(900,1200);
         Diffframe.setResizable(false);
@@ -148,9 +152,10 @@ class Difficulty {
     public static void main(String[] args) {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
+    	Difficulty diff = new Difficulty();
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                createAndShowGUI();
+                diff.createAndShowGUI();
             }
         });
     }
