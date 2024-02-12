@@ -6,16 +6,29 @@ import javax.swing.border.LineBorder;
 import javax.swing.SwingUtilities;
 
 class StartScreen extends JPanel{
-    final static boolean shouldFill = true;
-    final static boolean shouldWeightX = true;
-    final static boolean RIGHT_TO_LEFT = false;
-    static JFrame frame = new JFrame("Cowboy Sudoku");
-    private static final Difficulty diff = new Difficulty();
+    
+	boolean shouldFill;
+    boolean shouldWeightX;
+    boolean RIGHT_TO_LEFT;
+    JFrame frame;
+    private  Difficulty diff;
+    ImageIcon icon;
+    Image scaleImage;
+    int count;
+    public static StartScreen screen;
+    public StartScreen() {
+    	shouldFill = true;
+    	shouldWeightX = true;
+    	RIGHT_TO_LEFT = false;
+    	frame = new JFrame("Cowboy Sudoku");
+    	diff = new Difficulty();
+    	icon  = new ImageIcon(getClass().getResource("logo.png"));
+    	scaleImage  = icon.getImage().getScaledInstance(200, 200,Image.SCALE_DEFAULT);
+        //using to count how many times you use newgame button
+         count = 0;
+    }
 
-    //using to count how many times you use newgame button
-    static int count = 0;
-
-    public static void addComponentsToPane(Container pane) {
+    public  void addComponentsToPane(Container pane) {
         if (RIGHT_TO_LEFT) {
             pane.setComponentOrientation(ComponentOrientation.UNKNOWN);
         }
@@ -48,7 +61,7 @@ class StartScreen extends JPanel{
                 diff.createAndShowGUI();
             } else {
                 frame.dispose();
-                diff.secondShow();
+               diff.secondShow();
             }
             System.out.println("frame is closed");
             count++;
@@ -87,9 +100,7 @@ class StartScreen extends JPanel{
             System.out.println("frame is closed");
         });
         pane.add(button, c);
-
-        ImageIcon icon = new ImageIcon("logo.png");
-        Image scaleImage = icon.getImage().getScaledInstance(400, 400,Image.SCALE_DEFAULT);
+        
         icon = new ImageIcon(scaleImage);
         label = new JLabel(icon);
         c.fill = GridBagConstraints.SOUTH;
@@ -117,7 +128,7 @@ class StartScreen extends JPanel{
      * this method should be invoked from the
      * event-dispatching thread.
      */
-    static void createAndShowGUI() {
+      void createAndShowGUI() {
         //Create and set up the window.
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(900,1200);
@@ -130,7 +141,7 @@ class StartScreen extends JPanel{
         frame.pack();
         frame.setVisible(true);
     }
-    static void secondShow(){
+     void secondShow(){
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(900,1200);
         frame.setResizable(false);
@@ -141,9 +152,10 @@ class StartScreen extends JPanel{
     public static void main(String[] args) {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
+    	screen = new StartScreen();
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                createAndShowGUI();
+                screen.createAndShowGUI();
             }
         });
     }
