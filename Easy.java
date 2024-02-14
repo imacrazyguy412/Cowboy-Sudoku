@@ -104,24 +104,48 @@ class Easy {
 		//Create toggleNotes button
 		toggleNotes = new JButton("Toggle Notes");
 		toggleNotes.setOpaque(true);
-		newGame.setBackground(new Color (36, 44, 61));
-		newGame.setForeground (Color.white);
+		toggleNotes.setBackground(new Color (36, 44, 61));
+		toggleNotes.setForeground (Color.white);
 		
 		//set constraints and add toggleNotes;
 		c.gridx = 4;
 		c.gridy = 1;
 		pane.add (toggleNotes, c);
 
-		//Create toggleNotes button
-		toggleNotes = new JButton("Toggle Notes");
-		toggleNotes.setOpaque(true);
-		newGame.setBackground(new Color (36, 44, 61));
-		newGame.setForeground (Color.white);
+		//Create numSelect button
+		numSelect = new JButton("Number Select");
+		numSelect.setOpaque(true);
+		numSelect.setBackground(new Color (54, 54, 54));
+		numSelect.setForeground (Color.white);
 		
 		//set constraints and add toggleNotes;
 		c.gridx = 4;
-		c.gridy = 1;
-		pane.add (toggleNotes, c);
+		c.gridy = 2;
+		pane.add (numSelect, c);
+
+		//Create undo button
+		undo = new JButton("Number Select");
+		undo.setOpaque(true);
+		undo.setBackground(new Color (207, 176, 100));
+		undo.setForeground (Color.black);
+		
+		//set constraints and add undo;
+		c.gridx = 3;
+		c.gridy = 3;
+		pane.add (undo, c);
+
+		//Create save button
+		undo = new JButton("Number Select");
+		undo.setOpaque(true);
+		undo.setBackground(new Color (207, 176, 100));
+		undo.setForeground (Color.black);
+		
+		//set constraints and add save;
+		c.gridx = 3;
+		c.gridy = 3;
+		pane.add (undo, c);
+
+		
 		
 
 	}
