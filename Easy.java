@@ -42,7 +42,7 @@ class Easy {
 		c.gridy = 0;
 		pane.add(diff, c);
 
-    //Create mist label
+   		 //Create mist label
 		mist = new JLabel("Mistakes: 0");
 		mist.setOpaque(true);
 		mist.setBackground(new Color (207, 176, 100));
@@ -55,7 +55,7 @@ class Easy {
 		c.gridy = 2;
 		pane.add(mist, c);
 
-    //Create timer label
+    		//Create timer label
 		timer = new JLabel("Time: 0");
 		timer.setOpaque(true);
 		timer.setBackground(new Color (36, 44, 61));
@@ -68,66 +68,61 @@ class Easy {
 		c.gridy = 2;
 		pane.add(timer, c);
     
-		//Create buttons
-		easy = new JButton("Easy");
-		easy.setOpaque(true);
-		easy.setBackground(new Color (207, 176, 100));
-		easy.setForeground (Color.black);
+		//Create hint button
+		hint = new JButton("Hint");
+		hint.setOpaque(true);
+		hint.setBackground(new Color (36, 44, 61));
+		hint.setForeground (new Color (207, 176, 100));
 		
-		//set constraints and add easy;
-		c.gridx = 1;
-		c.gridy = 1;
-		pane.add (easy, c);
-		
-		medium = new JButton ("Medium");
-		medium.setOpaque(true);
-		medium.setBackground(new Color (36, 44, 61));
-		medium.setForeground (Color.white);
-		
-		//set constraints and add medium;
-		c.gridx = 1;
-		c.gridy = 2;
-		pane.add (medium, c);
-		
-		hard = new JButton ("Hard");
-		hard.setOpaque(true);
-		hard.setBackground(new Color (207, 176, 100));
-		hard.setForeground (Color.black);
-		//set constraints and add hard;
-		c.gridx = 1;
-		c.gridy = 3;
-		pane.add (hard, c);
-		
-		back = new JButton ("Back");
-		back.setOpaque(true);
-		back.setBackground(new Color (36, 44, 61));
-		back.setForeground (Color.white);
-		
-		//set constraints and add back;
-		c.gridx = 0;
-		c.gridy = 4;
-		pane.add (back, c);
-		
-		
-		start = new JButton ("Start");
-		
-		start.setBackground(new Color (36, 44, 61));
-		start.setForeground (Color.white);
-		//set constraints and add start;
+		//set constraints and add hint;
 		c.gridx = 2;
-		c.gridy = 4;
-		pane.add (start, c);
-		
-		
-		mistakeToggle = new JButton ("Toggle Mistakes");
-		mistakeToggle.setOpaque(true);
-		mistakeToggle.setBackground(new Color (36, 44, 61));
-		mistakeToggle.setForeground (Color.white);
-		
-		//set constraints and add mistakeToggle;
-		c.gridx = 0;
 		c.gridy = 0;
-		pane.add(mistakeToggle, c);
+		pane.add (hint, c);
+
+		//Create solve button
+		solve = new JButton("Solve");
+		solve.setOpaque(true);
+		solve.setBackground(new Color (36, 44, 61));
+		solve.setForeground (new Color (207, 176, 100));
+		
+		//set constraints and add solve;
+		c.gridx = 3;
+		c.gridy = 0;
+		pane.add (solve, c);
+
+		//Create newGame button
+		newGame = new JButton("New Game");
+		newGame.setOpaque(true);
+		newGame.setBackground(new Color (36, 44, 61));
+		newGame.setForeground (new Color (207, 176, 100));
+		
+		//set constraints and add newGame;
+		c.gridx = 4;
+		c.gridy = 0;
+		pane.add (newGame, c);
+
+		//Create toggleNotes button
+		toggleNotes = new JButton("Toggle Notes");
+		toggleNotes.setOpaque(true);
+		newGame.setBackground(new Color (36, 44, 61));
+		newGame.setForeground (Color.white);
+		
+		//set constraints and add toggleNotes;
+		c.gridx = 4;
+		c.gridy = 1;
+		pane.add (toggleNotes, c);
+
+		//Create toggleNotes button
+		toggleNotes = new JButton("Toggle Notes");
+		toggleNotes.setOpaque(true);
+		newGame.setBackground(new Color (36, 44, 61));
+		newGame.setForeground (Color.white);
+		
+		//set constraints and add toggleNotes;
+		c.gridx = 4;
+		c.gridy = 1;
+		pane.add (toggleNotes, c);
+		
 
 	}
 /**
