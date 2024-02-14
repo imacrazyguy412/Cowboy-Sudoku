@@ -44,8 +44,17 @@ class Easy {
 		c.insets = new Insets (0, 0, 0, 10);
 		c.anchor = GridBagConstraints.FIRST_LINE_START;
 		pane.add(diff, c);
+		
+		//Set constraints and add the board
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 0;
+		c.ipady = 10;
+		c.insets = new Insets (0, 0, 0, 10);
+		c.anchor = GridBagConstraints.FIRST_LINE_START;
+		pane.add(diff, c);
 
-   		 //Create mist label
+   		//Create mist label
 		mist = new JLabel("Mistakes: 0");
 		mist.setOpaque(true);
 		mist.setBackground(new Color (207, 176, 100));
