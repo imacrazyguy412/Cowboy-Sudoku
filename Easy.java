@@ -144,10 +144,6 @@ class Easy {
 		c.gridx = 3;
 		c.gridy = 3;
 		pane.add (undo, c);
-
-		
-		
-
 	}
 /**
 	* Create the GUI and show it.  For thread safety,
