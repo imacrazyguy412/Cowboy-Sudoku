@@ -10,33 +10,33 @@ class StartScreen extends JPanel{
 	boolean shouldFill;
     boolean shouldWeightX;
     boolean RIGHT_TO_LEFT;
-    JFrame frame;
+    JPanel panel;
     private  Difficulty diff;
     ImageIcon icon;
     Image scaleImage;
-    int count;
     public static StartScreen screen;
     public StartScreen() {
     	shouldFill = true;
     	shouldWeightX = true;
     	RIGHT_TO_LEFT = false;
-    	frame = new JFrame("Cowboy Sudoku");
+    	panel = new JPanel();
     	diff = new Difficulty();
     	icon  = new ImageIcon(getClass().getResource("logo.png"));
     	scaleImage  = icon.getImage().getScaledInstance(200, 200,Image.SCALE_DEFAULT);
-        //using to count how many times you use newgame button
-         count = 0;
+    	
+    	diff.addToPane(diff.getPanel());
     }
 
-    public  void addComponentsToPane(Container pane) {
+    public  void addComponentsToPane(Container panel) {
+    	
         if (RIGHT_TO_LEFT) {
-            pane.setComponentOrientation(ComponentOrientation.UNKNOWN);
+        	panel.setComponentOrientation(ComponentOrientation.UNKNOWN);
         }
 
         LineBorder line = new LineBorder(Color.black, 2, true);
         JButton button;
-        pane.setLayout(new GridBagLayout());
-        pane.setBackground(new Color (229,229,229,100));
+        panel.setLayout(new GridBagLayout());
+        panel.setBackground(new Color (229,229,229,100));
         GridBagConstraints c = new GridBagConstraints();
         if (shouldFill) {
             //natural height, maximum width
@@ -55,18 +55,13 @@ class StartScreen extends JPanel{
         button.setBackground(new Color(54,54,54,100));
         button.setForeground(new Color(255,255,255));
         button.setVisible(true);
+        
         button.addActionListener(event -> {
-            if(count == 0) {
-                frame.dispose();
-                diff.createAndShowGUI();
-            } else {
-                frame.dispose();
-               diff.secondShow();
-            }
+            panel.setVisible(false);
+            diff.createAndShowGUI();
             System.out.println("frame is closed");
-            count++;
         });
-        pane.add(button, c);
+        panel.add(button, c);
 
         JLabel label = new JLabel("Cowboy Sudoku");
         label.setBackground(new Color(207,176,100));
@@ -83,7 +78,7 @@ class StartScreen extends JPanel{
         label.setPreferredSize(new Dimension(300, 75));
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setVerticalAlignment(SwingConstants.CENTER);
-        pane.add(label, c);
+        panel.add(label, c);
 
         button = new JButton("Continue Saved Game");
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -96,10 +91,10 @@ class StartScreen extends JPanel{
         button.setForeground(new Color(255,255,255));
         button.setVisible(true);
         button.addActionListener(event -> {
-            frame.dispose();
+        	panel.setVisible(false);
             System.out.println("frame is closed");
         });
-        pane.add(button, c);
+        panel.add(button, c);
         
         icon = new ImageIcon(scaleImage);
         label = new JLabel(icon);
@@ -109,7 +104,7 @@ class StartScreen extends JPanel{
         c.gridwidth = 3;
         c.gridx = 0;
         c.gridy = 1;
-        pane.add(label, c);
+        panel.add(label, c);
 
 		/*button = new JButton("5");
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -130,23 +125,23 @@ class StartScreen extends JPanel{
      */
       void createAndShowGUI() {
         //Create and set up the window.
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(900,1200);
-        frame.setResizable(false);
+    	  //panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	  panel.setSize(900,1200);
+    	 // panel.setResizable(false);
 
         //Set up the content pane.
-        addComponentsToPane(frame.getContentPane());
+        //addComponentsToPane(panel.getContentPane());
 
         //Display the window.
-        frame.pack();
-        frame.setVisible(true);
+        //panel.pack();
+        panel.setVisible(true);
     }
      void secondShow(){
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(900,1200);
-        frame.setResizable(false);
-        frame.pack();
-        frame.setVisible(true);
+    	 //panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	 panel.setSize(900,1200);
+    	 //panel.setResizable(false);
+        //panel.pack();
+    	 panel.setVisible(true);
     }
 
     public static void main(String[] args) {
