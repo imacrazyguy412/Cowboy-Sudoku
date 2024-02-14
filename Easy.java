@@ -9,11 +9,11 @@ import java.util.Random;
   	c.ipady
    	c.ipadx
    	c.gridwidth
-    	c.gridheight
-     	c.gridy
-      	c.gridx
-    	c.anchor
-     	c.insets
+    c.gridheight
+    c.gridy
+    c.gridx
+    c.anchor
+    c.insets
   	c.weightx = 0.0;
 	c.weighty = 0.0;
 */
@@ -30,7 +30,7 @@ class Easy {
 		GridBagConstraints c = new GridBagConstraints();
 		
 		//Create diff label
-		diff = new JLabel("Difficulty Selection");
+		diff = new JLabel("Difficulty: Easy");
 		diff.setOpaque(true);
 		diff.setBackground(new Color (207, 176, 100));
 		diff.setForeground(Color.black);
@@ -40,6 +40,9 @@ class Easy {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 0;
+		c.ipady = 10;
+		c.insets = new Insets (0, 0, 0, 10);
+		c.anchor = GridBagConstraints.FIRST_LINE_START;
 		pane.add(diff, c);
 
    		 //Create mist label
@@ -55,7 +58,7 @@ class Easy {
 		c.gridy = 2;
 		pane.add(mist, c);
 
-    		//Create timer label
+    	//Create timer label
 		timer = new JLabel("Time: 0");
 		timer.setOpaque(true);
 		timer.setBackground(new Color (36, 44, 61));
@@ -108,20 +111,9 @@ class Easy {
 		toggleNotes.setForeground (Color.white);
 		
 		//set constraints and add toggleNotes;
-		c.gridx = 4;
+		c.gridx = 3;
 		c.gridy = 1;
 		pane.add (toggleNotes, c);
-
-		//Create numSelect button
-		numSelect = new JButton("Number Select");
-		numSelect.setOpaque(true);
-		numSelect.setBackground(new Color (54, 54, 54));
-		numSelect.setForeground (Color.white);
-		
-		//set constraints and add toggleNotes;
-		c.gridx = 4;
-		c.gridy = 2;
-		pane.add (numSelect, c);
 
 		//Create undo button
 		undo = new JButton("Undo");
@@ -130,20 +122,20 @@ class Easy {
 		undo.setForeground (Color.black);
 		
 		//set constraints and add undo;
-		c.gridx = 3;
+		c.gridx = 2;
 		c.gridy = 3;
 		pane.add (undo, c);
 
 		//Create save button
-		undo = new JButton("Save");
-		undo.setOpaque(true);
-		undo.setBackground(new Color (207, 176, 100));
-		undo.setForeground (Color.black);
+		save = new JButton("Save");
+		save.setOpaque(true);
+		save.setBackground(new Color (207, 176, 100));
+		save.setForeground (Color.black);
 		
 		//set constraints and add save;
 		c.gridx = 4;
 		c.gridy = 3;
-		pane.add (undo, c);
+		pane.add (save, c);
 	}
 /**
 	* Create the GUI and show it.  For thread safety,
