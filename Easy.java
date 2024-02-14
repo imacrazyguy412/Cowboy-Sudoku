@@ -124,7 +124,7 @@ class Easy {
 		pane.add (numSelect, c);
 
 		//Create undo button
-		undo = new JButton("Number Select");
+		undo = new JButton("Undo");
 		undo.setOpaque(true);
 		undo.setBackground(new Color (207, 176, 100));
 		undo.setForeground (Color.black);
@@ -135,13 +135,13 @@ class Easy {
 		pane.add (undo, c);
 
 		//Create save button
-		undo = new JButton("Number Select");
+		undo = new JButton("Save");
 		undo.setOpaque(true);
 		undo.setBackground(new Color (207, 176, 100));
 		undo.setForeground (Color.black);
 		
 		//set constraints and add save;
-		c.gridx = 3;
+		c.gridx = 4;
 		c.gridy = 3;
 		pane.add (undo, c);
 	}
