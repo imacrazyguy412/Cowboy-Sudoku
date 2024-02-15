@@ -21,8 +21,10 @@ import java.util.Random;
 class Easy {
 	private static JLabel diff, mist, timer;
 	private static JButton hint, solve, newGame, toggleNotes, numSelect, undo, save;
+	private static SudokuBoard board = new SudokuBoard(9,9);;
   static JFrame frame = new JFrame("Cowboy Sudoku");
  
+  
 	public static void addToPane (Container pane) {
 		//Sets the content pane
 		pane.setBackground(new Color (229,229,229));
@@ -41,18 +43,14 @@ class Easy {
 		c.gridx = 0;
 		c.gridy = 0;
 		c.ipady = 10;
-		c.insets = new Insets (0, 0, 0, 10);
+		c.insets = new Insets (0, 0, 20, 10);
 		c.anchor = GridBagConstraints.FIRST_LINE_START;
 		pane.add(diff, c);
 		
-		//Set constraints and add the board
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 0;
-		c.gridy = 0;
-		c.ipady = 10;
-		c.insets = new Insets (0, 0, 0, 10);
-		c.anchor = GridBagConstraints.FIRST_LINE_START;
-		pane.add(diff, c);
+		//add in the sudoku board to pane
+		c.insets = new Insets (40, 0, 0, 0);
+		
+		pane.add(board, c);
 
    		//Create mist label
 		mist = new JLabel("Mistakes: 0");
@@ -130,7 +128,9 @@ class Easy {
 		undo.setBackground(new Color (207, 176, 100));
 		undo.setForeground (Color.black);
 		
+		
 		//set constraints and add undo;
+		c.insets = new Insets (0, 0, 0, 10);
 		c.gridx = 2;
 		c.gridy = 3;
 		pane.add (undo, c);
@@ -154,6 +154,7 @@ class Easy {
     private static void createAndShowGUI() {
         //Create and set up the window.
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
 
         //Set up the content pane.
         addToPane(frame.getContentPane());
