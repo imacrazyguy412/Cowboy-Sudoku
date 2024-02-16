@@ -18,14 +18,19 @@ import java.util.Random;
 	c.weighty = 0.0;
 */
 
-class Easy {
-	private static JLabel diff, mist, timer;
-	private static JButton hint, solve, newGame, toggleNotes, numSelect, undo, save;
-	private static SudokuBoard board = new SudokuBoard(9,9);
-	static JFrame frame = new JFrame("Cowboy Sudoku");
+class Easy extends JPanel{
+	private JLabel diff, mist, timer;
+	private JButton hint, solve, newGame, toggleNotes, numSelect, undo, save;
+	private SudokuBoard board = new SudokuBoard(9,9);
+	public static JPanel pane;
+	
+    
+    public Easy() {
+   	 pane = new JPanel();
+    }
+
  
-  
-	public static void addToPane (Container pane) {
+	public void addComponentsToPane (Container pane) {
 		//Sets the content pane
 		pane.setBackground(new Color (229,229,229));
 		pane.setLayout(new GridBagLayout());
@@ -150,22 +155,23 @@ class Easy {
 		c.gridy = 3;
 		pane.add (save, c);
 	}
+	
+    public JComponent getPanel() {
+		// TODO Auto-generated method stub
+		return pane;
+	}
+    /**
 /**
 	* Create the GUI and show it.  For thread safety,
  	* this method should be invoked from the
   	* event-dispatching thread.
 */
-    private static void createAndShowGUI() {
+    public void createAndShowGUI() {
         //Create and set up the window.
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-
-        //Set up the content pane.
-        addToPane(frame.getContentPane());
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Display the window.
-        frame.pack();
-        frame.setVisible(true);
+        pane.setVisible(true);
     }
 
     public static void main(String[] args) {
@@ -173,7 +179,7 @@ class Easy {
         //creating and showing this application's GUI.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                createAndShowGUI();
+              //  createAndShowGUI();
             }
         });
     }
