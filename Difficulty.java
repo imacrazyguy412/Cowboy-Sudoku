@@ -22,7 +22,7 @@ import java.util.Random;
 class Difficulty extends JPanel{
     private  JLabel header;
     private  JButton easy, medium, hard, back, start, mistakeToggle;
-    public static JPanel Difframe;
+    public  static JPanel Difframe;
     
     //private  StartScreen newStartScreen;
     //easy: 1, medium: 2, hard: 3
@@ -57,7 +57,7 @@ class Difficulty extends JPanel{
         easy.setBackground(new Color (207, 176, 100));
         easy.setForeground (Color.black);
         easy.addActionListener(event -> {
-            GUI.cowboyFrame.setContentPane(GUI.gameME);
+            gameDiff = 1;
             
         });
         //set constraints and add easy;
@@ -108,6 +108,11 @@ class Difficulty extends JPanel{
 
         start.setBackground(new Color (36, 44, 61));
         start.setForeground (Color.white);
+        start.addActionListener(event -> {
+        	if (gameDiff == 1)
+                GUI.cowboyFrame.setContentPane(GUI.gameME);
+        	
+        });
         //set constraints and add start;
         c.gridx = 2;
         c.gridy = 4;
