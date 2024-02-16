@@ -11,7 +11,6 @@ class StartScreen extends JPanel{
     boolean shouldWeightX;
     boolean RIGHT_TO_LEFT;
     JPanel panel;
-    private  Difficulty diff;
     ImageIcon icon;
     Image scaleImage;
     public static StartScreen screen;
@@ -20,11 +19,9 @@ class StartScreen extends JPanel{
     	shouldWeightX = true;
     	RIGHT_TO_LEFT = false;
     	panel = new JPanel();
-    	diff = new Difficulty();
     	icon  = new ImageIcon(getClass().getResource("logo.png"));
     	scaleImage  = icon.getImage().getScaledInstance(200, 200,Image.SCALE_DEFAULT);
     	
-    	diff.addToPane(diff.getPanel());
     }
 
     public  void addComponentsToPane(Container panel) {
@@ -57,8 +54,7 @@ class StartScreen extends JPanel{
         button.setVisible(true);
         
         button.addActionListener(event -> {
-            panel.setVisible(false);
-            diff.createAndShowGUI();
+        	GUI.cowboyFrame.setContentPane(GUI.diffM);
             System.out.println("frame is closed");
         });
         panel.add(button, c);
@@ -91,7 +87,7 @@ class StartScreen extends JPanel{
         button.setForeground(new Color(255,255,255));
         button.setVisible(true);
         button.addActionListener(event -> {
-        	panel.setVisible(false);
+        	GUI.cowboyFrame.setContentPane(GUI.diffM);
             System.out.println("frame is closed");
         });
         panel.add(button, c);
