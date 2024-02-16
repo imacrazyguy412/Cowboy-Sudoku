@@ -57,7 +57,8 @@ class Difficulty extends JPanel{
         easy.setBackground(new Color (207, 176, 100));
         easy.setForeground (Color.black);
         easy.addActionListener(event -> {
-            gameDiff = 1;
+            GUI.cowboyFrame.setContentPane(GUI.gameME);
+            
         });
         //set constraints and add easy;
         c.gridx = 1;
