@@ -19,10 +19,11 @@ import java.util.Random;
 	c.weighty = 0.0;
 */
 
-class Difficulty {
+class Difficulty extends JPanel{
     private  JLabel header;
     private  JButton easy, medium, hard, back, start, mistakeToggle;
-    static JPanel Difframe;
+    public static JPanel Difframe;
+    
     //private  StartScreen newStartScreen;
     //easy: 1, medium: 2, hard: 3
      int gameDiff;
@@ -31,9 +32,9 @@ class Difficulty {
     	 Difframe = new JPanel();
      }
 
-    public  void addToPane(Container Difframe) {
+    public  void addComponentsToPane(Container Difframe) {
         //Sets the content pane
-    	Difframe.setBackground(new Color (229,229,229,100));
+    	Difframe.setBackground(new Color (229,229,229));
     	Difframe.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
@@ -92,8 +93,7 @@ class Difficulty {
         back.setBackground(new Color (36, 44, 61));
         back.setForeground (Color.white);
         back.addActionListener(event -> {
-        	Difframe.setVisible(false);
-            //newStartScreen.secondShow();
+        	GUI.cowboyFrame.setContentPane(GUI.startM);
             System.out.println("frame is closed");
         });
 
@@ -156,5 +156,12 @@ class Difficulty {
             }
         });
     }
+    
+    public void backToStart() {
+        	Difframe.setVisible(false);
+            //newStartScreen.secondShow();
+            System.out.println("frame is closed");
+        }
+    }
 
-}
+
