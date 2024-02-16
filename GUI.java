@@ -3,39 +3,31 @@ import java.awt.event.*;
 import java.awt.*;
 import java.util.Random;
 class GUI {
-    private String state;
-    static JFrame frame;
+    public static JFrame cowboyFrame = new JFrame();
+    public static StartScreen startM = new StartScreen();
+    public static Difficulty diffM = new Difficulty();
+    public static Easy gameME = new Easy();
 
     public void run (){
-        switch (state){
-            case "start":
-            	
-                //draw screen
-                break;
-            case "difficulty":
-                //draw screen
-                break;
-            case "play":
-                //draw screen
-                break;
-        }
+        startM.addComponentsToPane(startM);
+        startM.createAndShowGUI();
+        diffM.addComponentsToPane(diffM);
+        diffM.createAndShowGUI();
+        cowboyFrame.setContentPane(startM);
+        
     }
     /*
      * make startscreen a panel
      * have a frame and then add startscreen to it here
      */
     public static void main(String[] args) {
-    	frame = new JFrame();
-    	StartScreen start = new StartScreen();
-    	Difficulty diff = new Difficulty();
-    	start.addComponentsToPane(start);
-    	start.createAndShowGUI();
-    	frame.add(start);
-    	diff.addToPane(diff);
+    	cowboyFrame.setVisible(true);
+    	GUI sudoku = new GUI ();
+    	sudoku.run();
     	
-    	frame.setVisible(true);
     	
     }
+    
 
 
 }
