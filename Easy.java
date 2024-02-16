@@ -21,8 +21,8 @@ import java.util.Random;
 class Easy {
 	private static JLabel diff, mist, timer;
 	private static JButton hint, solve, newGame, toggleNotes, numSelect, undo, save;
-	private static SudokuBoard board = new SudokuBoard(9,9);;
-  static JFrame frame = new JFrame("Cowboy Sudoku");
+	private static SudokuBoard board = new SudokuBoard(9,9);
+	static JFrame frame = new JFrame("Cowboy Sudoku");
  
   
 	public static void addToPane (Container pane) {
@@ -43,13 +43,15 @@ class Easy {
 		c.gridx = 0;
 		c.gridy = 0;
 		c.ipady = 10;
-		c.insets = new Insets (0, 0, 20, 10);
+		c.insets = new Insets (0, 0, 0, 0);
 		c.anchor = GridBagConstraints.FIRST_LINE_START;
 		pane.add(diff, c);
 		
 		//add in the sudoku board to pane
 		c.insets = new Insets (40, 0, 0, 0);
-		
+		c.gridx = 0;
+		c.gridy = 0;
+		c.ipady = 0;
 		pane.add(board, c);
 
    		//Create mist label
@@ -63,6 +65,7 @@ class Easy {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 2;
+		c.insets = new Insets(0,0,0,0);
 		pane.add(mist, c);
 
     	//Create timer label
@@ -79,6 +82,7 @@ class Easy {
 		pane.add(timer, c);
     
 		//Create hint button
+		//hint.setComponentOrientation();
 		hint = new JButton("Hint");
 		hint.setOpaque(true);
 		hint.setBackground(new Color (36, 44, 61));
