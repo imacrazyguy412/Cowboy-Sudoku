@@ -33,7 +33,7 @@ class StartScreen extends JPanel{
         LineBorder line = new LineBorder(Color.black, 2, true);
         JButton button;
         panel.setLayout(new GridBagLayout());
-        panel.setBackground(new Color (229,229,229,100));
+        panel.setBackground(new Color (229,229,229));
         GridBagConstraints c = new GridBagConstraints();
         if (shouldFill) {
             //natural height, maximum width
@@ -49,7 +49,7 @@ class StartScreen extends JPanel{
         c.gridy = 2;
         button.setBorder(line);
         button.setPreferredSize(new Dimension(150, 75));
-        button.setBackground(new Color(54,54,54,100));
+        button.setBackground(new Color(54,54,54));
         button.setForeground(new Color(255,255,255));
         button.setVisible(true);
         button.addActionListener(event -> {
