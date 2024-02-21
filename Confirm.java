@@ -19,12 +19,12 @@ import java.util.Random;
 	c.weighty = 0.0;
 */
 
-class Confirm {
+class Confirm extends JPanel {
 	private static JLabel header;
 	private static JButton back, conf, cancel;
-	 static JFrame frame = new JFrame("Cowboy Sudoku");
+	static JFrame frame = new JFrame("Cowboy Sudoku");
  
-	public static void addToPane (Container pane) {
+	public static void addToPane (Container pane, int button) {
 		//Sets the content pane
 		pane.setBackground(new Color (207, 176, 100));
 		pane.setLayout(new GridBagLayout());
@@ -34,7 +34,7 @@ class Confirm {
 		header = new JLabel("Are you sure?");
 		header.setOpaque(true);
 		header.setBackground(new Color (207, 176, 100));
-		header.setForeground(Color.white);
+		header.setForeground(Color.black);
 		
 		
 		//set constraints and add header
@@ -43,21 +43,16 @@ class Confirm {
 		c.gridy = 0;
 		pane.add(header, c);
 		
-		//Create buttons
-		back = new JButton("Back");
-		back.setOpaque(true);
-		back.setBackground(new Color (36, 44, 61));
-		back.setForeground (Color.white);
-		
-		//set constraints and add back;
-		c.gridx = 0;
-		c.gridy = 2;
-		pane.add (easy, c);
-		
 		conf = new JButton ("Confirm");
 		conf.setOpaque(true);
 		conf.setBackground(new Color (54, 54, 54));
 		conf.setForeground (Color.white);
+        conf.addActionListener(event -> {
+        	GUI.cowboyFrame.setContentPane(GUI.diffM);
+        	GUI.cowboyFrame.repaint();
+        	GUI.cowboyFrame.revalidate();
+            System.out.println("frame is closed");
+        });
 		
 		//set constraints and add conf;
 		c.gridx = 1;
@@ -68,6 +63,12 @@ class Confirm {
 		cancel.setOpaque(true);
 		cancel.setBackground(new Color (36, 44, 61));
 		cancel.setForeground (Color.white);
+        cancel.addActionListener(event -> {
+        	GUI.cowboyFrame.setContentPane(GUI.gameM);
+        	GUI.cowboyFrame.repaint();
+        	GUI.cowboyFrame.revalidate();
+            System.out.println("frame is closed");
+        });
 		//set constraints and add hard;
 		c.gridx = 3;
 		c.gridy = 1;
@@ -83,7 +84,7 @@ class Confirm {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Set up the content pane.
-        addToPane(frame.getContentPane());
+        addToPane(frame.getContentPane(), 1);
 
         //Display the window.
         frame.pack();
