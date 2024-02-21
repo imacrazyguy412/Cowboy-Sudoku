@@ -12,6 +12,7 @@ public class SudokuBoard extends JPanel {
 
     private JButton[][] buttons;
     private boolean noteOn;
+    SudokuGame curGame;
 
     // add top and botton to layout for exit button
     // just use a png background and make wiindow non resisable
@@ -19,6 +20,10 @@ public class SudokuBoard extends JPanel {
 
     public SudokuBoard(int row, int col) {
         super(new GridLayout(row, col));
+        
+        
+        
+        
 
         // logic stuff
         noteOn = true;
@@ -69,6 +74,11 @@ public class SudokuBoard extends JPanel {
                 add(buttons[i][j]);
             }
         }
+    }
+    
+    
+    void setGame(SudokuGame game){
+    	curGame = game;
     }
 
     void setNote(JButton button, int note) {

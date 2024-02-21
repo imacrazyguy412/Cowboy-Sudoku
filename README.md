@@ -1,2 +1,2 @@
-# Cowboy Sudoku
-a Cowboy themed sudoku game
+# Salamander-Sudoku
+a salamander themed sudoku game
