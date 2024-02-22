@@ -110,7 +110,6 @@ class Game extends JPanel{
             Confirm.addToPane(panel, 1);
             confFrame.add(panel);
             confFrame.setVisible(true);
-            
         });
 		
 		
@@ -128,8 +127,7 @@ class Game extends JPanel{
             Confirm panel = new Confirm();
             Confirm.addToPane(panel, 1);
             confFrame.add(panel);
-            confFrame.setVisible(true);
-            
+            confFrame.setVisible(true);    
         });
 		
 		
@@ -148,7 +146,6 @@ class Game extends JPanel{
             Confirm.addToPane(panel, 1);
             confFrame.add(panel);
             confFrame.setVisible(true);
-            
         });
 		
 		//set constraints and add newGame;
@@ -161,6 +158,9 @@ class Game extends JPanel{
 		toggleNotes.setOpaque(true);
 		toggleNotes.setBackground(new Color (36, 44, 61));
 		toggleNotes.setForeground (Color.white);
+		toggleNotes.addActionListener(event -> {
+	    //Switch to notes board
+        });
 		
 		//set constraints and add toggleNotes;
 		c.gridx = 3;
@@ -172,6 +172,9 @@ class Game extends JPanel{
 		undo.setOpaque(true);
 		undo.setBackground(new Color (207, 176, 100));
 		undo.setForeground (Color.black);
+		undo.addActionListener(event -> {
+		//Undo action
+        });
 		
 		
 		//set constraints and add undo;
@@ -185,6 +188,9 @@ class Game extends JPanel{
 		save.setOpaque(true);
 		save.setBackground(new Color (207, 176, 100));
 		save.setForeground (Color.black);
+		save.addActionListener(event -> {
+           
+        });
 		
 		//set constraints and add save;
 		c.gridx = 4;
@@ -198,6 +204,10 @@ class Game extends JPanel{
 	}
     
     public void updateTimer() {
+    	
+    }
+    
+    public void updateMistakes() {
     	
     }
     /**
