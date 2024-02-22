@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.util.Random;
-
+import java.util.Timer;
 /*
 	Constraints reference
  	c.fill = GridBagConstraints.HORIZONTAL;
@@ -23,21 +23,34 @@ class Game extends JPanel{
 	private JButton hint, solve, newGame, toggleNotes, undo, save;
 	private SudokuBoard board = new SudokuBoard(9,9);
 	public static JPanel pane;
+	public static JFrame confFrame = new JFrame();
+	
 	
     
     public Game() {
    	 pane = new JPanel();
+   	 Timer time = new Timer();
     }
 
  
-	public void addComponentsToPane (Container pane) {
+	public void addComponentsToPane (Container pane, int difficulty) {
 		//Sets the content pane
 		pane.setBackground(new Color (229,229,229));
 		pane.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
 		//Create diff label
-		diff = new JLabel("Difficulty: Easy");
+		switch (difficulty){
+			case 1:
+				diff = new JLabel("Difficulty: Easy");
+				break;
+			case 2:
+				diff = new JLabel("Difficulty: Medium");
+				break;
+			case 3:
+				diff = new JLabel("Difficulty: Hard");
+				break;
+		}
 		diff.setOpaque(true);
 		diff.setBackground(new Color (207, 176, 100));
 		diff.setForeground(Color.black);
@@ -92,6 +105,14 @@ class Game extends JPanel{
 		hint.setOpaque(true);
 		hint.setBackground(new Color (36, 44, 61));
 		hint.setForeground (new Color (207, 176, 100));
+        hint.addActionListener(event -> {
+            Confirm panel = new Confirm();
+            Confirm.addToPane(panel, 1);
+            confFrame.add(panel);
+            confFrame.setVisible(true);
+            
+        });
+		
 		
 		//set constraints and add hint;
 		c.gridx = 2;
@@ -104,7 +125,10 @@ class Game extends JPanel{
 		solve.setBackground(new Color (36, 44, 61));
 		solve.setForeground (new Color (207, 176, 100));
         solve.addActionListener(event -> {
-            gameDiff = 1;
+            Confirm panel = new Confirm();
+            Confirm.addToPane(panel, 1);
+            confFrame.add(panel);
+            confFrame.setVisible(true);
             
         });
 		
@@ -119,6 +143,13 @@ class Game extends JPanel{
 		newGame.setOpaque(true);
 		newGame.setBackground(new Color (36, 44, 61));
 		newGame.setForeground (new Color (207, 176, 100));
+        newGame.addActionListener(event -> {
+            Confirm panel = new Confirm();
+            Confirm.addToPane(panel, 1);
+            confFrame.add(panel);
+            confFrame.setVisible(true);
+            
+        });
 		
 		//set constraints and add newGame;
 		c.gridx = 4;
@@ -165,6 +196,10 @@ class Game extends JPanel{
 		// TODO Auto-generated method stub
 		return pane;
 	}
+    
+    public void updateTimer() {
+    	
+    }
     /**
 /**
 	* Create the GUI and show it.  For thread safety,
