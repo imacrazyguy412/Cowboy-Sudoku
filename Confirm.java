@@ -48,10 +48,18 @@ class Confirm extends JPanel {
 		conf.setBackground(new Color (54, 54, 54));
 		conf.setForeground (Color.white);
         conf.addActionListener(event -> {
-        	GUI.cowboyFrame.setContentPane(GUI.diffM);
-        	GUI.cowboyFrame.repaint();
-        	GUI.cowboyFrame.revalidate();
-            System.out.println("frame is closed");
+        	Game.confFrame.dispose();
+        	switch (button) {
+        		case 1:
+        			//hint
+        			break;
+        		case 2:
+        			//solve
+        			break;
+        		case 3:
+        			//new game
+        			break;
+        	}
         });
 		
 		//set constraints and add conf;
@@ -64,10 +72,7 @@ class Confirm extends JPanel {
 		cancel.setBackground(new Color (36, 44, 61));
 		cancel.setForeground (Color.white);
         cancel.addActionListener(event -> {
-        	GUI.cowboyFrame.setContentPane(GUI.gameM);
-        	GUI.cowboyFrame.repaint();
-        	GUI.cowboyFrame.revalidate();
-            System.out.println("frame is closed");
+        	Game.confFrame.dispose();
         });
 		//set constraints and add hard;
 		c.gridx = 3;
