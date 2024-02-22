@@ -13,7 +13,6 @@ class GUI {
         startM.createAndShowGUI();
         diffM.addComponentsToPane(diffM);
         diffM.createAndShowGUI();
-        gameM.addComponentsToPane(gameM);
         gameM.createAndShowGUI();
         
         cowboyFrame.setContentPane(startM);
