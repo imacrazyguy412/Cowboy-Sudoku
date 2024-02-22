@@ -58,7 +58,6 @@ class Difficulty extends JPanel{
         easy.setForeground (Color.black);
         easy.addActionListener(event -> {
             gameDiff = 1;
-            
         });
         //set constraints and add easy;
         c.gridx = 1;
@@ -111,10 +110,10 @@ class Difficulty extends JPanel{
         start.setBackground(new Color (36, 44, 61));
         start.setForeground (Color.white);
         start.addActionListener(event -> {
-        	if (gameDiff == 1)
-                GUI.cowboyFrame.setContentPane(GUI.gameM);
-        	 	GUI.cowboyFrame.repaint();
-        	 	GUI.cowboyFrame.revalidate();
+            GUI.gameM.addComponentsToPane(GUI.gameM, gameDiff);
+            GUI.cowboyFrame.setContentPane(GUI.gameM);
+        	GUI.cowboyFrame.repaint();
+        	GUI.cowboyFrame.revalidate();
         });
         //set constraints and add start;
         c.gridx = 2;
