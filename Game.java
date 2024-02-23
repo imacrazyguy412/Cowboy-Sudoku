@@ -20,7 +20,7 @@ import java.util.Random;
 class Game extends JPanel{
 	private JLabel diff, mist, timer;
 	private JButton hint, solve, newGame, toggleNotes, undo, save;
-	private SudokuBoard board = new SudokuBoard(9,9);
+	private SudokuBoard boardPanel;
 	private Timer time;
 	private int count = 0;
 	public static JPanel pane;
@@ -30,6 +30,7 @@ class Game extends JPanel{
     
     public Game() {
    	 pane = new JPanel();
+	 boardPanel = new SudokuBoard(9, 9);
     }
     
     private ActionListener taskPerformer = new ActionListener() {
@@ -45,6 +46,8 @@ class Game extends JPanel{
 		pane.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
+		boardPanel.setDifficulty(difficulty);
+
 		//Create diff label
 		switch (difficulty){
 			case 1:
@@ -76,7 +79,7 @@ class Game extends JPanel{
 		c.gridx = 0;
 		c.gridy = 0;
 		c.ipady = 0;
-		pane.add(board, c);
+		pane.add(boardPanel, c);
 
    		//Create mist label
 		mist = new JLabel("Mistakes: 0");
@@ -171,6 +174,7 @@ class Game extends JPanel{
 		toggleNotes.setForeground (Color.white);
 		toggleNotes.addActionListener(event -> {
 			//Switch to notes board
+			boardPanel.toggleNote();
 			
         });
 		
