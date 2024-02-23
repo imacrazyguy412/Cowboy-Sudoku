@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.util.Random;
-import java.util.Timer;
 /*
 	Constraints reference
  	c.fill = GridBagConstraints.HORIZONTAL;
@@ -22,6 +21,8 @@ class Game extends JPanel{
 	private JLabel diff, mist, timer;
 	private JButton hint, solve, newGame, toggleNotes, undo, save;
 	private SudokuBoard board = new SudokuBoard(9,9);
+	private Timer time;
+	private int count = 0;
 	public static JPanel pane;
 	public static JFrame confFrame = new JFrame();
 	
@@ -29,9 +30,14 @@ class Game extends JPanel{
     
     public Game() {
    	 pane = new JPanel();
-   	 Timer time = new Timer();
     }
-
+    
+    private ActionListener taskPerformer = new ActionListener() {
+        public void actionPerformed(ActionEvent evt) {
+        	count+=1;
+        	timer.setText("Time: " + count);
+        }
+    };
  
 	public void addComponentsToPane (Container pane, int difficulty) {
 		//Sets the content pane
@@ -85,15 +91,20 @@ class Game extends JPanel{
 		c.gridy = 2;
 		c.insets = new Insets(0,0,0,0);
 		pane.add(mist, c);
+		
+		//Create time variable
+		time = new Timer(1000, taskPerformer);
+		time.start();
+
 
     	//Create timer label
-		timer = new JLabel("Time: 0");
+		timer = new JLabel("Time: " + count);
 		timer.setOpaque(true);
 		timer.setBackground(new Color (36, 44, 61));
 		timer.setForeground(Color.white);
 		
 		
-		//Set constraints and add timer
+		//Set constraints and add timer label
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 1;
 		c.gridy = 2;
@@ -125,7 +136,7 @@ class Game extends JPanel{
 		solve.setForeground (new Color (207, 176, 100));
         solve.addActionListener(event -> {
             Confirm panel = new Confirm();
-            Confirm.addToPane(panel, 1);
+            Confirm.addToPane(panel, 2);
             confFrame.add(panel);
             confFrame.setVisible(true);    
         });
@@ -143,7 +154,7 @@ class Game extends JPanel{
 		newGame.setForeground (new Color (207, 176, 100));
         newGame.addActionListener(event -> {
             Confirm panel = new Confirm();
-            Confirm.addToPane(panel, 1);
+            Confirm.addToPane(panel, 3);
             confFrame.add(panel);
             confFrame.setVisible(true);
         });
@@ -159,7 +170,8 @@ class Game extends JPanel{
 		toggleNotes.setBackground(new Color (36, 44, 61));
 		toggleNotes.setForeground (Color.white);
 		toggleNotes.addActionListener(event -> {
-	    //Switch to notes board
+			//Switch to notes board
+			
         });
 		
 		//set constraints and add toggleNotes;
@@ -173,7 +185,8 @@ class Game extends JPanel{
 		undo.setBackground(new Color (207, 176, 100));
 		undo.setForeground (Color.black);
 		undo.addActionListener(event -> {
-		//Undo action
+			//Undo action
+			
         });
 		
 		
