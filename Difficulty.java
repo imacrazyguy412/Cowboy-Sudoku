@@ -125,6 +125,10 @@ class Difficulty extends JPanel{
         mistakeToggle.setOpaque(true);
         mistakeToggle.setBackground(new Color (36, 44, 61));
         mistakeToggle.setForeground (Color.white);
+        mistakeToggle.addActionListener(event -> {
+        	
+        });
+        
 
         //set constraints and add mistakeToggle;
         c.gridx = 0;
