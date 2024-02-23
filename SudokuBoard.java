@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 public class SudokuBoard extends JPanel {
 
-    private JButton[][] buttons;
+    private Button[][] buttons;
     private boolean noteOn;
     Board board;
 
@@ -28,12 +28,12 @@ public class SudokuBoard extends JPanel {
         // logic stuff
         noteOn = true;
 
-        buttons = new JButton[row][col];
+        buttons = new Button[row][col];
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
                 final int curRow = i;
                 final int curCol = j;
-                buttons[i][j] = new JButton("");
+                buttons[i][j] = new Button(i, j);
                 buttons[i][j].addKeyListener(enter);
                 buttons[i][j].addKeyListener(number);
                 buttons[i][j].setBackground(Color.white);
@@ -111,6 +111,15 @@ public class SudokuBoard extends JPanel {
 
     void setNum(JButton button, int num, int row, int col){
         button.setText(num +"");
+        System.out.println("row: " + row + " col: " +col);
+
+        //CALLING BOARD IN HERE
+
+
+
+
+
+
     }
     void setNum(JButton button, int num){
         button.setText(num +"");
@@ -161,31 +170,31 @@ public class SudokuBoard extends JPanel {
             } else {
                 switch (e.getKeyChar()) {
                     case KeyEvent.VK_1:
-                        setNum((JButton)(e.getComponent()), 1);
+                        setNum((Button)(e.getComponent()), 1, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
                         break;
                     case KeyEvent.VK_2:
-                        setNum((JButton)(e.getComponent()), 2);
+                        setNum((Button)(e.getComponent()), 2, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
                         break;
                     case KeyEvent.VK_3:
-                        setNum((JButton)(e.getComponent()), 3);
+                        setNum((Button)(e.getComponent()), 3, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
                         break;
                     case KeyEvent.VK_4:
-                        setNum((JButton)(e.getComponent()), 4);
+                        setNum((Button)(e.getComponent()), 4, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
                         break;
                     case KeyEvent.VK_5:
-                        setNum((JButton)(e.getComponent()), 5);
+                        setNum((Button)(e.getComponent()), 5, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
                         break;
                     case KeyEvent.VK_6:
-                        setNum((JButton)(e.getComponent()), 6);
+                        setNum((Button)(e.getComponent()), 6, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
                         break;
                     case KeyEvent.VK_7:
-                        setNum((JButton)(e.getComponent()), 7);
+                        setNum((Button)(e.getComponent()), 7, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
                         break;
                     case KeyEvent.VK_8:
-                        setNum((JButton)(e.getComponent()), 8);
+                        setNum((Button)(e.getComponent()), 8, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
                         break;
                     case KeyEvent.VK_9:
-                        setNum((JButton)(e.getComponent()), 9);
+                        setNum((Button)(e.getComponent()), 9, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
                         break;
                 }
             }
