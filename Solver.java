@@ -3,6 +3,7 @@ public class Solver {
 	int[][] given;
 	int temp;
 	boolean possible;
+	int attempts = 0;
 	
 	//The "main" method for the solver, this pieces everything together and tells other methods to solve the board
 	public boolean solve (int[][] given) {
@@ -19,7 +20,7 @@ public class Solver {
 				board[r][c][0] = given[r][c];
 			}
 		}
-		for(int a = 0; a < 20; a++) {
+		for(int a = 0; a < 50; a++) {
 			for(int r = 0; r < 9; r++) {
 				for(int c = 0; c < 9; c++) {
 					if(!(given[r][c] == 0) && a == 0) {
@@ -47,23 +48,34 @@ public class Solver {
 					}
 				}
 			}
-			
-		}
-		possible = true;
-		for(int r = 0; r < 9; r++) {
-			for(int c = 0; c < 9; c++) {
-				if(board[r][c][0] == 0) {
-					possible = false;
+			temp = 0;
+			possible = true;
+			for(int r = 0; r < 9; r++) {
+				for(int c = 0; c < 9; c++) {
+					if(board[r][c][0] == 0) {
+						possible = false;
+						temp++;
+					}
 				}
 			}
+			if(temp == 0) {
+				attempts = a;
+				return possible;
+			}
+			temp = 0;
+			
 		}
-		
 		return possible;
 	}
 	
 	//A get board if needed
 	public int[][][] getBoard() {
 		return board;
+	}
+	
+	//Returns the number of loops it took for the board to be solved
+	public int getAttempts() {
+		return attempts;
 	}
 	
 	//Looks at a given spot and attempts to either find a solution or rule out any impossible numbers and set the potential numbers to the appropriate options

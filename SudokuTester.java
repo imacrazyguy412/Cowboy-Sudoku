@@ -21,7 +21,7 @@ public class SudokuTester {
 	          {0, 0, 0, 4, 0, 9, 0, 0, 0},   
 	          {5, 0, 0, 0, 0, 0, 1, 0, 6},   
 	          {0, 0, 6, 0, 0, 0, 0, 0, 8}   
-	       };  */ 
+	       }; */  
 		/*int[][] board = new int[][] { {3, 0, 6, 5, 0, 8, 4, 0, 0},
 			{5, 2, 0, 0, 0, 0, 0, 0, 0},
 			{0, 8, 7, 0, 0, 0, 0, 3, 1},
@@ -38,61 +38,26 @@ public class SudokuTester {
 		int x = 0;
 		int y = 0;
 		int numsPlaced = 0;
-		int targetNums = 25;
+		int targetNums = 30;
 		boolean valid = false;
 		boolean possible = false;
 		Solver solver = new Solver();
+		Board make = new Board();
 		
 		//Creates a board and checks if that board is solvable
-		while(!possible) {
-			while(numsPlaced < targetNums) {
-				rand = (int) (Math.random()*9+1);
-				rando = (int) (Math.random()*10+1);
-				x = (int) (Math.random()*9);
-				y = (int) (Math.random()*9);
-				valid = false;
-				if(rando <= 3) {
-					if(board[x][y] == 0 && solver.notFull(board, x, y)) {
-						if(solver.valid(board, rand, x, y)) {
-							valid = true;
-						}
-						while(!valid) {
-							rand = (int) (Math.random()*9+1);
-							if(solver.valid(board, rand, x, y)) {
-								valid = true;
-							}
-						}
-						board[x][y] = rand;
-						numsPlaced++;
-					}
-				}
-			}
-			if(solver.solve(board)) {
-				possible = true;
-				numsPlaced = 0;
-			} else {
-				for(int r = 0; r < 9; r++) {
-					for(int c = 0; c < 9; c++) {
-						board[r][c] = 0;
-					}
-				}
-				numsPlaced = 0;
-			}
-		}
+		board = make.randomGenBoard(2);
 		
 		//Printing results
 		for(int r = 0; r < 9; r++) {
 			for(int c = 0; c < 9; c++) {
-				System.out.print(board[r][c] + " ");
+				System.out.print(make.getBoard()[r][c] + " ");
 			}
 			System.out.println();
 		}
 		System.out.println();
-		solver.solve(board);
-		int[][][] board2 = solver.getBoard();
 		for(int r = 0; r < 9; r++) {
 			for(int c = 0; c < 9; c++) {
-				System.out.print(board2[r][c][0] + " ");
+				System.out.print(make.getSolvedBoard()[r][c][0] + " ");
 			}
 			System.out.println();
 		}
@@ -100,17 +65,22 @@ public class SudokuTester {
 		for(int r = 0; r < 9; r++) {
 			for(int c = 0; c < 9; c++) {
 				System.out.print(r + " " + c + "  ");
-				if(!(board[r][c] == 0)) {
+				if(!(make.getBoard()[r][c] == 0)) {
 					numsPlaced++;
 				}
 				for(int z = 0; z < 10; z++) {
-					System.out.print(board2[r][c][z] + " ");
+					System.out.print(make.getSolvedBoard()[r][c][z] + " ");
 				}
 				System.out.println();
 			}
 			System.out.println();
 		}
 		System.out.println(numsPlaced + " numbers placed");
+		System.out.print(solver.getAttempts() + " attempt");
+		if(solver.getAttempts() > 1) {
+			System.out.println("s");
+		}
+		
 		
 	}
      
