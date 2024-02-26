@@ -26,14 +26,20 @@ public class SudokuBoard extends JPanel {
         
 
         // logic stuff
-        noteOn = true;
+        noteOn = false;
 
         buttons = new Button[row][col];
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
                 final int curRow = i;
                 final int curCol = j;
+                
+                
+                
                 buttons[i][j] = new Button(i, j);
+               // buttons[i][j].setText();
+                
+                
                 buttons[i][j].addKeyListener(enter);
                 buttons[i][j].addKeyListener(number);
                 buttons[i][j].setBackground(Color.white);
@@ -107,15 +113,31 @@ public class SudokuBoard extends JPanel {
     void setDifficulty(int difficulty){
         board = new Board();
         board.randomGenBoard(difficulty);
+        board.getSolvedBoard();
+        for(int i = 0; i<9; i++) {
+        	for(int j = 0;j <9; j++) {
+        		if(board.getBoard()[i][j] != 0) {
+        			buttons[i][j].setText(board.getBoard()[i][j] + "");
+        		}
+        	}
+        }
+        
+        
     }
 
-    void setNum(JButton button, int num, int row, int col){
-        button.setText(num +"");
+    void setNum(JButton button, int guess, int row, int col){
+        button.setText(guess +"");
         System.out.println("row: " + row + " col: " +col);
 
         //CALLING BOARD IN HERE
-
-
+        
+        board.updateBoard(row, col, guess, 0);
+        if(!board.isCorrect(row, col, guess)) {
+        	button.setBackground(new Color(255, 204, 203));
+        } else {
+        	button.setBackground(Color.white);
+        }
+        System.out.println(board.isCorrect(row, col, guess));
 
 
 

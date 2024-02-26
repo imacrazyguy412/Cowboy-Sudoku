@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 public class Board {
 	int[][] board = new int[9][9];
+	int[][][] userBoard = new int[9][9][10];
 	int difficulty; 
 	boolean valid = false;
 	int choice = 0;
@@ -17,7 +18,9 @@ public class Board {
 	boolean possible = false;
 	boolean check = true;
 	Solver solver = new Solver();
-	public void Board() {
+	int[][][] completedBoard;
+	int[][] realBoard;
+	public Board() {
 		
 	}
 	
@@ -62,6 +65,14 @@ public class Board {
 			if(solver.solve(board)) {
 				possible = true;
 				numsPlaced = 0;
+				for(int r = 0; r < 9; r++) {
+					for(int c = 0; c < 9; c++) {
+						userBoard[r][c][0] = board[r][c];
+						for(int x = 1; x < 10; x++) {
+							userBoard[r][c][x] = 0;
+						}
+					}
+				}
 			} else {
 				for(int r = 0; r < 9; r++) {
 					for(int c = 0; c < 9; c++) {
@@ -78,30 +89,58 @@ public class Board {
 		for(int r = 0; r < 9; r++) {
 			for(int c = 0; c < 9; c++) {
 				board[r][c] = bord[r][c];
+				userBoard[r][c][0] = board[r][c];
+				for(int x = 1; x < 10; x++) {
+					userBoard[r][c][x] = 0;
+				}
 			}
 		}
 	}
 	
-	public void updateBoard(int r, int c, int v) {
-		board[r][c] = v;
+	public void updateBoard(int r, int c, int z, int v) {
+		userBoard[r][c][z] = v;
+		if(z == 0) {
+			board[r][c] = v;
+		}
 	}
 	
 	public void clearBoard() {
 		for(int r = 0; r < 9; r++) {
 			for(int c = 0; c < 9; c++) {
 				board[r][c] = 0;
+				for(int x = 0; x < 10; x++) {
+					userBoard[r][c][x] = 0;
+				}
 			}
 		}
 	}
 	
 	public int[][][] getSolvedBoard() {
 		solver.solve(board);
-		int[][][] completeBoard = solver.getBoard();
-		return completeBoard;
+		completedBoard = solver.getBoard();
+		realBoard = new int[9][9];
+		for(int i = 0; i <9; i++) {
+			for (int j = 0; j<9; j++) {
+				realBoard[i][j] = completedBoard[i][j][0];
+			}
+		}
+		return completedBoard;
 	}
 	
 	public int[][] getBoard() {
 		return board;
+	}
+	
+	public int[][][] getUserBoard() {
+		return userBoard;
+	}
+	
+	public boolean isCorrect(int r, int c, int guess) {
+		if(realBoard[r][c] == guess) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public boolean isPossible() {
