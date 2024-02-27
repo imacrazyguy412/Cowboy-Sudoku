@@ -118,6 +118,7 @@ public class SudokuBoard extends JPanel {
         	for(int j = 0;j <9; j++) {
         		if(board.getBoard()[i][j] != 0) {
         			buttons[i][j].setText(board.getBoard()[i][j] + "");
+        			buttons[i][j].setBackground(Color.gray);
         		}
         	}
         }
