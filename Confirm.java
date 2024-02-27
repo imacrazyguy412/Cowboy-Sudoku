@@ -60,7 +60,11 @@ class Confirm extends JPanel {
         			//solve
         			break;
         		case 3:
-        			//new game
+				GUI.gameM = new Game();
+        			GUI.gameM.createAndShowGUI();
+                		GUI.cowboyFrame.setContentPane(GUI.diffM);
+                		GUI.cowboyFrame.repaint();
+                		GUI.cowboyFrame.revalidate();
         			break;
         	}
         });
