@@ -18,7 +18,9 @@ public class Board {
 	boolean possible = false;
 	boolean check = true;
 	Solver solver = new Solver();
-	public void Board() {
+	int[][][] completedBoard;
+	int[][] realBoard;
+	public Board() {
 		
 	}
 	
@@ -115,8 +117,14 @@ public class Board {
 	
 	public int[][][] getSolvedBoard() {
 		solver.solve(board);
-		int[][][] completeBoard = solver.getBoard();
-		return completeBoard;
+		completedBoard = solver.getBoard();
+		realBoard = new int[9][9];
+		for(int i = 0; i <9; i++) {
+			for (int j = 0; j<9; j++) {
+				realBoard[i][j] = completedBoard[i][j][0];
+			}
+		}
+		return completedBoard;
 	}
 	
 	public int[][] getBoard() {
@@ -125,6 +133,14 @@ public class Board {
 	
 	public int[][][] getUserBoard() {
 		return userBoard;
+	}
+	
+	public boolean isCorrect(int r, int c, int guess) {
+		if(realBoard[r][c] == guess) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public boolean isPossible() {
@@ -145,9 +161,10 @@ public class Board {
 				hint[1] = y;
 				int[][][] solved = getSolvedBoard();
 				hint[2] = solved[x][y][0];
-				valid = false;
+				valid = true;
 			}
 		}
+		
 		return hint;
 	}
 	

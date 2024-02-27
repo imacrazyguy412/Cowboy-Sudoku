@@ -10,30 +10,36 @@ import javax.swing.JPanel;
 
 public class SudokuBoard extends JPanel {
 
-    private JButton[][] buttons;
+    private Button[][] buttons;
     private boolean noteOn;
-    SudokuGame curGame;
+    Board board;
 
     // add top and botton to layout for exit button
     // just use a png background and make wiindow non resisable
     // add scaling/actual gui component later
 
+
+    //MAKE THE JBUTTON EXTENDER WITH THE ROWS AND COLUMS AFTER PLEASE YOU USELESS PERSON
+
     public SudokuBoard(int row, int col) {
         super(new GridLayout(row, col));
         
-        
-        
-        
 
         // logic stuff
-        noteOn = true;
+        noteOn = false;
 
-        buttons = new JButton[row][col];
+        buttons = new Button[row][col];
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
                 final int curRow = i;
                 final int curCol = j;
-                buttons[i][j] = new JButton("");
+                
+                
+                
+                buttons[i][j] = new Button(i, j);
+               // buttons[i][j].setText();
+                
+                
                 buttons[i][j].addKeyListener(enter);
                 buttons[i][j].addKeyListener(number);
                 buttons[i][j].setBackground(Color.white);
@@ -76,10 +82,6 @@ public class SudokuBoard extends JPanel {
         }
     }
     
-    
-    void setGame(SudokuGame game){
-    	curGame = game;
-    }
 
     void setNote(JButton button, int note) {
 
@@ -103,6 +105,55 @@ public class SudokuBoard extends JPanel {
             }
 
         }
+    }
+    void toggleNote(){
+        noteOn = !noteOn;
+    }
+
+    void setDifficulty(int difficulty){
+        board = new Board();
+        board.randomGenBoard(difficulty);
+        board.getSolvedBoard();
+        for(int i = 0; i<9; i++) {
+        	for(int j = 0;j <9; j++) {
+        		if(board.getBoard()[i][j] != 0) {
+        			buttons[i][j].setText(board.getBoard()[i][j] + "");
+        			buttons[i][j].setBackground(Color.gray);
+        		}
+        	}
+        }
+        
+        
+    }
+    
+    void getHint(){
+    	
+    	int[] nums = board.getHint();
+    	buttons[nums[0]][nums[1]].setText(nums[2] + "");
+    }
+    
+    
+
+    void setNum(JButton button, int guess, int row, int col){
+        button.setText(guess +"");
+        System.out.println("row: " + row + " col: " +col);
+
+        //CALLING BOARD IN HERE
+        
+        board.updateBoard(row, col, guess, 0);
+        if(!board.isCorrect(row, col, guess)) {
+        	button.setBackground(new Color(255, 204, 203));
+        } else {
+        	button.setBackground(Color.white);
+        }
+        System.out.println(board.isCorrect(row, col, guess));
+
+
+
+
+    }
+    void setNum(JButton button, int num){
+        button.setText(num +"");
     }
 
     private KeyListener enter = new KeyAdapter() {
@@ -147,6 +198,36 @@ public class SudokuBoard extends JPanel {
                 }
 
 
+            } else {
+                switch (e.getKeyChar()) {
+                    case KeyEvent.VK_1:
+                        setNum((Button)(e.getComponent()), 1, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
+                        break;
+                    case KeyEvent.VK_2:
+                        setNum((Button)(e.getComponent()), 2, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
+                        break;
+                    case KeyEvent.VK_3:
+                        setNum((Button)(e.getComponent()), 3, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
+                        break;
+                    case KeyEvent.VK_4:
+                        setNum((Button)(e.getComponent()), 4, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
+                        break;
+                    case KeyEvent.VK_5:
+                        setNum((Button)(e.getComponent()), 5, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
+                        break;
+                    case KeyEvent.VK_6:
+                        setNum((Button)(e.getComponent()), 6, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
+                        break;
+                    case KeyEvent.VK_7:
+                        setNum((Button)(e.getComponent()), 7, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
+                        break;
+                    case KeyEvent.VK_8:
+                        setNum((Button)(e.getComponent()), 8, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
+                        break;
+                    case KeyEvent.VK_9:
+                        setNum((Button)(e.getComponent()), 9, ((Button)(e.getComponent())).getRow(), ((Button)(e.getComponent())).getCol());
+                        break;
+                }
             }
         }
     };

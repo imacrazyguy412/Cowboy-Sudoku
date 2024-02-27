@@ -4,7 +4,7 @@ public class SudokuGame {
 	private int[][] playerBoard;
 	
 	public SudokuGame(int diff) {
-		BoardMaker make = new BoardMaker();
+		Board make = new Board();
 		board = make.randomGenBoard(diff);
 	}
 	
