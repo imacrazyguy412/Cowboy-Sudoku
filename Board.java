@@ -151,7 +151,7 @@ public class Board {
 	}
 	
 	public int[] getHint() {
-		int[] hint = new int[3];
+		int[] hint = new int[3]; //I could only come up with making this an int array, so pos 0 is row, pos 1 is col, and pos 2 is the number
 		valid = false;
 		while(!valid) {
 			x = (int) (Math.random()*9);
