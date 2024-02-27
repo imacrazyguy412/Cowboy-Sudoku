@@ -124,9 +124,12 @@ class Game extends JPanel{
 		hint.setBackground(new Color (36, 44, 61));
 		hint.setForeground (new Color (207, 176, 100));
         hint.addActionListener(event -> {
-            Confirm panel = new Confirm();
+	    Confirm panel = new Confirm();
             Confirm.addToPane(panel, 1);
             confFrame.add(panel);
+            confFrame.setSize(1000, 500);
+            confFrame.repaint();
+            confFrame.revalidate();
             confFrame.setVisible(true);
         });
 		
@@ -142,10 +145,13 @@ class Game extends JPanel{
 		solve.setBackground(new Color (36, 44, 61));
 		solve.setForeground (new Color (207, 176, 100));
         solve.addActionListener(event -> {
-            Confirm panel = new Confirm();
+	    Confirm panel = new Confirm();
             Confirm.addToPane(panel, 2);
             confFrame.add(panel);
-            confFrame.setVisible(true);    
+            confFrame.setSize(1000, 500);
+            confFrame.repaint();
+            confFrame.revalidate();
+            confFrame.setVisible(true);
         });
 		
 		
@@ -160,9 +166,12 @@ class Game extends JPanel{
 		newGame.setBackground(new Color (36, 44, 61));
 		newGame.setForeground (new Color (207, 176, 100));
         newGame.addActionListener(event -> {
-            Confirm panel = new Confirm();
+	    Confirm panel = new Confirm();
             Confirm.addToPane(panel, 3);
             confFrame.add(panel);
+            confFrame.setSize(1000, 500);
+            confFrame.repaint();
+            confFrame.revalidate();
             confFrame.setVisible(true);
         });
 		
