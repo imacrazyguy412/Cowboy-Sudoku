@@ -101,6 +101,9 @@ public class Board {
 		userBoard[r][c][z] = v;
 		if(z == 0) {
 			board[r][c] = v;
+			for(int x = 1; x < 10; x++) {
+				userBoard[r][c][1] = 0;
+			}
 		}
 	}
 	
@@ -162,6 +165,7 @@ public class Board {
 				int[][][] solved = getSolvedBoard();
 				hint[2] = solved[x][y][0];
 				valid = true;
+				updateBoard(x, y, 0, getSolvedBoard()[x][y][0]);
 			}
 		}
 		
