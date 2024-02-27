@@ -161,7 +161,7 @@ public class Board {
 				hint[1] = y;
 				int[][][] solved = getSolvedBoard();
 				hint[2] = solved[x][y][0];
-				valid = false;
+				valid = true;
 			}
 		}
 		return hint;
