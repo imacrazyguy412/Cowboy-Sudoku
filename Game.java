@@ -25,6 +25,7 @@ class Game extends JPanel{
 	private int count = 0;
 	public static JPanel pane;
 	public static JFrame confFrame = new JFrame();
+	public static int mistakes = 0;
 	
 	
     
@@ -86,7 +87,7 @@ class Game extends JPanel{
 		pane.add(boardPanel, c);
 
    		//Create mist label
-		mist = new JLabel("Mistakes: 0");
+		mist = new JLabel("Mistakes: " + mistakes);
 		mist.setOpaque(true);
 		mist.setBackground(new Color (207, 176, 100));
 		mist.setForeground(Color.black);
@@ -238,7 +239,8 @@ class Game extends JPanel{
     }
     
     public void updateMistakes() {
-    	
+    	mistakes++;
+    	mist.setText("Mistakes: " + mistakes);
     }
     /**
 /**
