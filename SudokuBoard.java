@@ -36,7 +36,7 @@ public class SudokuBoard extends JPanel {
                 
                 
                 
-                buttons[i][j] = new Button(i, j);
+                buttons[i][j] = new Button(i, j, false);
                // buttons[i][j].setText();
                 
                 
@@ -83,8 +83,8 @@ public class SudokuBoard extends JPanel {
     }
     
 
-    void setNote(JButton button, int note) {
-
+    void setNote(Button button, int note) {
+    	if(!button.isStarter()) {
         if (button.getText().contains(note + "")) {
             System.out.println(button.getText());
             System.out.println("removed" + note);
@@ -105,6 +105,7 @@ public class SudokuBoard extends JPanel {
             }
 
         }
+    	}
     }
     void toggleNote(){
         noteOn = !noteOn;
@@ -117,8 +118,9 @@ public class SudokuBoard extends JPanel {
         for(int i = 0; i<9; i++) {
         	for(int j = 0;j <9; j++) {
         		if(board.getBoard()[i][j] != 0) {
-        			buttons[i][j].setText(board.getBoard()[i][j] + "");
+        			buttons[i][j].setText(" " + board.getBoard()[i][j] + "  ");
         			buttons[i][j].setBackground(Color.gray);
+        			buttons[i][j].setStart(true);
         		}
         	}
         }
@@ -134,7 +136,8 @@ public class SudokuBoard extends JPanel {
     
     
 
-    void setNum(JButton button, int guess, int row, int col){
+    void setNum(Button button, int guess, int row, int col){
+    	if(!button.isStarter()) {
         button.setText(guess +"");
         System.out.println("row: " + row + " col: " +col);
 
@@ -150,18 +153,18 @@ public class SudokuBoard extends JPanel {
         }
         System.out.println(board.isCorrect(row, col, guess));
 
-
+        }
 
 
     }
-    void setNum(JButton button, int num){
+    void setNum(Button button, int num){
         button.setText(num +"");
     }
 
     private KeyListener enter = new KeyAdapter() {
         @Override public void keyTyped(KeyEvent e) {
             if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-                ((JButton) e.getComponent()).doClick();
+                ((Button) e.getComponent()).doClick();
             }
         }
     };
@@ -171,31 +174,31 @@ public class SudokuBoard extends JPanel {
             if (noteOn) {
                 switch (e.getKeyChar()) {
                     case KeyEvent.VK_1:
-                        setNote((JButton)(e.getComponent()), 1);
+                        setNote((Button)(e.getComponent()), 1);
                         break;
                     case KeyEvent.VK_2:
-                        setNote((JButton)(e.getComponent()), 2);
+                        setNote((Button)(e.getComponent()), 2);
                         break;
                     case KeyEvent.VK_3:
-                        setNote((JButton)(e.getComponent()), 3);
+                        setNote((Button)(e.getComponent()), 3);
                         break;
                     case KeyEvent.VK_4:
-                        setNote((JButton)(e.getComponent()), 4);
+                        setNote((Button)(e.getComponent()), 4);
                         break;
                     case KeyEvent.VK_5:
-                        setNote((JButton)(e.getComponent()), 5);
+                        setNote((Button)(e.getComponent()), 5);
                         break;
                     case KeyEvent.VK_6:
-                        setNote((JButton)(e.getComponent()), 6);
+                        setNote((Button)(e.getComponent()), 6);
                         break;
                     case KeyEvent.VK_7:
-                        setNote((JButton)(e.getComponent()), 7);
+                        setNote((Button)(e.getComponent()), 7);
                         break;
                     case KeyEvent.VK_8:
-                        setNote((JButton)(e.getComponent()), 8);
+                        setNote((Button)(e.getComponent()), 8);
                         break;
                     case KeyEvent.VK_9:
-                        setNote((JButton)(e.getComponent()), 9);
+                        setNote((Button)(e.getComponent()), 9);
                         break;
                 }
 
