@@ -26,6 +26,7 @@ class Game extends JPanel{
 	public static JPanel pane;
 	public static JFrame confFrame = new JFrame();
 	public static int mistakes = 0;
+	private int mistakeLimit;
 	
 	
     
@@ -57,12 +58,15 @@ class Game extends JPanel{
 		switch (difficulty){
 			case 1:
 				diff = new JLabel("Difficulty: Easy");
+				mistakeLimit = 5;
 				break;
 			case 2:
 				diff = new JLabel("Difficulty: Medium");
+				mistakeLimit = 4;
 				break;
 			case 3:
 				diff = new JLabel("Difficulty: Hard");
+				mistakeLimit = 3;
 				break;
 		}
 		diff.setOpaque(true);
@@ -87,7 +91,7 @@ class Game extends JPanel{
 		pane.add(boardPanel, c);
 
    		//Create mist label
-		mist = new JLabel("Mistakes: " + mistakes);
+		mist = new JLabel("Mistakes remaining: " + (mistakeLimit - mistakes));
 		mist.setOpaque(true);
 		mist.setBackground(new Color (207, 176, 100));
 		mist.setForeground(Color.black);
@@ -240,7 +244,7 @@ class Game extends JPanel{
     
     public void updateMistakes() {
     	mistakes++;
-    	mist.setText("Mistakes: " + mistakes);
+    	mist.setText("Mistakes remaining: " + (mistakeLimit - mistakes));
     }
     /**
 /**
