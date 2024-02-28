@@ -143,6 +143,8 @@ public class SudokuBoard extends JPanel {
         board.updateBoard(row, col, guess, 0);
         if(!board.isCorrect(row, col, guess)) {
         	button.setBackground(new Color(255, 204, 203));
+        	//UPDATE MISTAKES HERE
+        	GUI.gameM.updateMistakes();
         } else {
         	button.setBackground(Color.white);
         }
