@@ -248,12 +248,11 @@ class Game extends JPanel{
 	if ((mistakeLimit - mistakes) <= 0){
 		GUI.gameM = new Game();
         	GUI.gameM.createAndShowGUI();
-		GUI.cowboyFrame.setContentPane(GUI.);
+		GUI.cowboyFrame.setContentPane(GUI.lossM);
         	GUI.cowboyFrame.repaint();
         	GUI.cowboyFrame.revalidate();
-	}
-		
-    	mist.setText("Mistakes remaining: " + (mistakeLimit - mistakes));
+	} else 
+    		mist.setText("Mistakes remaining: " + (mistakeLimit - mistakes));
 	
     }
     /**
