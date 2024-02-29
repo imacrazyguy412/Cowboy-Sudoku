@@ -171,5 +171,15 @@ public class Board {
 		
 		return hint;
 	}
-	
+
+	public boolean gameEnd() {
+		for(int r = 0; r < 9; r++) {
+			for(int c = 0; c < 9; c++) {
+				if(userBoard[r][c][0] == 0) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 }
