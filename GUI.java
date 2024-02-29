@@ -7,6 +7,7 @@ class GUI {
     public static StartScreen startM = new StartScreen();
     public static Difficulty diffM = new Difficulty();
     public static Game gameM = new Game();
+    public static Lose lossM = new Lose();
 
     public void run (){
     	cowboyFrame = new JFrame();
@@ -14,6 +15,8 @@ class GUI {
         startM.createAndShowGUI();
         diffM.addComponentsToPane(diffM);
         diffM.createAndShowGUI();
+        lossM.addComponentsToPane(lossM);
+        lossM.createAndShowGUI();
         gameM.createAndShowGUI();
         
         cowboyFrame.setContentPane(startM);
