@@ -133,7 +133,7 @@ class Game extends JPanel{
 	    Confirm panel = new Confirm();
             Confirm.addToPane(panel, 1);
             confFrame.add(panel);
-            confFrame.setSize(1000, 500);
+            confFrame.setSize(1280, 720);
             confFrame.repaint();
             confFrame.revalidate();
             confFrame.setVisible(true);
@@ -154,7 +154,7 @@ class Game extends JPanel{
 	    Confirm panel = new Confirm();
             Confirm.addToPane(panel, 2);
             confFrame.add(panel);
-            confFrame.setSize(1000, 500);
+            confFrame.setSize(1280, 720);
             confFrame.repaint();
             confFrame.revalidate();
             confFrame.setVisible(true);
@@ -175,7 +175,7 @@ class Game extends JPanel{
 	    Confirm panel = new Confirm();
             Confirm.addToPane(panel, 3);
             confFrame.add(panel);
-            confFrame.setSize(1000, 500);
+            confFrame.setSize(1280, 720);
             confFrame.repaint();
             confFrame.revalidate();
             confFrame.setVisible(true);
