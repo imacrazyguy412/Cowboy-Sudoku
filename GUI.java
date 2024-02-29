@@ -20,7 +20,7 @@ class GUI {
         gameM.createAndShowGUI();
         
         cowboyFrame.setContentPane(startM);
-    	cowboyFrame.setSize(1000, 500);
+    	cowboyFrame.setSize(1280, 720);
     	cowboyFrame.repaint();
     	cowboyFrame.revalidate();
     	cowboyFrame.setVisible(true);
