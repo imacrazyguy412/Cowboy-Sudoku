@@ -3,6 +3,7 @@ import java.util.InputMismatchException;
 public class Board {
 	int[][] board = new int[9][9];
 	int[][][] userBoard = new int[9][9][10];
+	int[] undo = new int[4];
 	int difficulty; 
 	boolean valid = false;
 	int choice = 0;
@@ -98,6 +99,10 @@ public class Board {
 	}
 	
 	public void updateBoard(int r, int c, int z, int v) {
+		undo[0] = r;
+		undo[1] = c;
+		undo[2] = z;
+		undo[3] = userBoard[r][c][z]+1;
 		userBoard[r][c][z] = v;
 		if(z == 0) {
 			board[r][c] = v;
@@ -105,7 +110,6 @@ public class Board {
 				userBoard[r][c][1] = 0;
 			}
 		}
-		
 	}
 	
 	public void clearBoard() {
@@ -128,16 +132,6 @@ public class Board {
 				realBoard[i][j] = completedBoard[i][j][0];
 			}
 		}
-		
-		
-		//print answers
-		for(int i = 0; i<9; i++) {
-			for(int j = 0; j<9;j ++) {
-				System.out.print(completedBoard[i][j][0]);
-			}
-			System.out.println();
-		}
-		
 		return completedBoard;
 	}
 	
@@ -182,23 +176,8 @@ public class Board {
 		
 		return hint;
 	}
-
-	public boolean gameEnd() {
-		for(int i = 0; i<9; i++) {
-			for(int j = 0; j<9; j++) {
-				System.out.print(userBoard[i][j][0]);
-			}
-			System.out.println();
-		}
-		for(int r = 0; r < 9; r++) {
-			for(int c = 0; c < 9; c++) {
-				
-				if(userBoard[r][c][0] == 0) {
-					return false;
-				}
-				
-			}
-		}
-		return true;
+	
+	public void undo() {
+		userBoard[undo[0]][undo[1]][undo[2]] = undo[3];
 	}
 }

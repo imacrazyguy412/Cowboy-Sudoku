@@ -42,7 +42,7 @@ public class SudokuTester {
 		boolean valid = false;
 		boolean possible = false;
 		Solver solver = new Solver();
-		BoardMaker make = new BoardMaker();
+		Board make = new Board();
 		
 		//Creates a board and checks if that board is solvable
 		board = make.randomGenBoard(2);
@@ -50,16 +50,14 @@ public class SudokuTester {
 		//Printing results
 		for(int r = 0; r < 9; r++) {
 			for(int c = 0; c < 9; c++) {
-				System.out.print(board[r][c] + " ");
+				System.out.print(make.getBoard()[r][c] + " ");
 			}
 			System.out.println();
 		}
 		System.out.println();
-		solver.solve(board);
-		int[][][] board2 = solver.getBoard();
 		for(int r = 0; r < 9; r++) {
 			for(int c = 0; c < 9; c++) {
-				System.out.print(board2[r][c][0] + " ");
+				System.out.print(make.getSolvedBoard()[r][c][0] + " ");
 			}
 			System.out.println();
 		}
@@ -67,11 +65,11 @@ public class SudokuTester {
 		for(int r = 0; r < 9; r++) {
 			for(int c = 0; c < 9; c++) {
 				System.out.print(r + " " + c + "  ");
-				if(!(board[r][c] == 0)) {
+				if(!(make.getBoard()[r][c] == 0)) {
 					numsPlaced++;
 				}
 				for(int z = 0; z < 10; z++) {
-					System.out.print(board2[r][c][z] + " ");
+					System.out.print(make.getSolvedBoard()[r][c][z] + " ");
 				}
 				System.out.println();
 			}
@@ -81,7 +79,38 @@ public class SudokuTester {
 		System.out.print(solver.getAttempts() + " attempt");
 		if(solver.getAttempts() > 1) {
 			System.out.println("s");
+		} else {
+			System.out.println();
 		}
+		int[] hint = make.getHint();
+		System.out.println(hint[0] + ", " + hint[1] + ": " + hint[2]);
+		
+		make.updateBoard(hint[0], hint[1], 0, hint[2]);
+		for(int r = 0; r < 9; r++) {
+			for(int c = 0; c < 9; c++) {
+				System.out.print(make.getUserBoard()[r][c][0] + " ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+		hint = make.getHint();
+		make.updateBoard(hint[0], hint[1], 0, hint[2]);
+		System.out.println(hint[0] + ", " + hint[1] + ": " + hint[2]);
+		for(int r = 0; r < 9; r++) {
+			for(int c = 0; c < 9; c++) {
+				System.out.print(make.getUserBoard()[r][c][0] + " ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+		make.undo();
+		for(int r = 0; r < 9; r++) {
+			for(int c = 0; c < 9; c++) {
+				System.out.print(make.getUserBoard()[r][c][0] + " ");
+			}
+			System.out.println();
+		}
+		System.out.println();
 	}
      
 }
