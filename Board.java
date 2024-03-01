@@ -105,6 +105,7 @@ public class Board {
 				userBoard[r][c][1] = 0;
 			}
 		}
+		
 	}
 	
 	public void clearBoard() {
@@ -127,6 +128,16 @@ public class Board {
 				realBoard[i][j] = completedBoard[i][j][0];
 			}
 		}
+		
+		
+		//print answers
+		for(int i = 0; i<9; i++) {
+			for(int j = 0; j<9;j ++) {
+				System.out.print(completedBoard[i][j][0]);
+			}
+			System.out.println();
+		}
+		
 		return completedBoard;
 	}
 	
@@ -173,11 +184,19 @@ public class Board {
 	}
 
 	public boolean gameEnd() {
+		for(int i = 0; i<9; i++) {
+			for(int j = 0; j<9; j++) {
+				System.out.print(userBoard[i][j][0]);
+			}
+			System.out.println();
+		}
 		for(int r = 0; r < 9; r++) {
 			for(int c = 0; c < 9; c++) {
+				
 				if(userBoard[r][c][0] == 0) {
 					return false;
 				}
+				
 			}
 		}
 		return true;

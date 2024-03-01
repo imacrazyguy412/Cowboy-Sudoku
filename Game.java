@@ -27,6 +27,7 @@ class Game extends JPanel{
 	public static JFrame confFrame = new JFrame();
 	public static int mistakes = 0;
 	private int mistakeLimit;
+	private boolean mistakeOn = true;
 
 	
 	
@@ -244,6 +245,7 @@ class Game extends JPanel{
     }
     
     public void updateMistakes() {
+    	if(mistakeOn) {
     	mistakes++;
 	if ((mistakeLimit - mistakes) <= 0){
 		GUI.gameM = new Game();
@@ -251,9 +253,11 @@ class Game extends JPanel{
 		GUI.cowboyFrame.setContentPane(GUI.lossM);
         	GUI.cowboyFrame.repaint();
         	GUI.cowboyFrame.revalidate();
+        	mistakes = 0;
 	} else 
     		mist.setText("Mistakes remaining: " + (mistakeLimit - mistakes));
 	
+    	}
     }
     /**
 /**

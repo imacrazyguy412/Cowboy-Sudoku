@@ -106,6 +106,10 @@ public class SudokuBoard extends JPanel {
 
         }
     	}
+    	
+    	
+    	
+    	
     }
     void toggleNote(){
         noteOn = !noteOn;
@@ -143,7 +147,7 @@ public class SudokuBoard extends JPanel {
 
         //CALLING BOARD IN HERE
         
-        board.updateBoard(row, col, guess, 0);
+        board.updateBoard(row, col, 0, guess);
         if(!board.isCorrect(row, col, guess)) {
         	button.setBackground(new Color(255, 204, 203));
         	//UPDATE MISTAKES HERE
@@ -154,7 +158,19 @@ public class SudokuBoard extends JPanel {
         System.out.println(board.isCorrect(row, col, guess));
 
         }
-
+    	if(board.isCorrect(row, col, guess)) {
+			buttons[row][col].setStart(true);
+		}
+    	
+    	//checkgame end
+    	if(board.gameEnd()) {
+    		System.out.print("win... gen screen now plaese");
+    		GUI.gameM = new Game();
+        	GUI.gameM.createAndShowGUI();
+		GUI.cowboyFrame.setContentPane(GUI.winM);
+        	GUI.cowboyFrame.repaint();
+        	GUI.cowboyFrame.revalidate();
+    	}
 
     }
     void setNum(Button button, int num){

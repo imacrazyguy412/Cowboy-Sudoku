@@ -3,12 +3,14 @@ import java.awt.event.*;
 import java.awt.*;
 import java.util.Random;
 
-public class Lose extends JPanel {
+public class LoseScreen extends JPanel {
 	private static JLabel header;
 	private static JButton back;
-	static JFrame frame = new JFrame("Cowboy Sudoku");
+	public static JPanel loseP;
+	//static JFrame frame = new JFrame("Cowboy Sudoku");
+	
  
-	public static void addToPane (Container pane, int button) {
+	public void addToPane (Container pane) {
 		
 		
 		//Sets the content pane
@@ -38,7 +40,7 @@ public class Lose extends JPanel {
 		back.setForeground (Color.white);
 		back.setPreferredSize(new java.awt.Dimension(100, 100));
 		back.addActionListener(event -> {
-        	Game.confFrame.dispose();
+        	//Game.confFrame.dispose();
 			GUI.gameM = new Game();
         	GUI.gameM.createAndShowGUI();
             GUI.cowboyFrame.setContentPane(GUI.startM);
@@ -59,18 +61,20 @@ public class Lose extends JPanel {
  	* this method should be invoked from the
   	* event-dispatching thread.
 */
-    private static void createAndShowGUI() {
+    public  void createAndShowGUI() {
+    	/*
         //Create and set up the window.
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Set up the content pane.
-        addToPane(frame.getContentPane(), 1);
+        addToPane(frame.getContentPane());
 
         //Display the window.
         frame.pack();
-        frame.setVisible(true);
+        */
+        loseP.setVisible(true);
     }
-
+/*
     public static void main(String[] args) {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
@@ -80,4 +84,5 @@ public class Lose extends JPanel {
             }
         });
     }
+    */
 }
