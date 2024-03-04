@@ -139,6 +139,14 @@ public class SudokuBoard extends JPanel {
     }
     
     
+    void solve() {
+    	for(int i = 0; i< 9; i++) {
+    		for(int j = 0; j<9; j++) {
+    			setNum(buttons[i][j], board.getSolvedBoard()[i][j][0], i, j);
+    		}
+    	}
+    }
+    
 
     void setNum(Button button, int guess, int row, int col){
     	if(!button.isStarter()) {
