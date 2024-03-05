@@ -68,6 +68,7 @@ class Confirm extends JPanel {
                 		GUI.cowboyFrame.revalidate();
         			break;
         	}
+		GUI.gameM.confFrame.remove(GUI.gameM.confFrame.getContentPane());
         });
 		
 		//set constraints and add conf;
