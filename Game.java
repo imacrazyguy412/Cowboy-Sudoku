@@ -71,6 +71,10 @@ class Game extends JPanel{
 				mistakeLimit = 3;
 				break;
 		}
+		diff.setPreferredSize(new Dimension(70, 30));
+		diff.setFont(new Font("Serif", Font.PLAIN, 20));
+		diff.setHorizontalAlignment(SwingConstants.CENTER);
+		diff.setVerticalAlignment(SwingConstants.CENTER);
 		diff.setOpaque(true);
 		diff.setBackground(new Color (207, 176, 100));
 		diff.setForeground(Color.black);
@@ -94,6 +98,10 @@ class Game extends JPanel{
 
    		//Create mist label
 		mist = new JLabel("Mistakes remaining: " + (mistakeLimit - mistakes));
+		mist.setPreferredSize(new Dimension(70, 50));
+		mist.setFont(new Font("Serif", Font.PLAIN, 20));
+		mist.setHorizontalAlignment(SwingConstants.CENTER);
+		mist.setVerticalAlignment(SwingConstants.CENTER);
 		mist.setOpaque(true);
 		mist.setBackground(new Color (207, 176, 100));
 		mist.setForeground(Color.black);
@@ -113,6 +121,7 @@ class Game extends JPanel{
 
     	//Create timer label
 		timer = new JLabel("Time: " + count);
+		timer.setPreferredSize(new Dimension(50, 70));
 		timer.setOpaque(true);
 		timer.setBackground(new Color (36, 44, 61));
 		timer.setForeground(Color.white);
