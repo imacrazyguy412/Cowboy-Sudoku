@@ -8,8 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import java.awt.Dimension;
-
 public class SudokuBoard extends JPanel {
 
     private Button[][] buttons;
@@ -39,7 +37,6 @@ public class SudokuBoard extends JPanel {
                 
                 
                 buttons[i][j] = new Button(i, j, false);
-                buttons[i][j].setPreferredSize(new Dimension(50, 50));
                // buttons[i][j].setText();
                 
                 
@@ -113,7 +110,7 @@ public class SudokuBoard extends JPanel {
     
 
     void setNote(Button button, int note) {
-    	if(!button.isStarter()) {
+    	
         if (button.getText().contains(note + "")) {
             System.out.println(button.getText());
             System.out.println("removed" + note);
@@ -121,8 +118,10 @@ public class SudokuBoard extends JPanel {
                 button.getText().substring(button.getText().indexOf(note + "") + 1));
         } else {
             if (button.getText().equals("")) {
+            	if(!button.isStarter() && button.getText().length()<2)
                 button.setText(note + "");
             } else {
+            	if(!button.isStarter() && button.getText().length()<2) {
                 for (int i = 0; i < button.getText().length(); i++) {
                     System.out.print(i);
                     if (Integer.parseInt(button.getText().substring(i, i + 1)) > note) {
@@ -131,10 +130,11 @@ public class SudokuBoard extends JPanel {
                     }
                 }
                 button.setText(button.getText() + note);
+            	}
             }
 
         }
-    	}
+    	
     	
     	
     	
@@ -204,11 +204,13 @@ public class SudokuBoard extends JPanel {
     	//checkgame end
     	if(board.gameEnd()) {
     		System.out.print("win... gen screen now plaese");
+    		/*
     		GUI.gameM = new Game();
         	GUI.gameM.createAndShowGUI();
 		GUI.cowboyFrame.setContentPane(GUI.winM);
         	GUI.cowboyFrame.repaint();
         	GUI.cowboyFrame.revalidate();
+        	*/
     	}
 
     }
