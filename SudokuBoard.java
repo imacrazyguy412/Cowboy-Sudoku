@@ -48,29 +48,55 @@ public class SudokuBoard extends JPanel {
                     public void keyPressed(KeyEvent e) {
                         switch (e.getKeyCode()) {
                             case KeyEvent.VK_UP:
-                                if (curRow > 0)
-                                    buttons[curRow][curCol].setBackground(Color.white);
+                                if (curRow > 0) {
+                                	if(!buttons[curRow][curCol].isStarter) {
+                                		buttons[curRow][curCol].setBackground(Color.white);
+                                		buttons[curRow - 1][curCol].setBackground(new Color(173, 216, 230));
+                                	} else {
+                                		buttons[curRow][curCol].setBackground(Color.gray);
+                                		buttons[curRow - 1][curCol].setBackground(new Color(173, 216, 230));
+                                	}
+                                }
+                                    
                                 buttons[curRow - 1][curCol].requestFocus();
-                                buttons[curRow - 1][curCol].setBackground(new Color(173, 216, 230));
+                                
                                 // buttons[curRow - 1][curCol].se
                                 break;
                             case KeyEvent.VK_DOWN:
-                                if (curRow < buttons.length - 1)
-                                    buttons[curRow][curCol].setBackground(Color.white);
+                                if (curRow < buttons.length - 1) {
+                                	if(!buttons[curRow][curCol].isStarter) {
+                                		buttons[curRow][curCol].setBackground(Color.white);
+                                		buttons[curRow +1][curCol].setBackground(new Color(173, 216, 230));
+                                	} else {
+                                		buttons[curRow][curCol].setBackground(Color.gray);
+                                		buttons[curRow +1][curCol].setBackground(new Color(173, 216, 230));
+                                	}
+                                }
                                 buttons[curRow + 1][curCol].requestFocus();
-                                buttons[curRow + 1][curCol].setBackground(new Color(173, 216, 230));
                                 break;
                             case KeyEvent.VK_LEFT:
-                                if (curCol > 0)
-                                    buttons[curRow][curCol].setBackground(Color.white);
+                                if (curCol > 0) {
+                                	if(!buttons[curRow][curCol].isStarter) {
+                                		buttons[curRow][curCol].setBackground(Color.white);
+                                		buttons[curRow][curCol-1].setBackground(new Color(173, 216, 230));
+                                	} else {
+                                		buttons[curRow][curCol].setBackground(Color.gray);
+                                		buttons[curRow][curCol-1].setBackground(new Color(173, 216, 230));
+                                	}
+                                }
                                 buttons[curRow][curCol - 1].requestFocus();
-                                buttons[curRow][curCol - 1].setBackground(new Color(173, 216, 230));
                                 break;
                             case KeyEvent.VK_RIGHT:
-                                if (curCol < buttons[curRow].length - 1)
-                                    buttons[curRow][curCol].setBackground(Color.white);
+                                if (curCol < buttons[curRow].length - 1) {
+                                	if(!buttons[curRow][curCol].isStarter) {
+                                		buttons[curRow][curCol].setBackground(Color.white);
+                                		buttons[curRow][curCol+1].setBackground(new Color(173, 216, 230));
+                                	} else {
+                                		buttons[curRow][curCol].setBackground(Color.gray);
+                                		buttons[curRow][curCol+1].setBackground(new Color(173, 216, 230));
+                                	}
+                                }
                                 buttons[curRow][curCol + 1].requestFocus();
-                                buttons[curRow][curCol + 1].setBackground(new Color(173, 216, 230));
                                 break;
                             default:
                                 break;
@@ -160,6 +186,8 @@ public class SudokuBoard extends JPanel {
         	button.setBackground(new Color(255, 204, 203));
         	//UPDATE MISTAKES HERE
         	GUI.gameM.updateMistakes();
+        } else if (button.isStarter){
+        	button.setBackground(Color.gray);
         } else {
         	button.setBackground(Color.white);
         }
