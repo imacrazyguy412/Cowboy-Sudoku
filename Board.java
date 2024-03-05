@@ -1,27 +1,44 @@
-import java.util.Scanner;
-import java.util.InputMismatchException;
-public class Board {
-	int[][] board = new int[9][9];
-	int[][][] userBoard = new int[9][9][10];
-	int difficulty; 
-	boolean valid = false;
-	int choice = 0;
-	int rando = (int) (Math.random()*10-1);
-	int rand = (int) (Math.random()*9+1);
-	int x = 0;
-	int y = 0;
-	int row = 0;
-	int col = 0;
-	int num = 0;
-	int numsPlaced = 0;
-	int targetNums = 30;
-	boolean possible = false;
-	boolean check = true;
-	Solver solver = new Solver();
-	int[][][] completedBoard;
-	int[][] realBoard;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Board implements Serializable {
+	// DO NOT FORGET TO INCREMENT WHEN CHANGES ARE MADE
+	@Serial
+	private static final long serialVersionUID = 1L;
+
+	private int[][] board = new int[9][9];
+	private int[][][] userBoard = new int[9][9][10];
+	private int difficulty; 
+	private boolean valid = false;
+	private int choice = 0;
+	private int rando = (int) (Math.random()*10-1);
+	private int rand = (int) (Math.random()*9+1);
+	private int x = 0;
+	private int y = 0;
+	private int row = 0;
+	private int col = 0;
+	private int num = 0;
+	private int numsPlaced = 0;
+	private int targetNums = 30;
+	private boolean possible = false;
+	private boolean check = true;
+	private Solver solver = new Solver();
+	private int[][][] completedBoard;
+	private int[][] realBoard;
 	public Board() {
 		
+	}
+
+	private void writeObject(ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
+		// TODO: potential random handling
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+		in.defaultReadObject();
 	}
 	
 	public int[][] randomGenBoard(int diff) {
