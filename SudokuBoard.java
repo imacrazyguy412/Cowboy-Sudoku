@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import java.awt.Dimension;
+
 public class SudokuBoard extends JPanel {
 
     private Button[][] buttons;
@@ -37,6 +39,7 @@ public class SudokuBoard extends JPanel {
                 
                 
                 buttons[i][j] = new Button(i, j, false);
+                buttons[i][j].setPreferredSize(new Dimension(50, 50));
                // buttons[i][j].setText();
                 
                 
