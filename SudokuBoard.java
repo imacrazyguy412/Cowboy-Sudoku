@@ -3,6 +3,7 @@ import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.Dimension;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -38,7 +39,7 @@ public class SudokuBoard extends JPanel {
                 
                 buttons[i][j] = new Button(i, j, false);
                // buttons[i][j].setText();
-                
+                buttons[i][j].setPreferredSize(new Dimension(50, 50));
                 
                 buttons[i][j].addKeyListener(enter);
                 buttons[i][j].addKeyListener(number);
