@@ -1,8 +1,10 @@
 
 import javax.swing.*;
+import javax.swing.border.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.util.Random;
+import javax.swing.BorderFactory;
 
 /*
 	Constraints reference
@@ -23,8 +25,9 @@ class Difficulty extends JPanel{
     private  JLabel header;
     private  JButton easy, medium, hard, back, start, mistakeToggle;
     public  static JPanel Difframe;
+    Border defaultBorder;
     
-    //private  StartScreen newStartScreen;
+
     //easy: 1, medium: 2, hard: 3
      int gameDiff;
      
@@ -33,6 +36,7 @@ class Difficulty extends JPanel{
      }
 
     public  void addComponentsToPane(Container Difframe) {
+    	defaultBorder = BorderFactory.createLineBorder(new Color (229,229,229));
         //Sets the content pane
     	Difframe.setBackground(new Color (229,229,229));
     	Difframe.setLayout(new GridBagLayout());
@@ -56,8 +60,16 @@ class Difficulty extends JPanel{
         easy.setOpaque(true);
         easy.setBackground(new Color (207, 176, 100));
         easy.setForeground (Color.black);
+      //setting default border in order to change later
+        easy.setBorder(defaultBorder);
+        easy.setPreferredSize(new Dimension(30, 30));
         easy.addActionListener(event -> {
             gameDiff = 1;
+            easy.setBorder(new BevelBorder(BevelBorder.LOWERED));
+            easy.setBorder(BorderFactory.createLineBorder(Color.black));
+            //change other buttons back to normal
+            medium.setBorder(defaultBorder);
+            hard.setBorder(defaultBorder);
         });
         //set constraints and add easy;
         c.gridx = 1;
@@ -66,10 +78,18 @@ class Difficulty extends JPanel{
 
         medium = new JButton ("Medium");
         medium.setOpaque(true);
-        medium.setBackground(new Color (36, 44, 61));
-        medium.setForeground (Color.white);
+        medium.setBackground(new Color (207, 176, 100));
+        medium.setForeground (Color.black);
+        //medium.setBackground(new Color (207, 176, 100));
+        medium.setBorder(defaultBorder);
+        medium.setPreferredSize(new Dimension(30, 30));
         medium.addActionListener(event -> {
             gameDiff = 2;
+            medium.setBorder(new BevelBorder(BevelBorder.LOWERED));
+            medium.setBorder(BorderFactory.createLineBorder(Color.black));
+            //change other buttons back to normal
+            easy.setBorder(defaultBorder);
+            hard.setBorder(defaultBorder);
         });
         //set constraints and add medium;
         c.gridx = 1;
@@ -80,8 +100,15 @@ class Difficulty extends JPanel{
         hard.setOpaque(true);
         hard.setBackground(new Color (207, 176, 100));
         hard.setForeground (Color.black);
+        hard.setBorder(defaultBorder);
+        hard.setPreferredSize(new Dimension(30, 30));
         hard.addActionListener(event -> {
             gameDiff = 3;
+            hard.setBorder(new BevelBorder(BevelBorder.LOWERED));
+            hard.setBorder(BorderFactory.createLineBorder(Color.black));
+            //change other buttons back to normal
+            easy.setBorder(defaultBorder);
+            medium.setBorder(defaultBorder);
          });
         //set constraints and add hard;
         c.gridx = 1;
@@ -92,6 +119,7 @@ class Difficulty extends JPanel{
         back.setOpaque(true);
         back.setBackground(new Color (36, 44, 61));
         back.setForeground (Color.white);
+        
         back.addActionListener(event -> {
         	GUI.cowboyFrame.setContentPane(GUI.startM);
         	GUI.cowboyFrame.repaint();
