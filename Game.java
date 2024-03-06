@@ -28,7 +28,8 @@ class Game extends JPanel{
 	public static int mistakes = 0;
 	private int mistakeLimit;
 	private boolean mistakeOn = true;
-
+	
+	private int minute;
 	
 	
     
@@ -40,7 +41,20 @@ class Game extends JPanel{
     private ActionListener taskPerformer = new ActionListener() {
         public void actionPerformed(ActionEvent evt) {
         	count+=1;
-        	timer.setText("Time: " + count);
+        	if(count < 10 && minute < 10) {
+        		timer.setText("Time: 0" + minute + ":0" + count);
+        	} else if(count >=10 && minute < 10){
+        		timer.setText("Time: 0" + minute + ":" + count);
+        	} else if(count < 10 && minute >= 10) {
+        		timer.setText("Time: " + minute + ":0" + count);
+        	} else if(count >= 10 && minute >= 10){
+        		timer.setText("Time: " + minute + ":" + count);
+        	}
+        	
+        	if(count == 59) {
+        		minute++;
+        		count = 0;
+        	}
         }
     };
     
@@ -89,6 +103,7 @@ class Game extends JPanel{
 		c.anchor = GridBagConstraints.FIRST_LINE_START;
 		pane.add(diff, c);
 		
+		
 		//add in the sudoku board to pane
 		c.insets = new Insets (40, 0, 0, 0);
 		c.gridx = 0;
@@ -120,8 +135,9 @@ class Game extends JPanel{
 
 
     	//Create timer label
-		timer = new JLabel("Time: " + count);
-		timer.setPreferredSize(new Dimension(50, 70));
+		// + count
+		timer = new JLabel("Time: 00:00");
+		timer.setPreferredSize(new Dimension(70, 50));
 		timer.setOpaque(true);
 		timer.setBackground(new Color (36, 44, 61));
 		timer.setForeground(Color.white);
@@ -204,6 +220,7 @@ class Game extends JPanel{
 		toggleNotes.setOpaque(true);
 		toggleNotes.setBackground(new Color (36, 44, 61));
 		toggleNotes.setForeground (Color.white);
+		toggleNotes.setPreferredSize(new Dimension(200, 40));
 		toggleNotes.addActionListener(event -> {
 			//Switch to notes board
 			boardPanel.toggleNote();
@@ -212,7 +229,7 @@ class Game extends JPanel{
 		
 		//set constraints and add toggleNotes;
 		c.gridx = 3;
-		c.gridy = 1;
+		c.gridy = 3;
 		pane.add (toggleNotes, c);
 
 		//Create undo button
@@ -220,6 +237,7 @@ class Game extends JPanel{
 		undo.setOpaque(true);
 		undo.setBackground(new Color (207, 176, 100));
 		undo.setForeground (Color.black);
+		undo.setPreferredSize(new Dimension(70, 40));
 		undo.addActionListener(event -> {
 			//Undo action
 			
@@ -227,7 +245,7 @@ class Game extends JPanel{
 		
 		
 		//set constraints and add undo;
-		c.insets = new Insets (0, 0, 0, 10);
+		c.insets = new Insets (0, 0, 0, 0);
 		c.gridx = 2;
 		c.gridy = 3;
 		pane.add (undo, c);
@@ -237,6 +255,7 @@ class Game extends JPanel{
 		save.setOpaque(true);
 		save.setBackground(new Color (207, 176, 100));
 		save.setForeground (Color.black);
+		save.setPreferredSize(new Dimension(70, 40));
 		save.addActionListener(event -> {
            
         });
@@ -245,6 +264,7 @@ class Game extends JPanel{
 		c.gridx = 4;
 		c.gridy = 3;
 		pane.add (save, c);
+		
 	}
 	
     public JComponent getPanel() {
