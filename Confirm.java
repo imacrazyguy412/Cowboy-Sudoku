@@ -81,7 +81,7 @@ class Confirm extends JPanel {
 		cancel.setBackground(new Color (36, 44, 61));
 		cancel.setForeground (Color.white);
         cancel.addActionListener(event -> {
-        	Game.confFrame.dispose();
+        	GUI.gameM.confFrame.dispose();
         });
 		//set constraints and add hard;
 		c.gridx = 3;
