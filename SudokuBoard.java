@@ -172,7 +172,7 @@ public class SudokuBoard extends JPanel {
     void solve() {
     	for(int i = 0; i< 9; i++) {
     		for(int j = 0; j<9; j++) {
-    			setNum(buttons[i][j], board.getSolvedBoard()[i][j][0], i, j);
+    			setNum(buttons[i][j], board.getRealBoard()[i][j], i, j);
     		}
     	}
     }
@@ -221,7 +221,7 @@ public class SudokuBoard extends JPanel {
     private KeyListener enter = new KeyAdapter() {
         @Override public void keyTyped(KeyEvent e) {
             if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-                ((Button) e.getComponent()).doClick();
+                toggleNote();
             }
         }
     };

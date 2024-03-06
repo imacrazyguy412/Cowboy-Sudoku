@@ -1,3 +1,8 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.math.*;
 
 public class SudokuTester {
@@ -82,6 +87,16 @@ public class SudokuTester {
 		if(solver.getAttempts() > 1) {
 			System.out.println("s");
 		}
+
+		File file = new File("board.ser");
+		ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream(file, true));
+		outStream.writeObject(new Board());
+		outStream.flush();
+		outStream.close();
+
+		ObjectInputStream inStream = new ObjectInputStream(new FileInputStream(file));
+		Board b = (Board) inStream.readObject();
+		inStream.close();
 	}
      
 }
