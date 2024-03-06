@@ -204,14 +204,13 @@ public class SudokuBoard extends JPanel {
     	
     	//checkgame end
     	if(board.gameEnd()) {
-    		System.out.print("win... gen screen now plaese");
-    		/*
-    		GUI.gameM = new Game();
-        	GUI.gameM.createAndShowGUI();
-		GUI.cowboyFrame.setContentPane(GUI.winM);
-        	GUI.cowboyFrame.repaint();
-        	GUI.cowboyFrame.revalidate();
-        	*/
+		System.out.print("win... gen screen now plaese");
+        	GUI.gameM.confFrame.setContentPane(GUI.winM);
+        	GUI.gameM.confFrame.setSize(720, 360);
+        	GUI.gameM.confFrame.repaint();
+        	GUI.gameM.confFrame.revalidate();
+        	GUI.gameM.confFrame.setVisible(true);
+
     	}
 
     }
