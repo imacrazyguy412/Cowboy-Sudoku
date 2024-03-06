@@ -30,7 +30,7 @@ class WinScreen extends JPanel{
      
      public WinScreen() {
     	 winPan = new JPanel();
-    	 icon  = new ImageIcon(getClass().getResource("yippie.jpg"));
+    	 icon  = new ImageIcon(getClass().getResource("happyCowboyCat.jpg"));
     	 scaleImage  = icon.getImage().getScaledInstance(200, 200,Image.SCALE_DEFAULT);
      }
 
