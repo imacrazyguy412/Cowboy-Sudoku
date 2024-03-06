@@ -29,6 +29,8 @@ class Game extends JPanel{
 	private int mistakeLimit;
 	private boolean mistakeOn = true;
 	
+	private int minute;
+	
 	
     
     public Game() {
@@ -39,7 +41,20 @@ class Game extends JPanel{
     private ActionListener taskPerformer = new ActionListener() {
         public void actionPerformed(ActionEvent evt) {
         	count+=1;
-        	timer.setText("Time: " + count);
+        	if(count < 10 && minute < 10) {
+        		timer.setText("Time: 0" + minute + ":0" + count);
+        	} else if(count >=10 && minute < 10){
+        		timer.setText("Time: 0" + minute + ":" + count);
+        	} else if(count < 10 && minute >= 10) {
+        		timer.setText("Time: " + minute + ":0" + count);
+        	} else if(count >= 10 && minute >= 10){
+        		timer.setText("Time: " + minute + ":" + count);
+        	}
+        	
+        	if(count == 59) {
+        		minute++;
+        		count = 0;
+        	}
         }
     };
     
@@ -120,7 +135,8 @@ class Game extends JPanel{
 
 
     	//Create timer label
-		timer = new JLabel("Time: " + count);
+		// + count
+		timer = new JLabel("Time: 00:00");
 		timer.setPreferredSize(new Dimension(70, 50));
 		timer.setOpaque(true);
 		timer.setBackground(new Color (36, 44, 61));
