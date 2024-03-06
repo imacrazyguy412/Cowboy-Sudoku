@@ -24,7 +24,7 @@ class Game extends JPanel{
 	private Timer time;
 	private int count = 0;
 	public static JPanel pane;
-	public static JFrame confFrame = new JFrame();
+	public JFrame confFrame;
 	public static int mistakes = 0;
 	private int mistakeLimit;
 	private boolean mistakeOn = true;
@@ -36,6 +36,7 @@ class Game extends JPanel{
     public Game() {
    	 pane = new JPanel();
 	 boardPanel = new SudokuBoard(9, 9);
+	 confFrame = new JFrame();
     }
     
     private ActionListener taskPerformer = new ActionListener() {
