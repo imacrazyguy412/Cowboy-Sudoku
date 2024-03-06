@@ -7,8 +7,15 @@ public class LoseScreen extends JPanel {
 	private static JLabel header;
 	private static JButton back;
 	public static JPanel loseP;
+	ImageIcon icon;
+    Image scaleImage;
+    JLabel label;
 	//static JFrame frame = new JFrame("Cowboy Sudoku");
 	
+    public LoseScreen() {
+    	icon  = new ImageIcon(getClass().getResource("sadCowboyCat.jpg"));
+    	scaleImage  = icon.getImage().getScaledInstance(200, 200,Image.SCALE_DEFAULT);
+    }
  
 	public void addToPane (Container pane) {
 		
@@ -28,7 +35,6 @@ public class LoseScreen extends JPanel {
 		
 		//set constraints and add header
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.insets = new Insets(40,0,0,0);
 		c.gridx = 1;
 		c.gridy = 0;
 		pane.add(header, c);
@@ -50,10 +56,20 @@ public class LoseScreen extends JPanel {
 		
 		//set constraints and add conf;
 		c.gridwidth = 400;
-		c.gridx = 1;
-		c.gridy = 1;
+		c.gridx = 0;
+		c.gridy = 4;
 		c.gridheight = 3;
 		pane.add (back, c);
+		
+		icon = new ImageIcon(scaleImage);
+        label = new JLabel(icon);
+        c.fill = GridBagConstraints.SOUTH;
+        c.ipady = 70;      //make this component tall
+        c.weightx = 0.0;
+        c.gridwidth = 3;
+        c.gridx = 0;
+        c.gridy = 1;
+        pane.add(label, c);
 		
 	}
 /**
