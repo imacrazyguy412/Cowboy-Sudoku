@@ -53,6 +53,10 @@ class WinScreen extends JPanel{
         back.setBackground(new Color (36, 44, 61));
         back.setForeground (Color.white);
         back.addActionListener(event -> {
+        	GUI.gameM.confFrame.dispose();
+        	GUI.gameM.confFrame.remove(GUI.gameM.confFrame.getContentPane());
+    		GUI.gameM = new Game();
+        	GUI.gameM.createAndShowGUI();
         	GUI.cowboyFrame.setContentPane(GUI.startM);
         	GUI.cowboyFrame.repaint();
         	GUI.cowboyFrame.revalidate();
