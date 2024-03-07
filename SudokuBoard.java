@@ -14,6 +14,7 @@ public class SudokuBoard extends JPanel {
     private Button[][] buttons;
     private boolean noteOn;
     Board board;
+    boolean undoing = false;
 
     // add top and botton to layout for exit button
     // just use a png background and make wiindow non resisable
@@ -135,12 +136,15 @@ public class SudokuBoard extends JPanel {
             }
 
         }
-    	
-    	
-    	
-    	
+        
+        if(button.getText().indexOf(note) >= 0) {
+        	board.updateBoard(button.getRow(), button.getCol(), button.getText().indexOf(note)+1, note);
+        } else {
+        	board.removeVal(button.getRow(), button.getCol(), note);
+        }
     	
     }
+    
     void toggleNote(){
         noteOn = !noteOn;
     }
@@ -172,14 +176,25 @@ public class SudokuBoard extends JPanel {
     void solve() {
     	for(int i = 0; i< 9; i++) {
     		for(int j = 0; j<9; j++) {
-    			setNum(buttons[i][j], board.getRealBoard()[i][j], i, j);
+    			setNum(buttons[i][j], board.getSolvedBoard()[i][j][0], i, j);
     		}
     	}
     }
     
+    void undo() {
+    	int[] undo = board.undo();
+    	undoing = true;
+    	
+    	if(!board.isCorrect(undo[0], undo[1], undo[3])) {
+    		setNum(buttons[undo[0]][undo[1]], undo[3], undo[0], undo[1]);
+    	}
+    	undoing = false;
+    }
 
     void setNum(Button button, int guess, int row, int col){
     	if(!button.isStarter()) {
+    	if(guess != 0) {
+    	
         button.setText(guess +"");
         System.out.println("row: " + row + " col: " +col);
 
@@ -189,14 +204,20 @@ public class SudokuBoard extends JPanel {
         if(!board.isCorrect(row, col, guess)) {
         	button.setBackground(new Color(255, 204, 203));
         	//UPDATE MISTAKES HERE
-        	GUI.gameM.updateMistakes();
+        	if(!undoing) {
+            	GUI.gameM.updateMistakes();
+        	}
         } else if (button.isStarter){
         	button.setBackground(Color.gray);
         } else {
         	button.setBackground(Color.white);
         }
         System.out.println(board.isCorrect(row, col, guess));
-
+    	} else {
+    	button.setText("");
+    	board.updateBoard(row, col, 0, guess);
+    	button.setBackground(Color.white);
+    	}
         }
     	if(board.isCorrect(row, col, guess)) {
 			buttons[row][col].setStart(true);
@@ -221,7 +242,7 @@ public class SudokuBoard extends JPanel {
     private KeyListener enter = new KeyAdapter() {
         @Override public void keyTyped(KeyEvent e) {
             if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-                toggleNote();
+                ((Button) e.getComponent()).doClick();
             }
         }
     };
