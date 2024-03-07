@@ -47,11 +47,12 @@ public class LoseScreen extends JPanel {
 		back.setPreferredSize(new java.awt.Dimension(100, 100));
 		back.addActionListener(event -> {
         	//Game.confFrame.dispose();
+			GUI.gameM.setMistakes(0);
 			GUI.gameM = new Game();
-        	GUI.gameM.createAndShowGUI();
-            GUI.cowboyFrame.setContentPane(GUI.startM);
-            GUI.cowboyFrame.repaint();
-            GUI.cowboyFrame.revalidate();
+        		GUI.gameM.createAndShowGUI();
+			GUI.cowboyFrame.setContentPane(GUI.startM);
+			GUI.cowboyFrame.repaint();
+			GUI.cowboyFrame.revalidate();
         });
 		
 		//set constraints and add conf;
