@@ -149,7 +149,8 @@ class Difficulty extends JPanel{
         Difframe.add (start, c);
 
 
-        mistakeToggle = new JButton ("Toggle Mistakes");
+       /*
+       mistakeToggle = new JButton ("Toggle Mistakes");
         mistakeToggle.setOpaque(true);
         mistakeToggle.setBackground(new Color (36, 44, 61));
         mistakeToggle.setForeground (Color.white);
@@ -161,7 +162,8 @@ class Difficulty extends JPanel{
         //set constraints and add mistakeToggle;
         c.gridx = 0;
         c.gridy = 0;
-        Difframe.add(mistakeToggle, c);
+        Difframe.add(mistakeToggle, c); 
+	*/
 
     }
     public JComponent getPanel() {
