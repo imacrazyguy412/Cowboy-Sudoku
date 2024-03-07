@@ -272,8 +272,8 @@ class Game extends JPanel{
 		return pane;
 	}
     
-    public void updateTimer() {
-    	
+    public void setMistakes(int mist) {
+    	mistakes = mist;
     }
     
     public void updateMistakes() {
