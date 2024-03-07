@@ -61,6 +61,7 @@ class Confirm extends JPanel {
         			GUI.gameM.getSudokuBoard().solve();
         			break;
         		case 3:
+				GUI.gameM.setMistakes(0);
 				GUI.gameM = new Game();
         			GUI.gameM.createAndShowGUI();
                 		GUI.cowboyFrame.setContentPane(GUI.diffM);
