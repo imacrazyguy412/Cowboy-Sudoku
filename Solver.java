@@ -1,9 +1,31 @@
-public class Solver {
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+ public class Solver implements Serializable {
+	
+	 private static final long serialVersionUID = 5L;
 	int[][][] board = new int[9][9][10];
 	int[][] given;
 	int temp;
 	boolean possible;
 	int attempts = 0;
+	
+	
+	
+	
+	private void writeObject(ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
+		// TODO: potential random handling
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+		in.defaultReadObject();
+	}
+	
+	
+	
 	
 	//The "main" method for the solver, this pieces everything together and tells other methods to solve the board
 	public boolean solve (int[][] given) {

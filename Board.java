@@ -1,28 +1,47 @@
-import java.util.Scanner;
-import java.util.InputMismatchException;
-public class Board {
-	int[][] board = new int[9][9];
-	int[][][] userBoard = new int[9][9][10];
-	int difficulty; 
-	boolean valid = false;
-	int choice = 0;
-	int rando = (int) (Math.random()*10-1);
-	int rand = (int) (Math.random()*9+1);
-	int x = 0;
-	int y = 0;
-	int row = 0;
-	int col = 0;
-	int num = 0;
-	int numsPlaced = 0;
-	int targetNums = 30;
-	boolean possible = false;
-	boolean check = true;
-	Solver solver = new Solver();
-	int[][][] completedBoard;
-	int[][] realBoard;
-	int[] undo = new int[4];
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Board implements Serializable {
+	// DO NOT FORGET TO INCREMENT WHEN CHANGES ARE MADE
+	@Serial
+	private static final long serialVersionUID = 4L;
+
+	private int[][] board = new int[9][9];
+	private int[][][] userBoard = new int[9][9][10];
+	private int difficulty; 
+	private boolean valid = false;
+	private int choice = 0;
+	private int rando = (int) (Math.random()*10-1);
+	private int rand = (int) (Math.random()*9+1);
+	private int x = 0;
+	private int y = 0;
+	private int row = 0;
+	private int col = 0;
+	private int num = 0;
+	private int numsPlaced = 0;
+	private int targetNums = 30;
+	private boolean possible = false;
+	private boolean check = true;
+	 private Solver solver = new Solver();
+	private int[][][] completedBoard;
+	private int[][] realBoard;
 	public Board() {
 		
+	}
+
+	private void writeObject(ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
+		// TODO: potential random handling
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+		in.defaultReadObject();
+	}
+	public int[][] getRealBoard(){
+		return realBoard;
 	}
 	
 	public int[][] randomGenBoard(int diff) {
@@ -99,12 +118,6 @@ public class Board {
 	}
 	
 	public void updateBoard(int r, int c, int z, int v) {
-		if(z == 0) {
-			undo[0] = r;
-			undo[1] = c;
-			undo[2] = z;
-			undo[3] = getVal(r, c, z);
-		}
 		userBoard[r][c][z] = v;
 		if(z == 0) {
 			board[r][c] = v;
@@ -113,25 +126,6 @@ public class Board {
 			}
 		}
 		
-	}
-	
-	public void removeVal(int r, int c, int v) {
-		if(userBoard[r][c][0] == v) {
-			userBoard[r][c][0] = 0;
-		} else {
-			boolean shift = false;
-			for(int x = 1; x < 9; x++) {
-				if(!shift) {
-					if(userBoard[r][c][x] == v) {
-						userBoard[r][c][x] = 0;
-						shift = true;
-					}
-				} else {
-					userBoard[r][c][x] = userBoard[r][c][x+1];
-				}
-			}
-			userBoard[r][c][9] = 0;
-		}
 	}
 	
 	public void clearBoard() {
@@ -226,13 +220,5 @@ public class Board {
 			}
 		}
 		return true;
-	}
-	
-	public int getVal(int r, int c, int z) {
-		return userBoard[r][c][z];
-	}
-	
-	public int[] undo() {
-		return undo;
 	}
 }
