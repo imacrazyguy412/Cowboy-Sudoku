@@ -7,7 +7,9 @@ import java.io.ObjectOutputStream;
 import java.math.*;
 
 public class SudokuTester {
+	private static final long serialVersionUID = 543L;
 	public static void main(String[] args)  {
+		
 		Board board = new Board();
 		
 		//Creates a board and checks if that board is solvable
@@ -23,7 +25,9 @@ public class SudokuTester {
 		try {
 		//Printing results
 		File file = new File("board.ser");
-		ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream(file, true));
+		file.createNewFile();
+		
+		ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream(file, false));
 		outStream.writeObject(board);
 		outStream.flush();
 		outStream.close();
