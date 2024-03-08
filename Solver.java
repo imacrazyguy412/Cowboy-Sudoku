@@ -5,7 +5,7 @@ import java.io.Serializable;
 
  public class Solver implements Serializable {
 	
-	 private static final long serialVersionUID = 5L;
+	 private static final long serialVersionUID = 2L;
 	int[][][] board = new int[9][9][10];
 	int[][] given;
 	int temp;
