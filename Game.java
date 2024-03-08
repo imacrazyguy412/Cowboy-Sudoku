@@ -30,6 +30,7 @@ class Game extends JPanel{
 	private boolean mistakeOn = true;
 	
 	private int minute;
+	private String lastTime;
 	
 	
     
@@ -272,8 +273,8 @@ class Game extends JPanel{
 		return pane;
 	}
     
-    public void setMistakes(int mist) {
-    	mistakes = mist;
+    public String getLastTime() {
+    	return lastTime = timer.getText();
     }
     
     public void updateMistakes() {
