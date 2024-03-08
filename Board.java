@@ -1,6 +1,10 @@
 import java.util.Scanner;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.InputMismatchException;
-public class Board  implements Serializable {
+public class Board implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -24,21 +28,22 @@ public class Board  implements Serializable {
 	int[][][] completedBoard;
 	int[][] realBoard;
 	int[] undo = new int[4];
+
 	public Board() {
 		
 	}
-		private void writeObject(ObjectOutputStream out) throws IOException {
+	
+	private void writeObject(ObjectOutputStream out) throws IOException {
 		out.defaultWriteObject();
-		// TODO: potential random handling
 	}
-
+	
 	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
 		in.defaultReadObject();
 	}
 	public int[][] getRealBoard(){
 		return realBoard;
 	}
-	
+		
 	public int[][] randomGenBoard(int diff) {
 		difficulty = diff; //diff is the difficulty. 1: easy. 2: normal. 3: hard.
 		for(int r = 0; r < 9; r++) {
