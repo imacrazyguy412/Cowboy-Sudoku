@@ -296,6 +296,11 @@ class Game extends JPanel{
     SudokuBoard getSudokuBoard(){
     	return boardPanel;
     }
+    
+    public void setMistakes(int mist) {
+    	mistakes = mist;
+    }
+    	
     /**
 /**
 	* Create the GUI and show it.  For thread safety,
