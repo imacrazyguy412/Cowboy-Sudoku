@@ -1,6 +1,9 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
-public class Board {
+public class Board  implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
 	int[][] board = new int[9][9];
 	int[][][] userBoard = new int[9][9][10];
 	int difficulty; 
@@ -23,6 +26,17 @@ public class Board {
 	int[] undo = new int[4];
 	public Board() {
 		
+	}
+		private void writeObject(ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
+		// TODO: potential random handling
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+		in.defaultReadObject();
+	}
+	public int[][] getRealBoard(){
+		return realBoard;
 	}
 	
 	public int[][] randomGenBoard(int diff) {
