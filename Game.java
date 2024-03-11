@@ -2,6 +2,13 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.util.Random;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.math.*;
 /*
 	Constraints reference
  	c.fill = GridBagConstraints.HORIZONTAL;
@@ -28,6 +35,8 @@ class Game extends JPanel{
 	public static int mistakes = 0;
 	private int mistakeLimit;
 	private boolean mistakeOn = true;
+	
+	private Board savedBoard;
 	
 	private int minute;
 	private String lastTime;
@@ -64,7 +73,6 @@ class Game extends JPanel{
     }
  
 	public void addComponentsToPane (Container pane, int difficulty, Board board) {
-		
 		//Sets the content pane
 		pane.setBackground(new Color (229,229,229));
 		pane.setLayout(new GridBagLayout());
@@ -83,6 +91,8 @@ class Game extends JPanel{
 		boardPanel.setDifficulty(difficulty);
 		}
 		
+		
+
 		//Create diff label
 		switch (difficulty){
 			case 1:
@@ -270,14 +280,26 @@ class Game extends JPanel{
 		save.setForeground (Color.black);
 		save.setPreferredSize(new Dimension(70, 40));
 		save.addActionListener(event -> {
-           
+			
+			
+			
+			try {
+			File file = new File("board.ser");
+			file.createNewFile();
+			System.out.println("saved");
+			ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream(file, false));
+			outStream.writeObject(boardPanel.getBoard());
+			outStream.flush();
+			outStream.close();
+			} catch(IOException e) {
+				System.out.println(e);
+			}
         });
 		
 		//set constraints and add save;
 		c.gridx = 4;
 		c.gridy = 3;
 		pane.add (save, c);
-		
 	}
 	
     public JComponent getPanel() {
@@ -308,11 +330,6 @@ class Game extends JPanel{
     SudokuBoard getSudokuBoard(){
     	return boardPanel;
     }
-    
-    public void setMistakes(int mist) {
-    	mistakes = mist;
-    }
-    	
     /**
 /**
 	* Create the GUI and show it.  For thread safety,
@@ -326,6 +343,10 @@ class Game extends JPanel{
 
         //Display the window.
         pane.setVisible(true);
+    }
+    
+    public void setMistakes(int mist) {
+    	mistakes = mist;
     }
 
     public static void main(String[] args) {
