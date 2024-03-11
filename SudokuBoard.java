@@ -194,8 +194,8 @@ public class SudokuBoard extends JPanel {
     void solve() {
     	for(int i = 0; i< 9; i++) {
     		for(int j = 0; j<9; j++) {
-    			setNum(buttons[i][j], board.getSolvedBoard()[i][j][0], i, j);
-    			setNum(buttons[i][j], board.getSolvedBoard()[i][j][0], i, j);
+    			setNum(buttons[i][j], board.getRealBoard()[i][j], i, j);
+    			setNum(buttons[i][j], board.getRealBoard()[i][j], i, j);
     		}
     	}
     }
