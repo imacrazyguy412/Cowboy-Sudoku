@@ -1,5 +1,9 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.awt.*;
 import java.util.Random;
 import javax.swing.border.LineBorder;
@@ -88,7 +92,31 @@ class StartScreen extends JPanel{
         button.setForeground(new Color(255,255,255));
         button.setVisible(true);
         button.addActionListener(event -> {
-        	GUI.cowboyFrame.setContentPane(GUI.diffM);
+        	Board savedBoard = null;
+        	try {
+        	File file = new File("board.ser");
+			file.createNewFile();
+			
+
+			ObjectInputStream inStream = new ObjectInputStream(new FileInputStream(file));
+			savedBoard = (Board) inStream.readObject();
+			inStream.close();
+			for(int i = 0; i<9; i++) {
+				for(int j = 0; j<9; j++) {
+					System.out.print(savedBoard.getRealBoard()[i][j]);
+				}
+				System.out.println();
+			}
+			} catch(IOException e) {
+				System.out.println(e);
+			} catch(ClassNotFoundException h) {
+				System.out.println(h);
+			} catch(Exception e) {
+				System.out.println(e);
+			}
+        	
+            GUI.gameM.addComponentsToPane(GUI.gameM, 0, savedBoard);
+        	GUI.cowboyFrame.setContentPane(GUI.gameM);
         	GUI.cowboyFrame.repaint();
         	GUI.cowboyFrame.revalidate();
             System.out.println("frame is closed");
