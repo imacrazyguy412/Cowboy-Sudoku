@@ -32,6 +32,9 @@ public class Board implements Serializable {
 	public Board() {
 		
 	}
+	public int getDifficulty() {
+		return difficulty;
+	}
 	
 	private void writeObject(ObjectOutputStream out) throws IOException {
 		out.defaultWriteObject();
