@@ -63,14 +63,26 @@ class Game extends JPanel{
     	boardPanel.getHint();
     }
  
-	public void addComponentsToPane (Container pane, int difficulty) {
+	public void addComponentsToPane (Container pane, int difficulty, Board board) {
+		
 		//Sets the content pane
 		pane.setBackground(new Color (229,229,229));
 		pane.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
+		savedBoard = board;
+		
+		if(board != null) {
+				//Printing results
+			System.out.println("Loading");
+			boardPanel.loadGame(savedBoard);
+			difficulty = savedBoard.getDifficulty();
+		}
+		
+		else {
 		boardPanel.setDifficulty(difficulty);
-
+		}
+		
 		//Create diff label
 		switch (difficulty){
 			case 1:
