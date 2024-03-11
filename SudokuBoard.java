@@ -23,6 +23,11 @@ public class SudokuBoard extends JPanel {
 
     //MAKE THE JBUTTON EXTENDER WITH THE ROWS AND COLUMS AFTER PLEASE YOU USELESS PERSON
 
+    
+    Board getBoard(){
+    	return board;
+    }
+    
     public SudokuBoard(int row, int col) {
         super(new GridLayout(row, col));
         
@@ -164,6 +169,20 @@ public class SudokuBoard extends JPanel {
         
         
     }
+    void setDifficulty(){
+        board.getSolvedBoard();
+        for(int i = 0; i<9; i++) {
+        	for(int j = 0;j <9; j++) {
+        		if(board.getBoard()[i][j] != 0) {
+        			buttons[i][j].setText(" " + board.getBoard()[i][j] + "  ");
+        			buttons[i][j].setBackground(Color.gray);
+        			buttons[i][j].setStart(true);
+        		}
+        	}
+        }
+        
+        
+    }
     
     void getHint(){
     	
@@ -238,6 +257,24 @@ public class SudokuBoard extends JPanel {
     void setNum(Button button, int num){
         button.setText(num +"");
     }
+    
+    
+    void loadGame(Board board) {
+    	this.board = board;
+    	setDifficulty();
+    	
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     private KeyListener enter = new KeyAdapter() {
         @Override public void keyTyped(KeyEvent e) {
