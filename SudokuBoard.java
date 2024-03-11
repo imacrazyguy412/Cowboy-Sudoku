@@ -179,7 +179,7 @@ public class SudokuBoard extends JPanel {
                     if(board.isCorrect(i, j, board.getBoard()[i][j])){}
         			buttons[i][j].setStart(true);
                     buttons[i][j].setBackground(Color.gray);
-                } else {
+                } else if(board.getBoard()[i][j] != 0){
                     buttons[i][j].setBackground(new Color(255, 204, 203));
                 }
         		}
@@ -187,7 +187,6 @@ public class SudokuBoard extends JPanel {
         }
         
         
-    }
     
     void getHint(){
     	
