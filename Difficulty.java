@@ -138,7 +138,7 @@ class Difficulty extends JPanel{
         start.setBackground(new Color (36, 44, 61));
         start.setForeground (Color.white);
         start.addActionListener(event -> {
-            GUI.gameM.addComponentsToPane(GUI.gameM, gameDiff);
+            GUI.gameM.addComponentsToPane(GUI.gameM, gameDiff, null);
             GUI.cowboyFrame.setContentPane(GUI.gameM);
         	GUI.cowboyFrame.repaint();
         	GUI.cowboyFrame.revalidate();
