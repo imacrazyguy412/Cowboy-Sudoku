@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.util.Random;
+import com.formdev.flatlaf.FlatLightLaf;
 class GUI {
     public static JFrame cowboyFrame;
     public static StartScreen startM = new StartScreen();
@@ -34,6 +35,15 @@ class GUI {
      * have a frame and then add startscreen to it here
      */
     public static void main(String[] args) {
+        try {
+    	    UIManager.setLookAndFeel(new FlatLightLaf());
+    	    UIManager.put( "Button.arc", 15 );
+    	    UIManager.put("Label.arc", 999);
+    	    System.out.println("i am running");
+    	} catch( Exception ex ) {
+    	    System.err.println( "Failed to initialize LaF" );
+    	}
+   	 	cowboyFrame.setDefaultLookAndFeelDecorated(true);
     	GUI sudoku = new GUI ();
     	sudoku.run();
     	
