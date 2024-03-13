@@ -57,12 +57,23 @@ public class SudokuBoard extends JPanel {
                             case KeyEvent.VK_UP:
                                 if (curRow > 0) {
                                 	if(!buttons[curRow][curCol].isStarter) {
+                                		if(!buttons[curRow][curCol].isMistake()) {
                                 		buttons[curRow][curCol].setBackground(Color.white);
+                                		}
                                 		buttons[curRow - 1][curCol].setBackground(new Color(173, 216, 230));
-                                	} else {
+                                		if(buttons[curRow - 1][curCol].isMistake()) {
+                                			buttons[curRow - 1][curCol].setBackground(new Color(255, 204, 203));
+                                		}
+                                		
+                                	}
+                                	else {
                                 		buttons[curRow][curCol].setBackground(Color.gray);
                                 		buttons[curRow - 1][curCol].setBackground(new Color(173, 216, 230));
+                                		if(buttons[curRow - 1][curCol].isMistake()) {
+                                			buttons[curRow - 1][curCol].setBackground(new Color(255, 204, 203));
+                                		}
                                 	}
+                                	
                                 }
                                     
                                 buttons[curRow - 1][curCol].requestFocus();
@@ -72,11 +83,20 @@ public class SudokuBoard extends JPanel {
                             case KeyEvent.VK_DOWN:
                                 if (curRow < buttons.length - 1) {
                                 	if(!buttons[curRow][curCol].isStarter) {
+                                		if(!buttons[curRow][curCol].isMistake()) {
                                 		buttons[curRow][curCol].setBackground(Color.white);
+                                		}
                                 		buttons[curRow +1][curCol].setBackground(new Color(173, 216, 230));
+                                		if(buttons[curRow + 1][curCol].isMistake()) {
+                                			buttons[curRow + 1][curCol].setBackground(new Color(255, 204, 203));
+                                		}
                                 	} else {
                                 		buttons[curRow][curCol].setBackground(Color.gray);
+                                		
                                 		buttons[curRow +1][curCol].setBackground(new Color(173, 216, 230));
+                                		if(buttons[curRow + 1][curCol].isMistake()) {
+                                			buttons[curRow + 1][curCol].setBackground(new Color(255, 204, 203));
+                                		}
                                 	}
                                 }
                                 buttons[curRow + 1][curCol].requestFocus();
@@ -84,11 +104,19 @@ public class SudokuBoard extends JPanel {
                             case KeyEvent.VK_LEFT:
                                 if (curCol > 0) {
                                 	if(!buttons[curRow][curCol].isStarter) {
+                                		if(!buttons[curRow][curCol].isMistake()) {
                                 		buttons[curRow][curCol].setBackground(Color.white);
+                                		}
                                 		buttons[curRow][curCol-1].setBackground(new Color(173, 216, 230));
+                                		if(buttons[curRow][curCol-1].isMistake()) {
+                                			buttons[curRow ][curCol-1].setBackground(new Color(255, 204, 203));
+                                		}
                                 	} else {
                                 		buttons[curRow][curCol].setBackground(Color.gray);
                                 		buttons[curRow][curCol-1].setBackground(new Color(173, 216, 230));
+                                		if(buttons[curRow][curCol-1].isMistake()) {
+                                			buttons[curRow ][curCol-1].setBackground(new Color(255, 204, 203));
+                                		}
                                 	}
                                 }
                                 buttons[curRow][curCol - 1].requestFocus();
@@ -96,11 +124,19 @@ public class SudokuBoard extends JPanel {
                             case KeyEvent.VK_RIGHT:
                                 if (curCol < buttons[curRow].length - 1) {
                                 	if(!buttons[curRow][curCol].isStarter) {
+                                		if(!buttons[curRow][curCol].isMistake()) {
                                 		buttons[curRow][curCol].setBackground(Color.white);
+                                		}
                                 		buttons[curRow][curCol+1].setBackground(new Color(173, 216, 230));
+                                		if(buttons[curRow][curCol+1].isMistake()) {
+                                			buttons[curRow ][curCol+1].setBackground(new Color(255, 204, 203));
+                                		}
                                 	} else {
                                 		buttons[curRow][curCol].setBackground(Color.gray);
                                 		buttons[curRow][curCol+1].setBackground(new Color(173, 216, 230));
+                                		if(buttons[curRow][curCol+1].isMistake()) {
+                                			buttons[curRow ][curCol+1].setBackground(new Color(255, 204, 203));
+                                		}
                                 	}
                                 }
                                 buttons[curRow][curCol + 1].requestFocus();
@@ -226,14 +262,17 @@ public class SudokuBoard extends JPanel {
     	        board.updateBoard(row, col, 0, guess);
     	        if(!board.isCorrect(row, col, guess)) {
     	        	button.setBackground(new Color(255, 204, 203));
+    	        	button.setMistake(true);
     	        	//UPDATE MISTAKES HERE
     	        	if(!undoing) {
     	            	GUI.gameM.updateMistakes();
     	        	}
     	        } else if (button.isStarter){
     	        	button.setBackground(Color.gray);
+    	        	button.setMistake( false);
     	        } else {
     	        	button.setBackground(Color.white);
+    	        	button.setMistake( false);
     	        }
     	        System.out.println(board.isCorrect(row, col, guess));
     	    	} else {
