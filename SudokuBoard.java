@@ -261,6 +261,7 @@ public class SudokuBoard extends JPanel {
     	        
     	        board.updateBoard(row, col, 0, guess);
     	        if(!board.isCorrect(row, col, guess)) {
+    	        	System.out.println("found error");
     	        	button.setBackground(new Color(255, 204, 203));
     	        	button.setMistake(true);
     	        	//UPDATE MISTAKES HERE
@@ -305,6 +306,16 @@ public class SudokuBoard extends JPanel {
     void loadGame(Board board) {
     	this.board = board;
     	setDifficulty();
+    	System.out.println();
+    	
+    	
+    	System.out.println("the real board:");
+    	for(int i = 0; i<9; i++) {
+    		for(int j = 0; j<9; j++) {
+    			System.out.print("" + board.getRealBoard()[i][j]);
+    		}
+    		System.out.println();
+    	}
     	
     }
     

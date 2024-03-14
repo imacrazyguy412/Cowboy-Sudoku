@@ -44,6 +44,7 @@ public class Board implements Serializable {
 		in.defaultReadObject();
 	}
 	public int[][] getRealBoard(){
+		getSolvedBoard();
 		return realBoard;
 	}
 		
@@ -130,7 +131,10 @@ public class Board implements Serializable {
 		
 		userBoard[r][c][z] = v;
 		if(z == 0) {
-			board[r][c] = v;
+			if(v == realBoard[r][c]) {
+				board[r][c] = v;
+			}
+			
 			for(int x = 1; x < 10; x++) {
 				userBoard[r][c][1] = 0;
 			}
