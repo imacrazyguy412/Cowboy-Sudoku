@@ -227,7 +227,7 @@ public class SudokuBoard extends JPanel {
     void getHint(){
     	
     	int[] nums = board.getHint();
-    	buttons[nums[0]][nums[1]].setText(nums[2] + "");
+    	setNum(buttons[nums[0]][nums[1]], nums[2], nums[0], nums[1]);
     }
     
     
