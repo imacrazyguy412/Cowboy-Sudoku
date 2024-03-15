@@ -42,7 +42,7 @@ class WinScreen extends JPanel{
         GridBagConstraints c = new GridBagConstraints();
 
         //Create header label
-        header = new JLabel("Wowie, you winnnn congratulations!!!");
+        header = new JLabel("You win congratulations!");
         header.setOpaque(true);
         header.setBackground(new Color (207, 176, 100));
 		header.setForeground(Color.black);
@@ -58,7 +58,7 @@ class WinScreen extends JPanel{
         
 
         //Create button
-        back = new JButton ("Back to main menu");
+        back = new JButton ("Back to Main Menu");
         back.setFont(new Font("Times New Roman", Font.PLAIN, 30));
         back.setOpaque(true);
         back.setBackground(new Color (36, 44, 61));
