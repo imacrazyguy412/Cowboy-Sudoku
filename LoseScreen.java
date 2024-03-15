@@ -39,7 +39,7 @@ public class LoseScreen extends JPanel {
 		c.gridy = 0;
 		pane.add(header, c);
 		
-		back = new JButton ("Return to main menu");
+		back = new JButton ("Return to Main Menu");
 		back.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		back.setOpaque(true);
 		back.setBackground(new Color (54, 54, 54));
