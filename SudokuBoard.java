@@ -294,7 +294,8 @@ public class SudokuBoard extends JPanel {
         	GUI.gameM.confFrame.repaint();
         	GUI.gameM.confFrame.revalidate();
         	GUI.gameM.confFrame.setVisible(true);
-
+        	//trying to stop error where whole screen freezes and breaks
+        	GUI.gameM.disableEleemnts();
     	}
 
     }
