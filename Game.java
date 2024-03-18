@@ -182,7 +182,7 @@ class Game extends JPanel{
 	    Confirm panel = new Confirm();
             Confirm.addToPane(panel, 1);
             confFrame.add(panel);
-	    confFrame.setContentPane(panel);
+            confFrame.setContentPane(panel);
             confFrame.setSize(1280, 720);
             confFrame.repaint();
             confFrame.revalidate();
@@ -329,6 +329,15 @@ class Game extends JPanel{
     
     SudokuBoard getSudokuBoard(){
     	return boardPanel;
+    }
+    
+    public void disableEleemnts() {
+    	undo.setEnabled(false);
+    	hint.setEnabled(false);
+    	save.setEnabled(false);
+    	toggleNotes.setEnabled(false);
+    	newGame.setEnabled(false);
+    	solve.setEnabled(false);
     }
     /**
 /**
