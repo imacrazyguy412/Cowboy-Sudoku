@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+
 import java.awt.event.*;
 import java.awt.*;
 import java.util.Random;
@@ -9,6 +11,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.math.*;
+import javax.swing.BorderFactory;
+import javax.swing.border.*;
+
 /*
 	Constraints reference
  	c.fill = GridBagConstraints.HORIZONTAL;
@@ -35,7 +40,8 @@ class Game extends JPanel{
 	public static int mistakes = 0;
 	private int mistakeLimit;
 	private boolean mistakeOn = true;
-	
+	private boolean notesToggled = false;
+	private Border defaultBorder;
 	private Board savedBoard;
 	
 	private int minute;
@@ -45,9 +51,10 @@ class Game extends JPanel{
     
     public Game() {
    	 pane = new JPanel();
-	 boardPanel = new SudokuBoard(9, 9);
+   	 //boardPanel not getting changed here into round
+   	 //boardPanel.putClientProperty( "JButton.buttonType", "roundRect" );
+	 boardPanel = new SudokuBoard(3, 3);
     }
-    
     private ActionListener taskPerformer = new ActionListener() {
         public void actionPerformed(ActionEvent evt) {
         	count+=1;
@@ -73,6 +80,7 @@ class Game extends JPanel{
     }
  
 	public void addComponentsToPane (Container pane, int difficulty, Board board) {
+		defaultBorder = BorderFactory.createLineBorder(null);
 		//Sets the content pane
 		pane.setBackground(new Color (229,229,229));
 		pane.setLayout(new GridBagLayout());
@@ -82,13 +90,13 @@ class Game extends JPanel{
 		
 		if(board != null) {
 				//Printing results
-			System.out.println("Loading");
+			System.out.println("Loading...");
 			boardPanel.loadGame(savedBoard);
 			difficulty = savedBoard.getDifficulty();
 		}
 		
 		else {
-		boardPanel.setDifficulty(difficulty);
+		//boardPanel.setDifficulty(difficulty);
 		}
 		
 		
@@ -226,7 +234,7 @@ class Game extends JPanel{
 	    Confirm panel = new Confirm();
             Confirm.addToPane(panel, 3);
             confFrame.add(panel);
-	    confFrame.setContentPane(panel);
+            confFrame.setContentPane(panel);
             confFrame.setSize(1280, 720);
             confFrame.repaint();
             confFrame.revalidate();
@@ -245,9 +253,18 @@ class Game extends JPanel{
 		toggleNotes.setForeground (Color.white);
 		toggleNotes.setPreferredSize(new Dimension(200, 40));
 		toggleNotes.addActionListener(event -> {
-			//Switch to notes board
-			boardPanel.toggleNote();
-			
+			/*if (notesToggled) {
+				notesToggled = false;
+				toggleNotes.setBorder(defaultBorder);
+				System.out.println(notesToggled);
+			} else {
+				notesToggled = true;
+				toggleNotes.setBorder(new BevelBorder(BevelBorder.LOWERED));
+	            toggleNotes.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+	            System.out.println(notesToggled);
+			}
+			*/
+			boardPanel.toggleNote();	
         });
 		
 		//set constraints and add toggleNotes;
@@ -330,15 +347,6 @@ class Game extends JPanel{
     SudokuBoard getSudokuBoard(){
     	return boardPanel;
     }
-    
-    public void disableEleemnts() {
-    	undo.setEnabled(false);
-    	hint.setEnabled(false);
-    	save.setEnabled(false);
-    	toggleNotes.setEnabled(false);
-    	newGame.setEnabled(false);
-    	solve.setEnabled(false);
-    }
     /**
 /**
 	* Create the GUI and show it.  For thread safety,
@@ -351,6 +359,8 @@ class Game extends JPanel{
         //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Display the window.
+    	pane.repaint();
+    	pane.revalidate();
         pane.setVisible(true);
     }
     
