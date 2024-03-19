@@ -15,6 +15,8 @@ public class SudokuBoard extends JPanel {
     private boolean noteOn;
     Board board;
     boolean undoing = false;
+    //private JPanel miniB1, miniB2, miniB3, miniB4, miniB5, miniB6, miniB7, miniB8, miniB9;
+    private JPanel [][] miniB;
 
     // add top and botton to layout for exit button
     // just use a png background and make wiindow non resisable
@@ -29,12 +31,178 @@ public class SudokuBoard extends JPanel {
     }
     
     public SudokuBoard(int row, int col) {
-        super(new GridLayout(row, col));
-        
+        super(new GridLayout(row, col, 5, 5));
 
         // logic stuff
+        
         noteOn = false;
+        
+        miniB = new JPanel [row][col];
+        for (int i = 0; i < miniB.length; i++) {
+        	for (int j = 0; j < miniB[i].length; j++) {
+        		miniB[i][j] = new JPanel();
+        		miniB[i][j].setLayout(new GridLayout(row, col));
+        		miniB[i][j].setVisible(true);
+        		
+                buttons = new Button[row][col];
+                for (int k = 0; k < buttons.length; k++) {
+                    for (int l = 0; l < buttons[k].length; l++) {
+                        final int curRow = i;
+                        final int curCol = j;
+                        
+                        
+                        	buttons[k][l] = new Button(k, l, false);
+                        	buttons[k][l] = new Button(k, l, false);
+                        
+                       // buttons[i][j].setText();
+                        buttons[k][l].setPreferredSize(new Dimension(50, 50));
+                        
+                        buttons[k][l].addKeyListener(enter);
+                        buttons[k][l].addKeyListener(number);
+                        buttons[k][l].setBackground(Color.white);
+                        buttons[k][l].addKeyListener(new KeyAdapter() {
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                switch (e.getKeyCode()) {
+                                    case KeyEvent.VK_UP:
+                                        if (curRow > 0) {
+                                        	if(!buttons[curRow][curCol].isStarter) {
+                                        		if(!buttons[curRow][curCol].isMistake()) {
+                                        		buttons[curRow][curCol].setBackground(Color.white);
+                                        		}
+                                        		buttons[curRow - 1][curCol].setBackground(new Color(173, 216, 230));
+                                        		if(buttons[curRow - 1][curCol].isMistake()) {
+                                        			buttons[curRow - 1][curCol].setBackground(new Color(255, 204, 203));
+                                        		}
+                                        		
+                                        	}
+                                        	else {
+                                        		buttons[curRow][curCol].setBackground(Color.gray);
+                                        		buttons[curRow - 1][curCol].setBackground(new Color(173, 216, 230));
+                                        		if(buttons[curRow - 1][curCol].isMistake()) {
+                                        			buttons[curRow - 1][curCol].setBackground(new Color(255, 204, 203));
+                                        		}
+                                        	}
+                                        	
+                                        }
+                                            
+                                        buttons[curRow - 1][curCol].requestFocus();
+                                        
+                                        // buttons[curRow - 1][curCol].se
+                                        break;
+                                    case KeyEvent.VK_DOWN:
+                                        if (curRow < buttons.length - 1) {
+                                        	if(!buttons[curRow][curCol].isStarter) {
+                                        		if(!buttons[curRow][curCol].isMistake()) {
+                                        		buttons[curRow][curCol].setBackground(Color.white);
+                                        		}
+                                        		buttons[curRow +1][curCol].setBackground(new Color(173, 216, 230));
+                                        		if(buttons[curRow + 1][curCol].isMistake()) {
+                                        			buttons[curRow + 1][curCol].setBackground(new Color(255, 204, 203));
+                                        		}
+                                        	} else {
+                                        		buttons[curRow][curCol].setBackground(Color.gray);
+                                        		
+                                        		buttons[curRow +1][curCol].setBackground(new Color(173, 216, 230));
+                                        		if(buttons[curRow + 1][curCol].isMistake()) {
+                                        			buttons[curRow + 1][curCol].setBackground(new Color(255, 204, 203));
+                                        		}
+                                        	}
+                                        }
+                                        buttons[curRow + 1][curCol].requestFocus();
+                                        break;
+                                    case KeyEvent.VK_LEFT:
+                                        if (curCol > 0) {
+                                        	if(!buttons[curRow][curCol].isStarter) {
+                                        		if(!buttons[curRow][curCol].isMistake()) {
+                                        		buttons[curRow][curCol].setBackground(Color.white);
+                                        		}
+                                        		buttons[curRow][curCol-1].setBackground(new Color(173, 216, 230));
+                                        		if(buttons[curRow][curCol-1].isMistake()) {
+                                        			buttons[curRow ][curCol-1].setBackground(new Color(255, 204, 203));
+                                        		}
+                                        	} else {
+                                        		buttons[curRow][curCol].setBackground(Color.gray);
+                                        		buttons[curRow][curCol-1].setBackground(new Color(173, 216, 230));
+                                        		if(buttons[curRow][curCol-1].isMistake()) {
+                                        			buttons[curRow ][curCol-1].setBackground(new Color(255, 204, 203));
+                                        		}
+                                        	}
+                                        }
+                                        buttons[curRow][curCol - 1].requestFocus();
+                                        break;
+                                    case KeyEvent.VK_RIGHT:
+                                        if (curCol < buttons[curRow].length - 1) {
+                                        	if(!buttons[curRow][curCol].isStarter) {
+                                        		if(!buttons[curRow][curCol].isMistake()) {
+                                        		buttons[curRow][curCol].setBackground(Color.white);
+                                        		}
+                                        		buttons[curRow][curCol+1].setBackground(new Color(173, 216, 230));
+                                        		if(buttons[curRow][curCol+1].isMistake()) {
+                                        			buttons[curRow ][curCol+1].setBackground(new Color(255, 204, 203));
+                                        		}
+                                        	} else {
+                                        		buttons[curRow][curCol].setBackground(Color.gray);
+                                        		buttons[curRow][curCol+1].setBackground(new Color(173, 216, 230));
+                                        		if(buttons[curRow][curCol+1].isMistake()) {
+                                        			buttons[curRow ][curCol+1].setBackground(new Color(255, 204, 203));
+                                        		}
+                                        	}
+                                        }
+                                        buttons[curRow][curCol + 1].requestFocus();
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                        });
+                        miniB[i][j].add(buttons[k][l]);
+                    }
+                }
+                add(miniB[i][j]);
+        	}
+        }
+        /*
+        miniB1 = new JPanel();
+        miniB1.setVisible(true);
+        miniB1.setBackground(Color.ORANGE);
+        
+        miniB2 = new JPanel();
+        miniB2.setVisible(true);
+        miniB2.setBackground(Color.BLACK);
+        
+        
+        miniB3 = new JPanel();
+        miniB3.setVisible(true);
+        
+        
+        miniB4 = new JPanel();
+        miniB4.setVisible(true);
+        
+        
+        miniB5 = new JPanel();
+        miniB5.setVisible(true);
+        
+        
+        miniB6 = new JPanel();
+        miniB6.setVisible(true);
+        
+        
+        miniB7 = new JPanel();
+        miniB7.setVisible(true);
+        
+        
+        miniB8 = new JPanel();
+        miniB8.setVisible(true);
+        
+        
+        miniB9 = new JPanel();
+        miniB9.setVisible(true);
+    
+        */
+        
 
+        /*
         buttons = new Button[row][col];
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
@@ -42,8 +210,9 @@ public class SudokuBoard extends JPanel {
                 final int curCol = j;
                 
                 
+                	buttons[i][j] = new Button(i, j, false);
+                	buttons[i][j] = new Button(i, j, false);
                 
-                buttons[i][j] = new Button(i, j, false);
                // buttons[i][j].setText();
                 buttons[i][j].setPreferredSize(new Dimension(50, 50));
                 
@@ -146,9 +315,10 @@ public class SudokuBoard extends JPanel {
                         }
                     }
                 });
-                add(buttons[i][j]);
+                //add(buttons[i][j]);
             }
         }
+        */
     }
     
 
@@ -227,7 +397,7 @@ public class SudokuBoard extends JPanel {
     void getHint(){
     	
     	int[] nums = board.getHint();
-    	setNum(buttons[nums[0]][nums[1]], nums[2], nums[0], nums[1]);
+    	buttons[nums[0]][nums[1]].setText(nums[2] + "");
     }
     
     
@@ -294,8 +464,7 @@ public class SudokuBoard extends JPanel {
         	GUI.gameM.confFrame.repaint();
         	GUI.gameM.confFrame.revalidate();
         	GUI.gameM.confFrame.setVisible(true);
-        	//trying to stop error where whole screen freezes and breaks
-        	GUI.gameM.disableEleemnts();
+
     	}
 
     }
@@ -410,7 +579,7 @@ public class SudokuBoard extends JPanel {
     public static void main(String[] args) {
         JFrame f = new JFrame();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.add(new SudokuBoard(9, 9));
+        f.add(new SudokuBoard(3, 3));
         // f.pack();
         f.setSize(400, 400);
         f.setVisible(true);
