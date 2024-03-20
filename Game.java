@@ -96,7 +96,7 @@ class Game extends JPanel{
 		}
 		
 		else {
-		//boardPanel.setDifficulty(difficulty);
+		boardPanel.setDifficulty(difficulty);
 		}
 		
 		
