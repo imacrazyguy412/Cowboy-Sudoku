@@ -487,7 +487,7 @@ public class SudokuBoard extends JPanel {
         	GUI.gameM.confFrame.repaint();
         	GUI.gameM.confFrame.revalidate();
         	GUI.gameM.confFrame.setVisible(true);
-
+		GUI.gameM.disableEleemnts();
     	}
 
     }
