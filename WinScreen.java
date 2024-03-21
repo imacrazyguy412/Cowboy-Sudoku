@@ -45,8 +45,10 @@ class WinScreen extends JPanel{
         header = new JLabel("You win congratulations!");
         header.setOpaque(true);
         header.setBackground(new Color (207, 176, 100));
-		header.setForeground(Color.black);
+	header.setForeground(Color.black);
         header.setFont(new Font("Ariel", Font.PLAIN, 20));
+	header.setHorizontalAlignment(SwingConstants.CENTER);
+	header.setVerticalAlignment(SwingConstants.CENTER);
 
 
         //set constraints and add title
