@@ -358,6 +358,17 @@ class Game extends JPanel{
     SudokuBoard getSudokuBoard(){
     	return boardPanel;
     }
+
+	public void disableEleemnts() {
+		undo.setEnabled(false);
+    		hint.setEnabled(false);
+    		save.setEnabled(false);
+    		toggleNotes.setEnabled(false);
+    		newGame.setEnabled(false);
+    		solve.setEnabled(false);
+    }
+
+	
     /**
 /**
 	* Create the GUI and show it.  For thread safety,
