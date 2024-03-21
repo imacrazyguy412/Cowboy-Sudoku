@@ -31,7 +31,7 @@ public class SudokuBoard extends JPanel {
     }
     
     public SudokuBoard(int row, int col) {
-        super(new GridLayout(row, col, 2, 2));
+        super(new GridLayout(row, col, 3, 3));
         setBackground(Color.black);
 
         // logic stuff
