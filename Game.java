@@ -89,33 +89,44 @@ class Game extends JPanel{
 		savedBoard = board;
 		
 		if(board != null) {
-				//Printing results
-			System.out.println("Loading...");
-			boardPanel.loadGame(savedBoard);
-			difficulty = savedBoard.getDifficulty();
+			//Printing results
+		System.out.println("Loading...");
+		boardPanel.loadGame(savedBoard);
+		difficulty = savedBoard.getDifficulty();
+	}
+	
+	else {
+	boardPanel.setDifficulty(difficulty);
+	}
+		
+		switch (difficulty){
+		case 1:
+			diff = new JLabel("Difficulty: Easy");
+			mistakeLimit = 5;
+			
+			break;
+		case 2:
+			diff = new JLabel("Difficulty: Medium");
+			mistakeLimit = 4;
+			break;
+		case 3:
+			diff = new JLabel("Difficulty: Hard");
+			mistakeLimit = 3;
+			break;
+		case 0:
+			mistakeLimit = boardPanel.getBoard().getMistakes();
+			break;
+	}
+		if(board != null) {
+			mistakeLimit = boardPanel.getBoard().getMistakes();
 		}
 		
-		else {
-		boardPanel.setDifficulty(difficulty);
-		}
+		
 		
 		
 
 		//Create diff label
-		switch (difficulty){
-			case 1:
-				diff = new JLabel("Difficulty: Easy");
-				mistakeLimit = 5;
-				break;
-			case 2:
-				diff = new JLabel("Difficulty: Medium");
-				mistakeLimit = 4;
-				break;
-			case 3:
-				diff = new JLabel("Difficulty: Hard");
-				mistakeLimit = 3;
-				break;
-		}
+		
 		diff.setPreferredSize(new Dimension(70, 30));
 		diff.setFont(new Font("Serif", Font.PLAIN, 20));
 		diff.setHorizontalAlignment(SwingConstants.CENTER);
@@ -331,6 +342,7 @@ class Game extends JPanel{
     public void updateMistakes() {
     	if(mistakeOn) {
     	mistakes++;
+    	boardPanel.getBoard().setMistakes(mistakeLimit - mistakes);
 	if ((mistakeLimit - mistakes) <= 0){
 		GUI.gameM = new Game();
         	GUI.gameM.createAndShowGUI();

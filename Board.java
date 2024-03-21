@@ -28,10 +28,24 @@ public class Board implements Serializable {
 	int[][][] completedBoard;
 	int[][] realBoard;
 	int[] undo = new int[4];
+	
+	int mistakes;
+	
+	
 
 	public Board() {
 		
 	}
+	
+	void setMistakes(int mis){
+		mistakes = mis;
+		System.out.println(mis);
+	}
+	
+	int getMistakes(){
+		return mistakes;
+	}
+	
 	public int getDifficulty() {
 		return difficulty;
 	}

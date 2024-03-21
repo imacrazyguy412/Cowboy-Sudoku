@@ -448,7 +448,7 @@ public class SudokuBoard extends JPanel {
     		if(guess != 0) {
     	    	
     	        button.setText(guess +"");
-    	        System.out.println("row: " + row + " col: " +col);
+    	       // System.out.println("row: " + row + " col: " +col);
 
     	        //CALLING BOARD IN HERE
     	        
@@ -468,7 +468,7 @@ public class SudokuBoard extends JPanel {
     	        	button.setBackground(Color.white);
     	        	button.setMistake( false);
     	        }
-    	        System.out.println(board.isCorrect(row, col, guess));
+    	       // System.out.println(board.isCorrect(row, col, guess));
     	    	} else {
     	    	button.setText("");
     	    	board.updateBoard(row, col, 0, guess);
@@ -501,7 +501,7 @@ public class SudokuBoard extends JPanel {
     	setDifficulty();
     	System.out.println();
     	
-    	
+    	/*
     	System.out.println("the real board:");
     	for(int i = 0; i<9; i++) {
     		for(int j = 0; j<9; j++) {
@@ -509,6 +509,7 @@ public class SudokuBoard extends JPanel {
     		}
     		System.out.println();
     	}
+    	*/
     	
     }
     
