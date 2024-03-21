@@ -263,18 +263,17 @@ class Game extends JPanel{
 		toggleNotes.setBackground(new Color (36, 44, 61));
 		toggleNotes.setForeground (Color.white);
 		toggleNotes.setPreferredSize(new Dimension(200, 40));
+		toggleNotes.setBorder(BorderFactory.createLineBorder(new Color (229,229,229)));
 		toggleNotes.addActionListener(event -> {
-			/*if (notesToggled) {
-				notesToggled = false;
-				toggleNotes.setBorder(defaultBorder);
-				System.out.println(notesToggled);
+			if (notesToggled) {
+			notesToggled = false;
+			toggleNotes.setBorder(defaultBorder);
+			toggleNotes.setBorder(BorderFactory.createLineBorder(new Color (229,229,229)));
 			} else {
-				notesToggled = true;
-				toggleNotes.setBorder(new BevelBorder(BevelBorder.LOWERED));
-	            toggleNotes.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-	            System.out.println(notesToggled);
+			notesToggled = true;
+	            	toggleNotes.setBorder(BorderFactory.createLineBorder(Color.ORANGE, 5));
 			}
-			*/
+			
 			boardPanel.toggleNote();	
         });
 		
