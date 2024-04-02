@@ -130,7 +130,7 @@ class StartScreen extends JPanel{
         	
             
         });
-        panel.add(button, c);
+        panel.add(savedButton, c);
         
         icon = new ImageIcon(scaleImage);
         label = new JLabel(icon);
