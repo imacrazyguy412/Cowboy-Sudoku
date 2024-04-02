@@ -59,6 +59,7 @@ class StartScreen extends JPanel{
         button.setForeground(new Color(255,255,255));
         button.setVisible(true);
         button.addActionListener(event -> {
+        	savedButton.setEnabled(true);
         	GUI.cowboyFrame.setContentPane(GUI.diffM);
         	GUI.cowboyFrame.repaint();
         	GUI.cowboyFrame.revalidate();
@@ -114,13 +115,13 @@ class StartScreen extends JPanel{
         	GUI.cowboyFrame.repaint();
         	GUI.cowboyFrame.revalidate();
             System.out.println("frame is closed");
-            savedButton.setEnabled(true);
+            
             
 			} catch(EOFException f) {
 				//setEnabled false here
 				 savedButton.setEnabled(false);
             }catch(IOException e) {
-				System.out.println(e);
+            	savedButton.setEnabled(false);
 			} catch(ClassNotFoundException h) {
 				System.out.println(h);
 			} 	catch(Exception e) {
