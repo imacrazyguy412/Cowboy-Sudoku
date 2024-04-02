@@ -13,11 +13,12 @@ import javax.swing.SwingUtilities;
 class StartScreen extends JPanel{
     
 	boolean shouldFill;
-    boolean shouldWeightX;
-    boolean RIGHT_TO_LEFT;
-    JPanel panel;
-    ImageIcon icon;
-    Image scaleImage;
+	boolean shouldWeightX;
+	boolean RIGHT_TO_LEFT;
+	JPanel panel;
+	JButton savedButton;
+	ImageIcon icon;
+	Image scaleImage;
     public static StartScreen screen;
     public StartScreen() {
     	shouldFill = true;
@@ -82,17 +83,17 @@ class StartScreen extends JPanel{
         label.setVerticalAlignment(SwingConstants.CENTER);
         panel.add(label, c);
 
-        button = new JButton("Continue Saved Game");
+        savedButton = new JButton("Continue Saved Game");
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.5;
         c.gridx = 2;
         c.gridy = 2;
-        button.setBorder(line);
-        button.setPreferredSize(new Dimension(150, 75));
-        button.setBackground(new Color(36,44,61));
-        button.setForeground(new Color(255,255,255));
-        button.setVisible(true);
-        button.addActionListener(event -> {
+        savedButton.setBorder(line);
+        savedButton.setPreferredSize(new Dimension(150, 75));
+        savedButton.setBackground(new Color(36,44,61));
+        savedButton.setForeground(new Color(255,255,255));
+        savedButton.setVisible(true);
+        savedButton.addActionListener(event -> {
         	Board savedBoard = null;
         	try {
         	File file = new File("board.ser");
@@ -113,11 +114,11 @@ class StartScreen extends JPanel{
         	GUI.cowboyFrame.repaint();
         	GUI.cowboyFrame.revalidate();
             System.out.println("frame is closed");
-            //setendabled true here
+            savedButton.setEnabled(true);
             
 			} catch(EOFException f) {
 				//setEnabled false here
-				button.setEnabled(false);
+				 savedButton.setEnabled(false);
             }catch(IOException e) {
 				System.out.println(e);
 			} catch(ClassNotFoundException h) {
