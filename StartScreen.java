@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -107,19 +108,26 @@ class StartScreen extends JPanel{
 				}
 				System.out.println();
 			}
-			} catch(IOException e) {
-				System.out.println(e);
-			} catch(ClassNotFoundException h) {
-				System.out.println(h);
-			} catch(Exception e) {
-				System.out.println(e);
-			}
-        	
-            GUI.gameM.addComponentsToPane(GUI.gameM, 0, savedBoard);
+			GUI.gameM.addComponentsToPane(GUI.gameM, 0, savedBoard);
         	GUI.cowboyFrame.setContentPane(GUI.gameM);
         	GUI.cowboyFrame.repaint();
         	GUI.cowboyFrame.revalidate();
             System.out.println("frame is closed");
+            //setendabled true here
+            
+			} catch(EOFException f) {
+				//setEnabled false here
+				button.setEnabled(false);
+            }catch(IOException e) {
+				System.out.println(e);
+			} catch(ClassNotFoundException h) {
+				System.out.println(h);
+			} 	catch(Exception e) {
+				System.out.println(e);
+				
+			}
+        	
+            
         });
         panel.add(button, c);
         
