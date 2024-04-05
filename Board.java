@@ -14,7 +14,7 @@ public class Board implements Serializable {
 	boolean valid = false;
 	int choice = 0;
 	int rando = (int) (Math.random()*10-1);
-	int rand = (int) (Math.random()*9+1);
+	int val = (int) (Math.random()*9+1);
 	int x = 0;
 	int y = 0;
 	int row = 0;
@@ -29,10 +29,7 @@ public class Board implements Serializable {
 	int[][][] completedBoard;
 	int[][] realBoard;
 	int[] undo = new int[4];
-	
 	int mistakes;
-	
-	
 
 	public Board() {
 		
@@ -72,7 +69,7 @@ public class Board implements Serializable {
 		}
 		valid = false;
 		if(difficulty == 1) {
-			targetNums = 35;
+			targetNums = 30;
 		} else if(difficulty == 2) {
 			targetNums = 30;
 		} else {
@@ -80,54 +77,45 @@ public class Board implements Serializable {
 		}
 		while(!possible) {
 			while(numsPlaced < targetNums) {
-				rand = (int) (Math.random()*9+1);
-				rando = (int) (Math.random()*10+1);
+				val = (int) (Math.random()*9+1);
 				x = (int) (Math.random()*9);
 				y = (int) (Math.random()*9);
 				valid = false;
-				if(rando <= 3) {
-					if(board[x][y] == 0 && solver.notFull(board, x, y)) {
-						if(solver.valid(board, rand, x, y)) {
-							valid = true;
-						}
-						while(!valid) {
-							rand = (int) (Math.random()*9+1);
-							if(solver.valid(board, rand, x, y)) {
-								valid = true;
-							}
-						}
-						board[x][y] = rand;
+				if(board[x][y] == 0 && solver.notFull(board, x, y)) {
+					if(solver.valid(board, val, x, y)) {
+						board[x][y] = val;
 						numsPlaced++;
 					}
 				}
 			}
 			if(solver.solve(board)) {
 				completedBoard = solver.getBoard();
-				
 				for (int r = 0; r < 9; r++) {
 					for (int c = 0; c < 9; c++) {
-						for (int rowt = 0; rowt < 9; rowt++) {
-							if (!(rowt == r)) {
-								if (completedBoard[rowt][c][0] == completedBoard[r][c][0]) {
-									possible = false;
-									temp++;
-								}
-							}
-						}
-						for (int colt = 0; colt < 9; colt++) {
-							if (!(colt == c)) {
-								if (completedBoard[r][colt][0] == completedBoard[r][c][0]) {
-									possible = false;
-									temp++;
-								}
-							}
-						}
-						for (int rowt = r / 3 * 3; rowt < r / 3 * 3 + 3; rowt++) {
-							for (int colt = c / 3 * 3; colt < c / 3 * 3 + 3; colt++) {
-								if ((!(colt == c)) && (!(rowt == r))) {
-									if (completedBoard[rowt][colt][0] == completedBoard[r][c][0]) {
+						if(temp == 0) {
+							for (int rowt = 0; rowt < 9; rowt++) {
+								if (!(rowt == r)) {
+									if (completedBoard[rowt][c][0] == completedBoard[r][c][0]) {
 										possible = false;
 										temp++;
+									}
+								}
+							}
+							for (int colt = 0; colt < 9; colt++) {
+								if (!(colt == c)) {
+									if (completedBoard[r][colt][0] == completedBoard[r][c][0]) {
+										possible = false;
+										temp++;
+									}
+								}
+							}
+							for (int rowt = r / 3 * 3; rowt < r / 3 * 3 + 3; rowt++) {
+								for (int colt = c / 3 * 3; colt < c / 3 * 3 + 3; colt++) {
+									if ((!(colt == c)) && (!(rowt == r))) {
+										if (completedBoard[rowt][colt][0] == completedBoard[r][c][0]) {
+											possible = false;
+											temp++;
+										}
 									}
 								}
 							}
@@ -137,6 +125,18 @@ public class Board implements Serializable {
 				if(temp == 0) {
 					possible = true;
 					numsPlaced = 0;
+					temp = 0;
+					if(difficulty == 1) {
+						while (temp < 5) {
+							x = (int) (Math.random()*9);
+							y = (int) (Math.random()*9);
+							if(board[x][y] == 0) {
+								board[x][y] = completedBoard[x][y][0];
+								temp++;
+							}
+						}
+						temp = 0;
+					}
 					for(int r = 0; r < 9; r++) {
 						for(int c = 0; c < 9; c++) {
 							userBoard[r][c][0] = board[r][c];
@@ -193,6 +193,8 @@ public class Board implements Serializable {
 		System.out.println();
 		return board;
 	}
+	
+	
 	
 	public void setFullBoard(int[][] bord) {
 		for(int r = 0; r < 9; r++) {
