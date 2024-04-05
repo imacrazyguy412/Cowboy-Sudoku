@@ -80,6 +80,36 @@ import java.io.Serializable;
 					}
 				}
 			}
+			/*for(int r = 0; r < 9; r++) {
+				for(int c = 0; c < 9; c++) {
+					for(int rowt = 0; rowt < 9; rowt++) {
+						if(!(rowt == r)) {
+							if(board[rowt][c] == board[r][c]) {
+								possible = false;
+								temp++;
+							}
+						}
+					}
+					for(int colt = 0; colt < 9; colt++) {
+						if(!(colt == c)) {
+							if(board[r][colt] == board[r][colt]) {
+								possible = false;
+								temp++;
+							}
+						}
+					}
+					/*for(int rowt = r/3*3; rowt < r/3*3+3; rowt++) {
+						for(int colt = c/3*3; colt < c/3*3+3; colt++) {
+							if((!(colt == c)) && (!(rowt == r))) {
+								if(board[rowt][colt] == board[r][c]) {
+									possible = false;
+									temp++;
+								}
+							}
+						}
+					}
+				}
+			}*/
 			if(temp == 0) {
 				attempts = a;
 				return possible;

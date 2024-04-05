@@ -22,6 +22,7 @@ public class Board implements Serializable {
 	int num = 0;
 	int numsPlaced = 0;
 	int targetNums = 30;
+	int temp = 0;
 	boolean possible = false;
 	boolean check = true;
 	Solver solver = new Solver();
@@ -101,15 +102,70 @@ public class Board implements Serializable {
 				}
 			}
 			if(solver.solve(board)) {
-				possible = true;
-				numsPlaced = 0;
-				for(int r = 0; r < 9; r++) {
-					for(int c = 0; c < 9; c++) {
-						userBoard[r][c][0] = board[r][c];
-						for(int x = 1; x < 10; x++) {
-							userBoard[r][c][x] = 0;
+				completedBoard = solver.getBoard();
+				
+				for (int r = 0; r < 9; r++) {
+					for (int c = 0; c < 9; c++) {
+						for (int rowt = 0; rowt < 9; rowt++) {
+							if (!(rowt == r)) {
+								if (completedBoard[rowt][c][0] == completedBoard[r][c][0]) {
+									possible = false;
+									temp++;
+								}
+							}
+						}
+						for (int colt = 0; colt < 9; colt++) {
+							if (!(colt == c)) {
+								if (completedBoard[r][colt][0] == completedBoard[r][c][0]) {
+									possible = false;
+									temp++;
+								}
+							}
+						}
+						for (int rowt = r / 3 * 3; rowt < r / 3 * 3 + 3; rowt++) {
+							for (int colt = c / 3 * 3; colt < c / 3 * 3 + 3; colt++) {
+								if ((!(colt == c)) && (!(rowt == r))) {
+									if (completedBoard[rowt][colt][0] == completedBoard[r][c][0]) {
+										possible = false;
+										temp++;
+									}
+								}
+							}
 						}
 					}
+				}
+				if(temp == 0) {
+					possible = true;
+					numsPlaced = 0;
+					for(int r = 0; r < 9; r++) {
+						for(int c = 0; c < 9; c++) {
+							userBoard[r][c][0] = board[r][c];
+							for(int x = 1; x < 10; x++) {
+								userBoard[r][c][x] = 0;
+							}
+						}
+					}
+					for(int i = 0; i<9; i++) {
+						for(int j = 0; j<9;j ++) {
+							System.out.print(completedBoard[i][j][0]);
+						}
+						System.out.println();
+					}
+					System.out.println();
+					for(int i = 0; i<9; i++) {
+						for(int j = 0; j<9;j ++) {
+							System.out.print(board[i][j]);
+						}
+						System.out.println();
+					}
+					System.out.println();
+				} else {
+					for(int r = 0; r < 9; r++) {
+						for(int c = 0; c < 9; c++) {
+							board[r][c] = 0;
+						}
+					}
+					numsPlaced = 0;
 				}
 			} else {
 				for(int r = 0; r < 9; r++) {
@@ -120,6 +176,21 @@ public class Board implements Serializable {
 				numsPlaced = 0;
 			}
 		}
+		getSolvedBoard();
+		for(int i = 0; i<9; i++) {
+			for(int j = 0; j<9;j ++) {
+				System.out.print(completedBoard[i][j][0]);
+			}
+			System.out.println();
+		}
+		System.out.println();
+		for(int i = 0; i<9; i++) {
+			for(int j = 0; j<9;j ++) {
+				System.out.print(board[i][j]);
+			}
+			System.out.println();
+		}
+		System.out.println();
 		return board;
 	}
 	
@@ -206,12 +277,12 @@ public class Board implements Serializable {
 		
 		
 		//print answers
-		for(int i = 0; i<9; i++) {
+		/*for(int i = 0; i<9; i++) {
 			for(int j = 0; j<9;j ++) {
 				System.out.print(completedBoard[i][j][0]);
 			}
 			System.out.println();
-		}
+		}*/
 		
 		return completedBoard;
 	}
