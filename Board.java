@@ -69,9 +69,9 @@ public class Board implements Serializable {
 		}
 		valid = false;
 		if(difficulty == 1) {
-			targetNums = 31;
+			targetNums = 30;
 		} else if(difficulty == 2) {
-			targetNums = 28;
+			targetNums = 30;
 		} else {
 			targetNums = 25;
 		}
