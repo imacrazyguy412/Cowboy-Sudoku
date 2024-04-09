@@ -277,6 +277,7 @@ public class SudokuBoard extends JPanel {
 
     	if(!board.isCorrect(undo[0], undo[1], undo[3])) {
     		setNum(buttons[undo[0]][undo[1]],0, undo[0], undo[1]);
+    		buttons[undo[0]][undo[1]].setMistake(false);
     	}
     	undoing = false;
     }
